@@ -12,23 +12,23 @@ namespace CustomAuth.Infrastructure.Mappers
 {
     public static class MvcMappers
     {
-        public static UserViewModel ToMvcUser(this DalUser userEntity)
+        public static UserViewModel ToMvcUser(this UserEntity userEntity)
         {
             return new UserViewModel()
             {
                 Id = userEntity.Id,
-                Email = userEntity.Name,
+                Email = userEntity.UserName,
                 Role = (Role)userEntity.RoleId,
                 CreationDate = userEntity.DateAdded
             };
         }
 
-        public static DalUser ToBllUser(this UserViewModel userViewModel)
+        public static UserEntity ToBllUser(this UserViewModel userViewModel)
         {
-            return new DalUser()
+            return new UserEntity()
             {
                 Id = userViewModel.Id,
-                Name = userViewModel.Email,
+                UserName = userViewModel.Email,
                 RoleId = (int)userViewModel.Role,
                 DateAdded = userViewModel.CreationDate
             };

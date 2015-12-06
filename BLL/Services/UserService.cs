@@ -4,10 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Bll.Interface;
+using Bll.Interface.Services;
+using Bll.Mappers;
 using DalToWeb.Interfacies;
 using DalToWeb.Repositories;
 
-namespace BLL
+namespace Bll.Services
 {
     public class UserService : IUserService
     {

@@ -2,3 +2,7 @@ D:\Winter training\Day 16\AuthenticationSamples.Autumn.2015\Bll.Interface\bin\De
 D:\Winter training\Day 16\AuthenticationSamples.Autumn.2015\Bll.Interface\bin\Debug\Bll.Interface.pdb
 D:\Winter training\Day 16\AuthenticationSamples.Autumn.2015\Bll.Interface\obj\Debug\Bll.Interface.dll
 D:\Winter training\Day 16\AuthenticationSamples.Autumn.2015\Bll.Interface\obj\Debug\Bll.Interface.pdb
+D:\Winter training\Day 16\blog\Bll.Interface\bin\Debug\Bll.Interface.dll
+D:\Winter training\Day 16\blog\Bll.Interface\bin\Debug\Bll.Interface.pdb
+D:\Winter training\Day 16\blog\Bll.Interface\obj\Debug\Bll.Interface.dll
+D:\Winter training\Day 16\blog\Bll.Interface\obj\Debug\Bll.Interface.pdb

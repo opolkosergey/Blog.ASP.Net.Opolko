@@ -49,9 +49,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DalRole.cs" />
-    <Compile Include="DalUser.cs" />
-    <Compile Include="IEntity.cs" />
+    <Compile Include="DTO\DalRole.cs" />
+    <Compile Include="DTO\DalUser.cs" />
+    <Compile Include="DTO\IEntity.cs" />
     <Compile Include="Interfacies\IRepository.cs" />
     <Compile Include="Interfacies\IRoleRepository.cs" />
     <Compile Include="Interfacies\IUserRepository.cs" />

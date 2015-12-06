@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using Bll.Interface;
+using Bll.Interface.Services;
+using Bll.Mappers;
 using CustomAuth.Infrastructure.Mappers;
 using CustomAuth.ViewModels;
 using DalToWeb.Interfacies;
@@ -11,16 +14,18 @@ namespace CustomAuth.Controllers
     [Authorize]
     public class HomeController : Controller
     {
-        private readonly IUserRepository _repository;
+        private readonly IUserRepository _service;
+        private readonly IUserService _service1;
 
-        public HomeController(IUserRepository repository)
+        public HomeController(IUserRepository service, IUserService service1)
         {
-            this._repository = repository;
+            this._service1 = service1;
+            this._service = service;
         }
         
         public ActionResult Index()
         {
-            var model = _repository.GetAll().Select(u => u.ToMvcUser());                
+            var model = _service1.GetAllUserEntities().Select(v => v.ToMvcUser());                
             
             return View(model);
         }

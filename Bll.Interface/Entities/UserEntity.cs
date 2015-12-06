@@ -10,6 +10,7 @@ namespace Bll.Interface
     {
         public int Id { get; set; }
         public string UserName { get; set; }
+        public DateTime DateAdded { get; set; }
         public int RoleId { get; set; }
     }
 }

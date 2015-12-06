@@ -17,3 +17,12 @@ D:\Winter training\Day 16\AuthenticationSamples.Autumn.2015\DalToWeb\bin\Debug\E
 D:\Winter training\Day 16\AuthenticationSamples.Autumn.2015\DalToWeb\bin\Debug\EntityFramework.xml
 D:\Winter training\Day 16\AuthenticationSamples.Autumn.2015\DalToWeb\bin\Debug\EntityFramework.SqlServer.xml
 D:\Winter training\Day 16\AuthenticationSamples.Autumn.2015\DalToWeb\obj\Debug\DalToWeb.csprojResolveAssemblyReference.cache
+D:\Winter training\Day 16\blog\DalToWeb\bin\Debug\DalToWeb.dll.config
+D:\Winter training\Day 16\blog\DalToWeb\bin\Debug\DalToWeb.dll
+D:\Winter training\Day 16\blog\DalToWeb\bin\Debug\DalToWeb.pdb
+D:\Winter training\Day 16\blog\DalToWeb\bin\Debug\EntityFramework.dll
+D:\Winter training\Day 16\blog\DalToWeb\bin\Debug\EntityFramework.SqlServer.dll
+D:\Winter training\Day 16\blog\DalToWeb\bin\Debug\EntityFramework.xml
+D:\Winter training\Day 16\blog\DalToWeb\bin\Debug\EntityFramework.SqlServer.xml
+D:\Winter training\Day 16\blog\DalToWeb\obj\Debug\DalToWeb.dll
+D:\Winter training\Day 16\blog\DalToWeb\obj\Debug\DalToWeb.pdb

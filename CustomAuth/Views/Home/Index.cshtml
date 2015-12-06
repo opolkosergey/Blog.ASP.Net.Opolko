@@ -1,40 +1,39 @@
 ﻿@model IEnumerable<CustomAuth.ViewModels.UserViewModel>
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Bloggers";
 }
-@if (User.IsInRole("User"))
-{
-    <h1>Hello @User.Identity.Name</h1>
-}
-<h2>Registered users</h2>
 
-<table>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreationDate)
-        </th>
-               <th>
+  <h2>Registered bloggers</h2>
+
+    <table class="table table-striped">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreationDate)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Role)
             </th>
-        <th></th>
-    </tr>
+          
+        </tr>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreationDate)
-            </td>
+        @foreach (var item in Model)
+        {
+            <tr class="text-primary">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreationDate)
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Role)
                 </td>
-        </tr>
-    }
+            </tr>
+        }
 
-</table>
+    </table>
+
+
