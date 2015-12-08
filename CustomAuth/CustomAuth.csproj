@@ -145,10 +145,13 @@
     <Compile Include="Infrastructure\DependencyModule.cs" />
     <Compile Include="Infrastructure\Mappers\MvcPLMappers.cs" />
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
+    <Compile Include="Pagination\PageInfo.cs" />
+    <Compile Include="Pagination\PaginationHelpers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\CustomMembershipProvider.cs" />
     <Compile Include="Providers\CustomProfileProvider.cs" />
     <Compile Include="Providers\CustomRoleProvider.cs" />
+    <Compile Include="ViewModels\BloggersViewModel.cs" />
     <Compile Include="ViewModels\LogOnViewModel.cs" />
     <Compile Include="ViewModels\RegisterViewModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />

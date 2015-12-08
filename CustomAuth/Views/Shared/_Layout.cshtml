@@ -7,7 +7,7 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
-<body>
+<body class="container">
     @if (User.Identity.IsAuthenticated)
     {
         <nav class="navbar navbar-default">
@@ -74,7 +74,7 @@
                     <div class="panel-body">
                         <form class="navbar-form navbar-left" role="search">
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Искать в тексте">
+                                <input type="text" style="width: 170px;" class="form-control" placeholder="Искать в тексте">
                                 <button type="submit" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-search"></span></button>
                             </div>
                         </form>
@@ -132,72 +132,9 @@
             }
         </div>
 
-        <div class="col-lg-6 body-content" id="Content">
+        <div class="body-content" id="Content">
             @RenderBody()
         </div>
-
-        <div class="col-lg-3">
-@if (User.Identity.IsAuthenticated)
-            {
-            <div class="panel-group" id="accordion">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Популярные статьи</a>
-                        </h4>
-                    </div>
-                    <div id="collapse1" class="panel-collapse collapse">
-                        <div class="panel-body">
-                            <h6>2</h6>
-                            <h6>2</h6>
-                            <h6>2</h6>
-                            <h6>2</h6>
-                            <h6>2</h6>
-                            <h6>2</h6>
-                            <h6>2</h6>
-                        </div>
-                    </div>
-                </div>
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Часто обсуждаемые</a>
-                        </h4>
-                    </div>
-                    <div id="collapse2" class="panel-collapse collapse">
-                        <div class="panel-body">
-                            <h6>2</h6>
-                            <h6>2</h6>
-                            <h6>2</h6>
-                            <h6>2</h6>
-                            <h6>2</h6>
-                            <h6>2</h6>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <hr />
-
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Популярные пользователи</h3>
-                    </div>
-                    <div class="panel-body">
-                        <div class="list-group">
-                            @for (int i = 0; i < 5; i++)
-                            {
-                                <a href="#" class="list-group-item">
-                                    <img style="width: 50px; height: 50px;" src="/img/a@gmail.com.jpg" alt="No avatar">
-                                    a
-                                </a>
-                            }
-                        </div>
-                    </div>
-                </div>
-}
-        </div>
-
     </div>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

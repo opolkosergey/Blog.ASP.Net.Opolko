@@ -6,6 +6,7 @@ using Bll.Interface;
 using Bll.Interface.Services;
 using Bll.Mappers;
 using CustomAuth.Infrastructure.Mappers;
+using CustomAuth.Pagination;
 using CustomAuth.ViewModels;
 using DalToWeb.Interfacies;
 
@@ -23,11 +24,14 @@ namespace CustomAuth.Controllers
             this._service = service;
         }
         
-        public ActionResult Index()
+        public ActionResult Index(int page = 1)
         {
-            var model = _service1.GetAllUserEntities().Select(v => v.ToMvcUser());                
-            
-            return View(model);
+            var users = _service1.GetAllUserEntities().Select(v => v.ToMvcUser());  
+            var models = users.Skip((page - 1) * 10).Take(10);
+            PageInfo pageInfo = new PageInfo { PageNumber = page, PageSize = 10, TotalItems = users.Count() };
+            BloggersViewModel bvm = new BloggersViewModel { PageInfo = pageInfo, UserViewModels = models };
+
+            return View(bvm);
         }
 
         public ActionResult About()

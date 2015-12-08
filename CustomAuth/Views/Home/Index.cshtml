@@ -1,25 +1,29 @@
-﻿@model IEnumerable<CustomAuth.ViewModels.UserViewModel>
+﻿@using CustomAuth.Pagination
+@using CustomAuth.ViewModels
+@model CustomAuth.ViewModels.BloggersViewModel
 @{
     ViewBag.Title = "Bloggers";
 }
 
-  <h2>Registered bloggers</h2>
 
+
+<div class="col-lg-6">
+    <h2>Registered bloggers</h2>
     <table class="table table-striped">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Email)
+                @Html.DisplayName("User's e-mail")
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CreationDate)
+                @Html.DisplayName("Date of user's registration")
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Role)
+                @Html.DisplayName("User's role in the system")
             </th>
-          
+
         </tr>
 
-        @foreach (var item in Model)
+        @foreach (var item in Model.UserViewModels)
         {
             <tr class="text-primary">
                 <td>
@@ -35,5 +39,71 @@
         }
 
     </table>
+    @if (Model.PageInfo.TotalPages != 1)
+    {
+        <div class="btn-group">
+            @Html.PageLinks(Model.PageInfo, x => Url.Action("Index", new { page = x }))
+        </div>
+    }
+</div>
+<div class="col-lg-3">
 
+    <div class="panel-group" id="accordion">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Популярные статьи</a>
+                </h4>
+            </div>
+            <div id="collapse1" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <h6>2</h6>
+                    <h6>2</h6>
+                    <h6>2</h6>
+                    <h6>2</h6>
+                    <h6>2</h6>
+                    <h6>2</h6>
+                    <h6>2</h6>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Часто обсуждаемые</a>
+                </h4>
+            </div>
+            <div id="collapse2" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <h6>2</h6>
+                    <h6>2</h6>
+                    <h6>2</h6>
+                    <h6>2</h6>
+                    <h6>2</h6>
+                    <h6>2</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr />
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">Популярные пользователи</h3>
+        </div>
+        <div class="panel-body">
+            <div class="list-group">
+                @for (int i = 0; i < 5; i++)
+                {
+                    <a href="#" class="list-group-item">
+                        <img style="width: 50px; height: 50px;" src="/img/a@gmail.com.jpg" alt="No avatar">
+                        a
+                    </a>
+                }
+            </div>
+        </div>
+    </div>
+
+</div>
 
