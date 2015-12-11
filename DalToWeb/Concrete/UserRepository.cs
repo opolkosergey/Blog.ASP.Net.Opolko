@@ -46,7 +46,7 @@ namespace DalToWeb.Concrete
             var user = new User()
             {
                 Email = e.Name,
-                RoleId = e.RoleId,
+                RoleId = 2,
                 CreationDate = DateTime.Now,
                 Password = e.Password,
                 Avatar = e.PathAvatar

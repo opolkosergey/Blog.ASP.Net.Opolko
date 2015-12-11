@@ -49,12 +49,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Blog.cs" />
     <Compile Include="DTO\DalRole.cs" />
     <Compile Include="DTO\DalUser.cs" />
     <Compile Include="DTO\IEntity.cs" />
     <Compile Include="Interfacies\IRepository.cs" />
     <Compile Include="Interfacies\IRoleRepository.cs" />
     <Compile Include="Interfacies\IUserRepository.cs" />
+    <Compile Include="Migrations\201512112251479_BlogsAdd.cs" />
+    <Compile Include="Migrations\201512112251479_BlogsAdd.Designer.cs">
+      <DependentUpon>201512112251479_BlogsAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201512112324256_AddedDateIntoBlog.cs" />
+    <Compile Include="Migrations\201512112324256_AddedDateIntoBlog.Designer.cs">
+      <DependentUpon>201512112324256_AddedDateIntoBlog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Interfacies\IUnitOfWork.cs" />
     <Compile Include="Concrete\RoleRepository.cs" />
@@ -66,7 +76,14 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201512112251479_BlogsAdd.resx">
+      <DependentUpon>201512112251479_BlogsAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201512112324256_AddedDateIntoBlog.resx">
+      <DependentUpon>201512112324256_AddedDateIntoBlog.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

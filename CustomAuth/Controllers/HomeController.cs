@@ -25,17 +25,8 @@ namespace CustomAuth.Controllers
             this._service = service;
         }
 
-        [HttpPost]
-        public ActionResult File(HttpPostedFileBase img)
-        {
-            return View();
-        }
-
-        [HttpGet]
-        public ActionResult File()
-        {
-            return View();
-        }
+        public ActionResult Error() => View();
+        
         public ActionResult Index(int page = 1)
         {
             var users = _service1.GetAllUserEntities().Select(v => v.ToMvcUser());  

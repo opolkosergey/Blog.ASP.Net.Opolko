@@ -16,6 +16,7 @@ namespace DalToWeb.Repositories
         public DbSet<Profile> Profiles { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
+        public DbSet<Blog> Blogs { get; set; }
     }
 
     public class User
@@ -28,6 +29,8 @@ namespace DalToWeb.Repositories
 
         public int? RoleId { get; set; }
         public virtual Role Role { get; set; }
+
+        public virtual ICollection<Blog> Blogs { get; set; } 
     }
 
     public class Role
