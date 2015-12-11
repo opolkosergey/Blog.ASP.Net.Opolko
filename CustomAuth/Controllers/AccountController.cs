@@ -2,10 +2,13 @@
 using System.Drawing.Imaging;
 using System.Globalization;
 using System.Linq;
+using System.Text;
+using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using CustomAuth.Infrastructure;
 using CustomAuth.Providers;
+using CustomAuth.Utils;
 using CustomAuth.ViewModels;
 using DalToWeb.Interfacies;
 
@@ -76,7 +79,7 @@ namespace CustomAuth.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult Register(RegisterViewModel viewModel)
+        public ActionResult Register(RegisterViewModel viewModel, HttpPostedFileBase img)
         {
             if (viewModel.Captcha != (string)Session[CaptchaImage.CaptchaValueKey])
             {
@@ -91,11 +94,17 @@ namespace CustomAuth.Controllers
                 ModelState.AddModelError("", "User with this address already registered.");
                 return View(viewModel);
             }
-
+            var str = new StringBuilder();
             if (ModelState.IsValid)
             {
+                if (img != null)
+                {
+                    str.Append(FileHelper.SaveFileToDisk(img, Server.MapPath("~/")));
+                }
+
+
                 var membershipUser = ((CustomMembershipProvider)Membership.Provider)
-                    .CreateUser(viewModel.Email, viewModel.Password);
+                    .CreateUser(viewModel.Email, viewModel.Password,str.ToString());
 
                 if (membershipUser != null)
                 {
@@ -106,6 +115,7 @@ namespace CustomAuth.Controllers
                 {
                     ModelState.AddModelError("", "Error registration.");
                 }
+                
             }
             return View(viewModel);
         }

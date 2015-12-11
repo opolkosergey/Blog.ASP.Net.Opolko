@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 using Bll.Interface;
 using Bll.Interface.Services;
@@ -23,7 +24,18 @@ namespace CustomAuth.Controllers
             this._service1 = service1;
             this._service = service;
         }
-        
+
+        [HttpPost]
+        public ActionResult File(HttpPostedFileBase img)
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult File()
+        {
+            return View();
+        }
         public ActionResult Index(int page = 1)
         {
             var users = _service1.GetAllUserEntities().Select(v => v.ToMvcUser());  

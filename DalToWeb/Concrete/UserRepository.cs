@@ -48,7 +48,8 @@ namespace DalToWeb.Concrete
                 Email = e.Name,
                 RoleId = e.RoleId,
                 CreationDate = DateTime.Now,
-                Password = e.Password
+                Password = e.Password,
+                Avatar = e.PathAvatar
             };
             _context.Set<User>().Add(user);
             _context.SaveChanges();

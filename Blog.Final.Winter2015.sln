@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomAuth", "CustomAuth\CustomAuth.csproj", "{37BF85A2-2776-4484-8FF2-8CF8DD8A54C9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVC", "CustomAuth\MVC.csproj", "{37BF85A2-2776-4484-8FF2-8CF8DD8A54C9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DalToWeb", "DalToWeb\DalToWeb.csproj", "{792AA84E-9214-42A6-A67E-27B257C7DF4C}"
 EndProject

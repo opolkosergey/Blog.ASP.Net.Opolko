@@ -21,7 +21,7 @@ namespace CustomAuth.Providers
         public IRoleRepository RoleRepository
             => (IRoleRepository) DependencyResolver.Current.GetService(typeof (IRoleRepository));
 
-        public MembershipUser CreateUser(string email, string password)
+        public MembershipUser CreateUser(string email, string password, string pathAvatar)
         {
             MembershipUser membershipUser = GetUser(email, false);
 
@@ -34,6 +34,7 @@ namespace CustomAuth.Providers
             {
                 Name = email,
                 Password = Crypto.HashPassword(password),
+                PathAvatar = pathAvatar
                 //http://msdn.microsoft.com/ru-ru/library/system.web.helpers.crypto(v=vs.111).aspx
             };
 

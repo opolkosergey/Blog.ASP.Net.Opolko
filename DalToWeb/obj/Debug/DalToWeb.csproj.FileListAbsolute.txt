@@ -26,3 +26,13 @@ D:\Winter training\Day 16\blog\DalToWeb\bin\Debug\EntityFramework.xml
 D:\Winter training\Day 16\blog\DalToWeb\bin\Debug\EntityFramework.SqlServer.xml
 D:\Winter training\Day 16\blog\DalToWeb\obj\Debug\DalToWeb.dll
 D:\Winter training\Day 16\blog\DalToWeb\obj\Debug\DalToWeb.pdb
+C:\Users\Sergey\Desktop\blog\DalToWeb\bin\Debug\DalToWeb.dll.config
+C:\Users\Sergey\Desktop\blog\DalToWeb\bin\Debug\DalToWeb.dll
+C:\Users\Sergey\Desktop\blog\DalToWeb\bin\Debug\DalToWeb.pdb
+C:\Users\Sergey\Desktop\blog\DalToWeb\bin\Debug\EntityFramework.dll
+C:\Users\Sergey\Desktop\blog\DalToWeb\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Sergey\Desktop\blog\DalToWeb\bin\Debug\EntityFramework.xml
+C:\Users\Sergey\Desktop\blog\DalToWeb\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Sergey\Desktop\blog\DalToWeb\obj\Debug\DalToWeb.dll
+C:\Users\Sergey\Desktop\blog\DalToWeb\obj\Debug\DalToWeb.pdb
+C:\Users\Sergey\Desktop\blog\DalToWeb\obj\Debug\DalToWeb.csprojResolveAssemblyReference.cache

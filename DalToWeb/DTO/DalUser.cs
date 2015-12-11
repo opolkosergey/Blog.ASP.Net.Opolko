@@ -12,6 +12,7 @@ namespace BLL
         public string Name { get; set; }
         public DateTime DateAdded { get; set; }
         public string Password { get; set; }
+        public string PathAvatar { get; set; }
         public int RoleId { get; set; }
     }
 }

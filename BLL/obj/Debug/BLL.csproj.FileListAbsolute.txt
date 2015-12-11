@@ -9,3 +9,14 @@ D:\Winter training\Day 16\blog\Bll\bin\Debug\DalToWeb.pdb
 D:\Winter training\Day 16\blog\Bll\bin\Debug\EntityFramework.xml
 D:\Winter training\Day 16\blog\Bll\obj\Debug\Bll.dll
 D:\Winter training\Day 16\blog\Bll\obj\Debug\Bll.pdb
+C:\Users\Sergey\Desktop\blog\Bll\bin\Debug\Bll.dll
+C:\Users\Sergey\Desktop\blog\Bll\bin\Debug\Bll.pdb
+C:\Users\Sergey\Desktop\blog\Bll\bin\Debug\Bll.Interface.dll
+C:\Users\Sergey\Desktop\blog\Bll\bin\Debug\DalToWeb.dll
+C:\Users\Sergey\Desktop\blog\Bll\bin\Debug\EntityFramework.dll
+C:\Users\Sergey\Desktop\blog\Bll\bin\Debug\Bll.Interface.pdb
+C:\Users\Sergey\Desktop\blog\Bll\bin\Debug\DalToWeb.pdb
+C:\Users\Sergey\Desktop\blog\Bll\bin\Debug\EntityFramework.xml
+C:\Users\Sergey\Desktop\blog\Bll\obj\Debug\Bll.csprojResolveAssemblyReference.cache
+C:\Users\Sergey\Desktop\blog\Bll\obj\Debug\Bll.dll
+C:\Users\Sergey\Desktop\blog\Bll\obj\Debug\Bll.pdb

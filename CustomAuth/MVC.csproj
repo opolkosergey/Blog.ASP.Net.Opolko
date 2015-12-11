@@ -151,6 +151,7 @@
     <Compile Include="Providers\CustomMembershipProvider.cs" />
     <Compile Include="Providers\CustomProfileProvider.cs" />
     <Compile Include="Providers\CustomRoleProvider.cs" />
+    <Compile Include="Utils\FileHelper.cs" />
     <Compile Include="ViewModels\BloggersViewModel.cs" />
     <Compile Include="ViewModels\LogOnViewModel.cs" />
     <Compile Include="ViewModels\RegisterViewModel.cs" />
@@ -204,6 +205,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\UsersEdit.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\File.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

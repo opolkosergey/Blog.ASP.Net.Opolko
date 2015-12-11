@@ -7,3 +7,8 @@ D:\Winter training\Day 16\blog\Bll.Interface\bin\Debug\Bll.Interface.pdb
 D:\Winter training\Day 16\blog\Bll.Interface\obj\Debug\Bll.Interface.dll
 D:\Winter training\Day 16\blog\Bll.Interface\obj\Debug\Bll.Interface.pdb
 D:\Winter training\Day 16\blog\Bll.Interface\obj\Debug\Bll.Interface.csprojResolveAssemblyReference.cache
+C:\Users\Sergey\Desktop\blog\Bll.Interface\bin\Debug\Bll.Interface.dll
+C:\Users\Sergey\Desktop\blog\Bll.Interface\bin\Debug\Bll.Interface.pdb
+C:\Users\Sergey\Desktop\blog\Bll.Interface\obj\Debug\Bll.Interface.csprojResolveAssemblyReference.cache
+C:\Users\Sergey\Desktop\blog\Bll.Interface\obj\Debug\Bll.Interface.dll
+C:\Users\Sergey\Desktop\blog\Bll.Interface\obj\Debug\Bll.Interface.pdb
