@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DalToWeb.DTO;
 
 namespace BLL
 {
@@ -14,5 +15,6 @@ namespace BLL
         public string Password { get; set; }
         public string PathAvatar { get; set; }
         public int RoleId { get; set; }
+        public virtual IEnumerable<DalBlog> DalBlogs { get; set; } 
     }
 }

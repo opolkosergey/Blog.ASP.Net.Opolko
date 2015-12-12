@@ -5,22 +5,28 @@
     ViewBag.Title = "Bloggers";
 }
 
-
-
 <div class="col-lg-6">
-    <h2>Registered bloggers</h2>
-    <table class="table table-striped">
+    <h2>Блоггеры в системе</h2>
+    <table class="table table-hover">
         <tr>
             <th>
-                @Html.DisplayName("User's e-mail")
+                @Html.DisplayName("Имя")
             </th>
             <th>
-                @Html.DisplayName("Date of user's registration")
+                @Html.DisplayName("Дата регистрации")
             </th>
+            @*<th>
+                @Html.DisplayName("Роль в системе")
+            </th>*@
             <th>
-                @Html.DisplayName("User's role in the system")
+                @Html.DisplayName("Количество блогов")
             </th>
-
+            @if (User.IsInRole("Guest"))
+            {
+                <th>
+                    @Html.DisplayName("Управление ролью")
+                </th>
+            }
         </tr>
 
         @foreach (var item in Model.UserViewModels)
@@ -32,20 +38,30 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.CreationDate)
                 </td>
-                <td>
+                @*<td>
                     @Html.DisplayFor(modelItem => item.Role)
+                </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.BlogsCount)
                 </td>
+                @if (User.IsInRole("Guest"))
+                {
+                    <td>
+                        <a href="#" class="btn btn-default">назначить</a>
+                    </td>
+                }
             </tr>
         }
 
     </table>
-    @if (Model.PageInfo.TotalPages != 1)
+    @if (Model.PageInfo.TotalPages > 1)
     {
         <div class="btn-group">
             @Html.PageLinks(Model.PageInfo, x => Url.Action("Index", new { page = x }))
         </div>
     }
 </div>
+
 <div class="col-lg-3">
 
     <div class="panel-group" id="accordion">
@@ -104,6 +120,5 @@
             </div>
         </div>
     </div>
-
 </div>
 

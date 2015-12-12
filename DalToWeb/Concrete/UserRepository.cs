@@ -20,8 +20,9 @@ namespace DalToWeb.Concrete
                 Name = user.Email,
                 RoleId = (int) user.RoleId,
                 Password = user.Password,
-                DateAdded = user.CreationDate
-                
+                DateAdded = user.CreationDate,
+                PathAvatar = user.Avatar,
+               
             });
         }
 
@@ -32,7 +33,6 @@ namespace DalToWeb.Concrete
             {
                 Id = ormuser.Id,
                 Name = ormuser.Email
-
             };
         }
 
@@ -62,14 +62,23 @@ namespace DalToWeb.Concrete
             {
                 _context.Users.Remove(user);
                 _context.SaveChanges();
-               
             }
-            //return false;
         }
 
         public void Update(DalUser entity)
         {
             throw new NotImplementedException();
+        }
+
+        public DalUser GetUserByName(string name)
+        {
+            var user = _context.Set<User>().FirstOrDefault(u => u.Email == name);
+            return new DalUser()
+            {
+                Id = user.Id,
+                Name = user.Email,
+                PathAvatar = user.Avatar
+            };
         }
     }
 }

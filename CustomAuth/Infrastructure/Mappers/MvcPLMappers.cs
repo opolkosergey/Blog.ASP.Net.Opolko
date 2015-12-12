@@ -19,7 +19,8 @@ namespace CustomAuth.Infrastructure.Mappers
                 Id = userEntity.Id,
                 Email = userEntity.UserName,
                 Role = (Role)userEntity.RoleId,
-                CreationDate = userEntity.DateAdded
+                CreationDate = userEntity.DateAdded,
+               
             };
         }
 

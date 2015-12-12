@@ -7,9 +7,9 @@ namespace CustomAuth.ViewModels
     public enum Role
     {
         Administrator = 1,
+        Guest,
         Moderator,
-        User,
-        Guest
+        User
     }
     public class UserViewModel
     {
@@ -23,5 +23,7 @@ namespace CustomAuth.ViewModels
 
         [Display(Name = "User's role in the system")]
         public Role Role { get; set; }
+
+        public int BlogsCount { get; set; }
     }
 }

@@ -22,6 +22,10 @@ namespace Bll.Services
             this.userRepository = repository;
         }
 
+        public UserEntity GetUserEntity(string name)
+        {
+            return userRepository.GetUserByName(name).ToBllUser();
+        }
         public UserEntity GetUserEntity(int id)
         {
             return userRepository.GetById(id).ToBllUser();

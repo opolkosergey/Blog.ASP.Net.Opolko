@@ -144,6 +144,7 @@
     </Compile>
     <Compile Include="Infrastructure\CaptchaImage.cs" />
     <Compile Include="Infrastructure\DependencyModule.cs" />
+    <Compile Include="Infrastructure\Mappers\BlogMvcMappers.cs" />
     <Compile Include="Infrastructure\Mappers\MvcPLMappers.cs" />
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
     <Compile Include="Pagination\PageInfo.cs" />
@@ -154,8 +155,10 @@
     <Compile Include="Providers\CustomRoleProvider.cs" />
     <Compile Include="Utils\FileHelper.cs" />
     <Compile Include="ViewModels\BloggersViewModel.cs" />
+    <Compile Include="ViewModels\BlogsViewModel.cs" />
     <Compile Include="ViewModels\LogOnViewModel.cs" />
     <Compile Include="ViewModels\RegisterViewModel.cs" />
+    <Compile Include="ViewModels\UserBlogModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -206,7 +209,8 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\UsersEdit.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Blog\Create.cshtml" />
+    <Content Include="Views\Blog\CreateBlog.cshtml" />
+    <Content Include="Views\Blog\MyBlogs.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

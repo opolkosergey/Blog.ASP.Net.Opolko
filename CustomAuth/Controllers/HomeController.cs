@@ -16,22 +16,37 @@ namespace CustomAuth.Controllers
     [Authorize]
     public class HomeController : Controller
     {
-        private readonly IUserRepository _service;
-        private readonly IUserService _service1;
+       
+        private readonly IUserService _service;
+        private readonly IBlogService _blogservice;
 
-        public HomeController(IUserRepository service, IUserService service1)
+        public HomeController( IUserService service, IBlogService blogService)
         {
-            this._service1 = service1;
             this._service = service;
+            this._blogservice = blogService;
         }
 
         public ActionResult Error() => View();
         
         public ActionResult Index(int page = 1)
         {
-            var users = _service1.GetAllUserEntities().Select(v => v.ToMvcUser());  
-            var models = users.Skip((page - 1) * 10).Take(10);
-            PageInfo pageInfo = new PageInfo { PageNumber = page, PageSize = 10, TotalItems = users.Count() };
+            var users = _service
+                .GetAllUserEntities()
+                .Select(v => v.ToMvcUser())
+                .ToList();  
+
+            var models = users
+                .Skip((page - 1) * 1)
+                .Take(1)
+                .ToList();
+      
+            foreach (var m in models)
+            {
+                m.BlogsCount = _blogservice
+                    .GetAllBlogEntities()
+                    .Count(b => b.UserId == m.Id);
+            }
+            PageInfo pageInfo = new PageInfo { PageNumber = page, PageSize = 1, TotalItems = users.Count() };
             BloggersViewModel bvm = new BloggersViewModel { PageInfo = pageInfo, UserViewModels = models };
 
             return View(bvm);

@@ -6,5 +6,6 @@ namespace DalToWeb.Interfacies
 {
     public interface IUserRepository : IRepository<DalUser>//Add user repository methods!
     {
+        DalUser GetUserByName(string name);
     }
 }

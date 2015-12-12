@@ -1,0 +1,41 @@
+﻿@using CustomAuth.Pagination
+@model CustomAuth.ViewModels.BlogsViewModel
+
+<div class="col-lg-6">
+    <h2>Мои блоги</h2>
+    <table class="table table-hover">
+        <tr>
+            <th>
+                @Html.DisplayName("Id")
+            </th>
+            <th>
+                @Html.DisplayName("Заголовок")
+            </th>
+            <th>
+                @Html.DisplayName("Дата создания")
+            </th>
+        </tr>
+
+        @foreach (var item in Model.BlogViewModels)
+        {
+            <tr class="text-primary">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreationDate)
+                </td>
+            </tr>
+        }
+
+    </table>
+    @if (Model.PageInfo.TotalPages != 1)
+    {
+        <div class="btn-group">
+            @Html.PageLinks(Model.PageInfo, x => Url.Action("MyBlogs", new { page = x }))
+        </div>
+    }
+</div>

@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BLL;
 
-namespace DalToWeb
+namespace DalToWeb.DTO
 {
-    public class Blog
+    public class DalBlog : IEntity
     {
         public int Id { get; set; }
         public string Title { get; set; }

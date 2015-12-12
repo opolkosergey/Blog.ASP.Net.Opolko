@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DalToWeb
+namespace Bll.Interface.Entities
 {
-    public class Blog
+    public class BlogEntity
     {
         public int Id { get; set; }
-        public string Title { get; set; }
-        public DateTime TimeAdded { get; set; }
+        public string Name { get; set; }
+        public DateTime DateAdded { get; set; }
         public int? UserId { get; set; }
     }
 }

@@ -50,9 +50,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Blog.cs" />
+    <Compile Include="Concrete\BlogRepository.cs" />
+    <Compile Include="DTO\DalBlog.cs" />
     <Compile Include="DTO\DalRole.cs" />
     <Compile Include="DTO\DalUser.cs" />
     <Compile Include="DTO\IEntity.cs" />
+    <Compile Include="Interfacies\IBlogRepository.cs" />
     <Compile Include="Interfacies\IRepository.cs" />
     <Compile Include="Interfacies\IRoleRepository.cs" />
     <Compile Include="Interfacies\IUserRepository.cs" />
@@ -63,6 +66,10 @@
     <Compile Include="Migrations\201512112324256_AddedDateIntoBlog.cs" />
     <Compile Include="Migrations\201512112324256_AddedDateIntoBlog.Designer.cs">
       <DependentUpon>201512112324256_AddedDateIntoBlog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201512121248150_upt1.cs" />
+    <Compile Include="Migrations\201512121248150_upt1.Designer.cs">
+      <DependentUpon>201512121248150_upt1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -82,6 +89,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201512112324256_AddedDateIntoBlog.resx">
       <DependentUpon>201512112324256_AddedDateIntoBlog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201512121248150_upt1.resx">
+      <DependentUpon>201512121248150_upt1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

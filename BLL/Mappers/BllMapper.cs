@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Bll.Interface;
 using BLL;
+using DalToWeb.DTO;
 
 namespace Bll.Mappers
 {
@@ -17,7 +18,8 @@ namespace Bll.Mappers
                 Id = userEntity.Id,
                 Name = userEntity.UserName,
                 RoleId = userEntity.RoleId,
-                DateAdded = userEntity.DateAdded
+                DateAdded = userEntity.DateAdded,
+               
             };
         }
 
@@ -28,7 +30,8 @@ namespace Bll.Mappers
                 Id = dalUser.Id,
                 UserName = dalUser.Name,
                 RoleId = dalUser.RoleId,
-                DateAdded = dalUser.DateAdded
+                DateAdded = dalUser.DateAdded,
+                
             };
         }
     }
