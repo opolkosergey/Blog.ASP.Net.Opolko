@@ -137,6 +137,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ArticleController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -144,6 +145,7 @@
     </Compile>
     <Compile Include="Infrastructure\CaptchaImage.cs" />
     <Compile Include="Infrastructure\DependencyModule.cs" />
+    <Compile Include="Infrastructure\Mappers\ArticleMappers.cs" />
     <Compile Include="Infrastructure\Mappers\BlogMvcMappers.cs" />
     <Compile Include="Infrastructure\Mappers\MvcPLMappers.cs" />
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
@@ -154,6 +156,7 @@
     <Compile Include="Providers\CustomProfileProvider.cs" />
     <Compile Include="Providers\CustomRoleProvider.cs" />
     <Compile Include="Utils\FileHelper.cs" />
+    <Compile Include="ViewModels\ArticleViewModelCreate.cs" />
     <Compile Include="ViewModels\BloggersViewModel.cs" />
     <Compile Include="ViewModels\BlogsViewModel.cs" />
     <Compile Include="ViewModels\LogOnViewModel.cs" />
@@ -211,6 +214,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Blog\CreateBlog.cshtml" />
     <Content Include="Views\Blog\MyBlogs.cshtml" />
+    <Content Include="Views\Article\CreateArticle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

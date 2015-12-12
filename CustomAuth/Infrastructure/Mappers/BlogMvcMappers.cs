@@ -20,14 +20,13 @@ namespace CustomAuth.Infrastructure.Mappers
             };
         }
 
-        public static BlogEntity ToBllBlog(this UserBlogModel userBlogViewModel, int userId)
+        public static BlogEntity ToBllBlog(this UserBlogModel userBlogViewModel, int id)
         {
             return new BlogEntity()
             {
                 Id = userBlogViewModel.Id,
                 Name = userBlogViewModel.Title,
-                UserId = userId
-               
+                UserId = id
             };
         }
     }

@@ -49,7 +49,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Blog.cs" />
+    <Compile Include="Concrete\ArticleRepository.cs" />
+    <Compile Include="DTO\DalArticle.cs" />
+    <Compile Include="Interfacies\IArticleRepository.cs" />
+    <Compile Include="Migrations\201512121544519_AddedArticle.cs" />
+    <Compile Include="Migrations\201512121544519_AddedArticle.Designer.cs">
+      <DependentUpon>201512121544519_AddedArticle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201512121744235_upt2.cs" />
+    <Compile Include="Migrations\201512121744235_upt2.Designer.cs">
+      <DependentUpon>201512121744235_upt2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ORM\Article.cs" />
+    <Compile Include="ORM\Blog.cs" />
     <Compile Include="Concrete\BlogRepository.cs" />
     <Compile Include="DTO\DalBlog.cs" />
     <Compile Include="DTO\DalRole.cs" />
@@ -92,6 +104,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201512121248150_upt1.resx">
       <DependentUpon>201512121248150_upt1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201512121544519_AddedArticle.resx">
+      <DependentUpon>201512121544519_AddedArticle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201512121744235_upt2.resx">
+      <DependentUpon>201512121744235_upt2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

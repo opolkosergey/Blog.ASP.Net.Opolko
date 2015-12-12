@@ -17,11 +17,13 @@ namespace CustomAuth.Controllers
     {
         private readonly IBlogService _service;
         private readonly IUserService _userService;
+        private readonly IArticleService _articleService;
 
-        public BlogController(IBlogService service, IUserService userservice)
+        public BlogController(IBlogService service, IUserService userservice, IArticleService articleService)
         {
             this._service = service;
             _userService = userservice;
+            _articleService = articleService;
         }
         [HttpGet]
         public ActionResult CreateBlog() => View();
@@ -55,11 +57,20 @@ namespace CustomAuth.Controllers
             var blogs = _service
                 .GetAllBlogEntities()
                 .Where(b => b.UserId == userId)
-                .Select(bl => bl.ToMvcBlog()).ToList();
+                .Select(bl => bl.ToMvcBlog())
+                .ToList();
 
             var models = blogs
                 .Skip((page - 1) * 5)
-                .Take(5);
+                .Take(5)
+                .ToList();
+
+            foreach (var m in models)
+            {
+                m.ArticleCount = _articleService
+                    .GetAllArticleEntities(m.Id)
+                    .Count();
+            }
             PageInfo pageInfo = new PageInfo { PageNumber = page, PageSize = 5, TotalItems = blogs.Count() };
             var bvm = new BlogsViewModel { PageInfo = pageInfo,BlogViewModels = models };
 

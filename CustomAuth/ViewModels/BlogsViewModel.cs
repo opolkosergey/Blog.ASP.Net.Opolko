@@ -22,5 +22,7 @@ namespace CustomAuth.ViewModels
 
         [Display(Name = "Время создания")]
         public DateTime CreationDate { get; set; }
+
+        public int ArticleCount { get; set; }
     }
 }

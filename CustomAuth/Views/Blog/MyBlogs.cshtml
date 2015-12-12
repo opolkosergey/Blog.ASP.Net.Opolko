@@ -1,7 +1,7 @@
 ﻿@using CustomAuth.Pagination
 @model CustomAuth.ViewModels.BlogsViewModel
 
-<div class="col-lg-6">
+<div class="col-lg-9">
     <h2>Мои блоги</h2>
     <table class="table table-hover">
         <tr>
@@ -13,6 +13,11 @@
             </th>
             <th>
                 @Html.DisplayName("Дата создания")
+            </th>
+            <th>
+                @Html.DisplayName("Количество статей")
+            </th>
+            <th>
             </th>
         </tr>
 
@@ -27,6 +32,12 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.CreationDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ArticleCount)
+                </td>
+                <td>
+                    <a href="#" class="btn btn-default">Подробнее</a>
                 </td>
             </tr>
         }

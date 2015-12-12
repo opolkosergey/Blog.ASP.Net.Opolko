@@ -15,6 +15,5 @@ namespace BLL
         public string Password { get; set; }
         public string PathAvatar { get; set; }
         public int RoleId { get; set; }
-        public virtual IEnumerable<DalBlog> DalBlogs { get; set; } 
     }
 }
