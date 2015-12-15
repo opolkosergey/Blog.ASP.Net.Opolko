@@ -29,5 +29,14 @@ namespace CustomAuth.Infrastructure.Mappers
                 BlogId = int.Parse(model.Blog)
             };
         }
+
+        public static ArticleViewModelDetails ToMvcArticle(this ArticleEntity model)
+        {
+            return new ArticleViewModelDetails()
+            {
+                Id = model.Id,
+                Title = model.Name
+            };
+        }
     }
 }

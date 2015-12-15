@@ -1,0 +1,69 @@
+﻿@using CustomAuth.Pagination
+@model CustomAuth.ViewModels.ArticleViewModelPagination
+
+<div class="col-lg-9">
+    <div>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <h4>Статьи блога @ViewBag.BlogName</h4>
+                <h6>Создан @ViewBag.DateCreated</h6>
+            </div>
+        </div>
+        
+        <br/>
+        <table class="table table-hover">
+            <tr>
+                <th>
+                    @Html.DisplayName("Id")
+                </th>
+                <th>
+                    @Html.DisplayName("Заголовок")
+                </th>
+                @if (ViewBag.IsModerating)
+                {
+                    <th></th>
+                    <th></th>
+                }
+            </tr>
+
+            @foreach (var item in Model.ArticleViewModels)
+            {
+                <tr class="text-primary">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        <span class="glyphicon glyphicon-eye-open"></span>
+                        @Html.DisplayFor(modelItem => item.CountViews)
+                    </td>
+                    <td>
+                        <span class="glyphicon glyphicon-comment"></span>
+                        @Html.DisplayFor(modelItem => item.CountComments)
+                    </td>
+                    <td>
+                        <a href="#" class="btn-sm btn-default">Подробнее</a>
+                    </td>
+                    @if (ViewBag.IsModerating)
+                    {
+                        <td>
+                            <a href="#" class="btn-sm btn-danger">Удалить</a>
+                        </td>
+                        <td>
+                            <a href="#" class="btn-sm btn-primary">Редактировать</a>
+                        </td>
+                    }
+                </tr>
+            }
+
+        </table>
+        @if (Model.PageInfo.TotalPages != 1)
+        {
+            <div class="btn-group">
+                @Html.PageLinks(Model.PageInfo, x => Url.Action("Details", new {page = x, id = ViewBag.Id}))
+            </div>
+        }
+    </div>
+</div>

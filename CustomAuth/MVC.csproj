@@ -156,7 +156,9 @@
     <Compile Include="Providers\CustomProfileProvider.cs" />
     <Compile Include="Providers\CustomRoleProvider.cs" />
     <Compile Include="Utils\FileHelper.cs" />
+    <Compile Include="ViewModels\ArticleViewModelDetails.cs" />
     <Compile Include="ViewModels\ArticleViewModelCreate.cs" />
+    <Compile Include="ViewModels\ArticleViewModelPagination.cs" />
     <Compile Include="ViewModels\BloggersViewModel.cs" />
     <Compile Include="ViewModels\BlogsViewModel.cs" />
     <Compile Include="ViewModels\LogOnViewModel.cs" />
@@ -204,7 +206,7 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Home\Error.cshtml" />
+    <Content Include="Views\Home\Error404.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
@@ -215,6 +217,8 @@
     <Content Include="Views\Blog\CreateBlog.cshtml" />
     <Content Include="Views\Blog\MyBlogs.cshtml" />
     <Content Include="Views\Article\CreateArticle.cshtml" />
+    <Content Include="Views\Blog\Details.cshtml" />
+    <Content Include="Views\Home\Error.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

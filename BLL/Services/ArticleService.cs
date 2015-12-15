@@ -34,7 +34,7 @@ namespace Bll.Services
 
         public IEnumerable<ArticleEntity> GetAllArticleEntities(int blogId)
         {
-            return repository.GetAll().Where(a => a.BlogId == blogId).Select(art=> art.ToBllArticle());
+            return repository.GetAll().Where(a => a.BlogId == blogId).Select(art => art.ToBllArticle());
         }
 
         public void CreateArticle(ArticleEntity article)

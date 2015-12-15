@@ -42,8 +42,11 @@ namespace CustomAuth.Controllers
         public ActionResult CreateArticle(ArticleViewModelCreate article, HttpPostedFileBase img)
         {
             if (ModelState.IsValid)
+            {
                 _articleService.CreateArticle(article.ToBllArticle());
-
+                return RedirectToAction("Index","Home");
+            }
+            
             return RedirectToAction("CreateArticle");
         }
     }

@@ -25,7 +25,8 @@ namespace Bll.Services
 
         public BlogEntity GetBlogEntity(int id)
         {
-            throw new NotImplementedException();
+            var blogEntity = blogRepository.GetAll().FirstOrDefault(b => b.Id == id);
+            return (blogEntity == null) ? null : blogEntity.ToBllBlog();
         }
 
         public IEnumerable<BlogEntity> GetAllBlogEntities()

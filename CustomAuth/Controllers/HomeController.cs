@@ -26,6 +26,7 @@ namespace CustomAuth.Controllers
             this._blogservice = blogService;
         }
 
+        public ActionResult Error404() => View();
         public ActionResult Error() => View();
         
         public ActionResult Index(int page = 1)
