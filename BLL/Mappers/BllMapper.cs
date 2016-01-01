@@ -31,7 +31,7 @@ namespace Bll.Mappers
                 UserName = dalUser.Name,
                 RoleId = dalUser.RoleId,
                 DateAdded = dalUser.DateAdded,
-                
+                AvatarPath = dalUser.PathAvatar
             };
         }
     }

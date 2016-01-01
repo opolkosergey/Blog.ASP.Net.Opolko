@@ -13,6 +13,7 @@ namespace Bll.Interface
         public string UserName { get; set; }
         public DateTime DateAdded { get; set; }
         public int RoleId { get; set; }
+        public string AvatarPath { get; set; }
 
     }
 }

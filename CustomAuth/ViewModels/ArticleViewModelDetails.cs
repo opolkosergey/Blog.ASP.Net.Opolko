@@ -5,6 +5,7 @@ using System.Web;
 
 namespace CustomAuth.ViewModels
 {
+    //Кратко о статье
     public class ArticleViewModelDetails
     {
         public int Id { get; set; }

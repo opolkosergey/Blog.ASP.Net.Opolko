@@ -24,7 +24,8 @@ namespace Bll.Services
 
         public ArticleEntity GetArticleEntity(int id)
         {
-            throw new NotImplementedException();
+            var articleEntity = repository.GetAll().FirstOrDefault(a => a.Id == id);
+            return (articleEntity == null) ? null : articleEntity.ToBllArticle();
         }
 
         public IEnumerable<ArticleEntity> GetAllArticleEntities()

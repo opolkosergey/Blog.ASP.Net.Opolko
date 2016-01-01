@@ -12,6 +12,6 @@ namespace DalToWeb.DTO
         public int Id { get; set; }
         public string Title { get; set; }
         public DateTime TimeAdded { get; set; }
-        public int? UserId { get; set; }
+        public int UserId { get; set; }
     }
 }

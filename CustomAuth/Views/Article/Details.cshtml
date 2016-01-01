@@ -1,0 +1,123 @@
+﻿@model CustomAuth.ViewModels.ArticleViewModel
+
+@{
+    ViewBag.Title = "Article details";
+}
+
+@Scripts.Render("~/bundles/jquery")
+
+<script>
+
+    $(document).ready(function () {
+
+        $("#commentArticle").click(function () {
+
+                var method = $("form#formComment").attr('method');
+                var action = $("form#formComment").attr('action');
+                var testData = { 'textComment': $("#textComment").val() };
+
+
+            $.ajax({
+                type: method,
+                url: action,
+                data: JSON.stringify(testData),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    alert(result);
+                    var data = result.split('~');
+                    $("#textComment").val('');
+					$("#commentContainer").append("<div class='panel panel-default' onmouseover='ShowGlyphs(this)' onmouseout='HideGlyphs(this)' id='5'><div class='panel-body'><img style='width: 50px; height: 50px;' src='/UserContent/" + data[1] + "' alt='No avatar'/><span style='font-size: 12px;' id='author'>"+data[0]+" </span><span style='font-size: 12px;' id='date'>"+data[2]+" </span><div class='glyphicon glyphicon-trash hidden' style='float: right;' id='trash_5' onclick='DeleteElement(this)'></div><div class='glyphicon glyphicon-edit hidden' style='float: right;' id='edit_5' onclick='EditComment(this)'></div><div id='commentEditInput_5' class='editing' style='height: auto; width: 300px; text-align: center;'></div><p style='font-size: 16px; margin-left: 60px;'>" + data[3] + "</p></div></div>");
+                }
+            });
+            return false;
+        }
+        );
+    });
+</script>
+<script>
+
+    var getTrashGly = function (element) {
+        var id = $(element).attr("id");
+        var butId = "trash_" + id;
+        return document.getElementById(butId);
+    };
+
+    var getEditGly = function (element) {
+        var id = $(element).attr("id");
+        var editId = "edit_" + id;
+        return document.getElementById(editId);
+    };
+
+    function ShowGlyphs(element) {
+        $(getTrashGly(element)).removeClass('hidden');
+        $(getEditGly(element)).removeClass('hidden');
+    };
+
+    function HideGlyphs(element) {
+        $(getTrashGly(element)).addClass('hidden');
+        $(getEditGly(element)).addClass('hidden');
+    };
+
+    function CloseEdit(element) {
+        var editBlockId = $(element).parent().attr("id");
+        var editBlock = document.getElementById(editBlockId);
+        editBlock.innerHTML = "";
+    }
+
+    function EditComment(element) {
+        $(".editing").empty();
+        var id = $(element).parent().parent().attr("id");
+        var editing = "commentEditInput_" + id;
+        alert(editing);
+        var spanEditing = document.getElementById(editing);
+        spanEditing.innerHTML = "<input type='text' name='UserComment' id='userComment' required value='' /><div class='glyphicon glyphicon-remove' onclick='CloseEdit(this)'></div><span><input class='btn btn-default' type='submit' id='saveComment' /></span>";
+    }
+
+</script>
+
+<div class="col-md-9">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <h2>@Model.Title</h2>
+            <b>
+                <span> | Опубликовано @Model.Author</span>
+                <span> | @Model.TimeAdded |</span>
+                <br />
+
+                | <i>
+                    Тэги:
+                    <span class="label label-info">#Opolko</span>
+                    <span class="label label-info">#BSUIR</span>
+                    <span class="label label-info">#EPAM</span>
+                </i>
+            </b>
+            <br />
+
+
+            <img src="/UserContent/@Model.ImagePath" width="33%" height="30%" alt="post img" style="float: left; margin: 7px 7px 7px 7px;">
+
+            <span style="word-wrap: break-word">@Model.Content</span>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6" id="commentContainer">
+        </div>
+    </div>
+
+
+    @using (Html.BeginForm("NewComment", "Comment", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal", @id = "formComment" }))
+    {
+        @Html.ValidationSummary(true)
+        @Html.AntiForgeryToken()
+
+
+        <div class="form-group">
+            <label class="control-label">Оставить комметарий</label>
+            <input type="text" class="form-control" id="textComment">
+        </div>
+            <input type="submit" class="btn btn-default" id="commentArticle" value="Комментировать" />
+    }
+</div>

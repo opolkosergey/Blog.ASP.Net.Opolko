@@ -44,7 +44,7 @@
                         @Html.DisplayFor(modelItem => item.CountComments)
                     </td>
                     <td>
-                        <a href="#" class="btn-sm btn-default">Подробнее</a>
+                        <a href="@Url.Action("Details","Article", new {id = item.Id})" class="btn-sm btn-default">Подробнее</a>
                     </td>
                     @if (ViewBag.IsModerating)
                     {

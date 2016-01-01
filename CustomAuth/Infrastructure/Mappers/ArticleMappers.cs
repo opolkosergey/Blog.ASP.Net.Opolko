@@ -19,14 +19,16 @@ namespace CustomAuth.Infrastructure.Mappers
         //    };
         //}
 
-        public static ArticleEntity ToBllArticle(this ArticleViewModelCreate model)
+        public static ArticleEntity ToBllArticle(this ArticleViewModelCreate model, string imgPath)
         {
             return new ArticleEntity()
             {
                 Id = model.Id,
                 Name = model.Title,
                 Content = model.Content,
-                BlogId = int.Parse(model.Blog)
+                BlogId = int.Parse(model.Blog),
+                DateAdded = DateTime.Now,
+                ImagePath = imgPath
             };
         }
 
@@ -35,6 +37,18 @@ namespace CustomAuth.Infrastructure.Mappers
             return new ArticleViewModelDetails()
             {
                 Id = model.Id,
+                Title = model.Name
+            };
+        }
+
+        public static ArticleViewModel ToMvcViewArticle(this ArticleEntity model)
+        {
+            return new ArticleViewModel()
+            {
+                Content = model.Content,
+                Id = model.Id,
+                ImagePath = model.ImagePath,
+                TimeAdded = model.DateAdded,
                 Title = model.Name
             };
         }

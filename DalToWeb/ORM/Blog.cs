@@ -12,7 +12,7 @@ namespace DalToWeb
         public int Id { get; set; }
         public string Title { get; set; }
         public DateTime TimeAdded { get; set; }
-        public virtual int? UserId { get; set; }
+        public virtual int UserId { get; set; }
         public virtual ICollection<Article> Articles { get; set; } 
     }
 }

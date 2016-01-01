@@ -39,6 +39,7 @@ C:\Users\Sergey\Desktop\blog\DalToWeb\obj\Debug\DalToWeb.Migrations.BlogsAdd.res
 C:\Users\Sergey\Desktop\blog\DalToWeb\obj\Debug\DalToWeb.csproj.GenerateResource.Cache
 C:\Users\Sergey\Desktop\blog\DalToWeb\obj\Debug\DalToWeb.Migrations.AddedDateIntoBlog.resources
 C:\Users\Sergey\Desktop\blog\DalToWeb\obj\Debug\DalToWeb.Migrations.upt1.resources
-C:\Users\Sergey\Desktop\blog\DalToWeb\obj\Debug\DalToWeb.csprojResolveAssemblyReference.cache
 C:\Users\Sergey\Desktop\blog\DalToWeb\obj\Debug\DalToWeb.Migrations.AddedArticle.resources
 C:\Users\Sergey\Desktop\blog\DalToWeb\obj\Debug\DalToWeb.Migrations.upt2.resources
+C:\Users\Sergey\Desktop\blog\DalToWeb\obj\Debug\DalToWeb.Migrations.upt3.resources
+C:\Users\Sergey\Desktop\blog\DalToWeb\obj\Debug\DalToWeb.csprojResolveAssemblyReference.cache
