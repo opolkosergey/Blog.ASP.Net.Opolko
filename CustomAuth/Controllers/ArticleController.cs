@@ -34,7 +34,7 @@ namespace CustomAuth.Controllers
                 .ToList();
 
             List<SelectListItem> list = new List<SelectListItem>();
-            list.AddRange(myBlogs.Select(b => new SelectListItem() {Value = b.Id.ToString(), Text = b.Name}));
+            list.AddRange(myBlogs.Select(b => new SelectListItem() { Value = b.Id.ToString(), Text = b.Name }));
 
             ViewBag.list = list;
             return View();
@@ -50,9 +50,9 @@ namespace CustomAuth.Controllers
                     str.Append(FileHelper.SaveFileToDisk(img, Server.MapPath("~/")));
 
                 _articleService.CreateArticle(article.ToBllArticle(str.ToString()));
-                return RedirectToAction("Index","Home");
+                return RedirectToAction("Index", "Home");
             }
-            
+
             return RedirectToAction("CreateArticle");
         }
 
@@ -62,19 +62,17 @@ namespace CustomAuth.Controllers
             if (int.TryParse(id, out parsedId) == false)
                 return RedirectToAction("Error", "Home");
 
-            var article = _articleService
-                .GetArticleEntity(parsedId);
+            var article = _articleService.GetArticleEntity(parsedId);
 
             if (article != null)
             {
-                var model = article.ToMvcViewArticle();
                 var blog = _blogService
                     .GetAllBlogEntities()
                     .FirstOrDefault(b => b.Id == article.BlogId);
                 var authorName = _userService.GetUserEntity(blog.UserId).UserName;
-                model.Author = authorName;
+                var model = article.ToMvcViewArticle(authorName);
 
-                return View(model);    
+                return View(model);
             }
             return RedirectToAction("Error", "Home");
         }

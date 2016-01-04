@@ -42,5 +42,4 @@ C:\Users\Sergey\Desktop\blog\DalToWeb\obj\Debug\DalToWeb.Migrations.upt1.resourc
 C:\Users\Sergey\Desktop\blog\DalToWeb\obj\Debug\DalToWeb.Migrations.AddedArticle.resources
 C:\Users\Sergey\Desktop\blog\DalToWeb\obj\Debug\DalToWeb.Migrations.upt2.resources
 C:\Users\Sergey\Desktop\blog\DalToWeb\obj\Debug\DalToWeb.Migrations.upt3.resources
-C:\Users\Sergey\Desktop\blog\DalToWeb\obj\Debug\DalToWeb.csprojResolveAssemblyReference.cache
 C:\Users\Sergey\Desktop\blog\DalToWeb\obj\Debug\DalToWeb.Migrations.AddTags.resources

@@ -44,7 +44,7 @@ namespace CustomAuth.Infrastructure.Mappers
             };
         }
 
-        public static ArticleViewModel ToMvcViewArticle(this ArticleEntity model)
+        public static ArticleViewModel ToMvcViewArticle(this ArticleEntity model, string authorName)
         {
             var articleViewModel = new ArticleViewModel()
             {
@@ -52,7 +52,8 @@ namespace CustomAuth.Infrastructure.Mappers
                 Id = model.Id,
                 ImagePath = model.ImagePath,
                 TimeAdded = model.DateAdded,
-                Title = model.Name
+                Title = model.Name,
+                Author = authorName
             };
             if (!string.IsNullOrEmpty(model.Tags))
             {
@@ -62,6 +63,18 @@ namespace CustomAuth.Infrastructure.Mappers
                     articleViewModel.Tags.Add(new Tag(tag));
             }
             return articleViewModel;
+        }
+
+        public static ArticleViewModelCommon ToMvcViewArticleCommon(this ArticleEntity model, string authorName)
+        {
+            return new ArticleViewModelCommon()
+            {
+                Author = authorName,
+                Content = model.Content,
+                ImagePath = model.ImagePath,
+                Id = model.Id,
+                Title = model.Name
+            };
         }
     }
 }

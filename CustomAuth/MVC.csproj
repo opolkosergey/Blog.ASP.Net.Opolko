@@ -160,6 +160,7 @@
     <Compile Include="Utils\FileHelper.cs" />
     <Compile Include="Utils\StringHelper.cs" />
     <Compile Include="ViewModels\ArticleViewModel.cs" />
+    <Compile Include="ViewModels\ArticleViewModelCommon.cs" />
     <Compile Include="ViewModels\ArticleViewModelDetails.cs" />
     <Compile Include="ViewModels\ArticleViewModelCreate.cs" />
     <Compile Include="ViewModels\ArticleViewModelPagination.cs" />

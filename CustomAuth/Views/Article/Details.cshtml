@@ -1,4 +1,5 @@
-﻿@model CustomAuth.ViewModels.ArticleViewModel
+﻿@using System.Diagnostics.Eventing.Reader
+@model CustomAuth.ViewModels.ArticleViewModel
 
 @{
     ViewBag.Title = "Article details";
@@ -87,10 +88,18 @@
                 <br />
                 | <i>
                     Тэги:
-                @foreach (var tag in Model.Tags)
-                {
-                    <a href="@Url.Action("ByTag","Search", new {tag = tag.TagField})" class="btn btn-primary btn-xs">@tag.TagField</a>
-                }
+                    @if (Model.Tags != null)
+                    {
+                        foreach (var tag in Model.Tags)
+                        {
+                            <a href="@Url.Action("ByTag","Search", new {tag = tag.TagField})" class="btn btn-primary btn-xs">@tag.TagField</a>
+                        }
+                    }
+                    else
+                    {
+                        <span>Отсутствуют</span>
+                    }
+
                 </i>
             </b>
             <br />
@@ -115,6 +124,6 @@
             <label class="control-label">Оставить комметарий</label>
             <input type="text" class="form-control" id="textComment">
         </div>
-            <input type="submit" class="btn btn-default" id="commentArticle" value="Комментировать" />
+        <input type="submit" class="btn btn-default" id="commentArticle" value="Комментировать" />
     }
 </div>

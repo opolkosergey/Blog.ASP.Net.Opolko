@@ -51,8 +51,10 @@
   <ItemGroup>
     <Compile Include="CastHelper.cs" />
     <Compile Include="Concrete\ArticleRepository.cs" />
+    <Compile Include="Concrete\DbTagRepository.cs" />
     <Compile Include="DTO\DalArticle.cs" />
     <Compile Include="Interfacies\IArticleRepository.cs" />
+    <Compile Include="Interfacies\ITagRepository.cs" />
     <Compile Include="Migrations\201512121544519_AddedArticle.cs" />
     <Compile Include="Migrations\201512121544519_AddedArticle.Designer.cs">
       <DependentUpon>201512121544519_AddedArticle.cs</DependentUpon>
