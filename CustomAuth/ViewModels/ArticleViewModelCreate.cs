@@ -15,5 +15,6 @@ namespace CustomAuth.ViewModels
         public string Content { get; set; }
         [Required(ErrorMessage = "Укажите блог")]
         public string Blog { get; set; }
+        public string Tags { get; set; }
     }
 }

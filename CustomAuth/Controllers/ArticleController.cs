@@ -47,9 +47,8 @@ namespace CustomAuth.Controllers
             {
                 var str = new StringBuilder();
                 if (img != null)
-                {
-                   str.Append(FileHelper.SaveFileToDisk(img, Server.MapPath("~/")));
-                }
+                    str.Append(FileHelper.SaveFileToDisk(img, Server.MapPath("~/")));
+
                 _articleService.CreateArticle(article.ToBllArticle(str.ToString()));
                 return RedirectToAction("Index","Home");
             }

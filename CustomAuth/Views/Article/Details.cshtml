@@ -27,7 +27,7 @@
                     alert(result);
                     var data = result.split('~');
                     $("#textComment").val('');
-					$("#commentContainer").append("<div class='panel panel-default' onmouseover='ShowGlyphs(this)' onmouseout='HideGlyphs(this)' id='5'><div class='panel-body'><img style='width: 50px; height: 50px;' src='/UserContent/" + data[1] + "' alt='No avatar'/><span style='font-size: 12px;' id='author'>"+data[0]+" </span><span style='font-size: 12px;' id='date'>"+data[2]+" </span><div class='glyphicon glyphicon-trash hidden' style='float: right;' id='trash_5' onclick='DeleteElement(this)'></div><div class='glyphicon glyphicon-edit hidden' style='float: right;' id='edit_5' onclick='EditComment(this)'></div><div id='commentEditInput_5' class='editing' style='height: auto; width: 300px; text-align: center;'></div><p style='font-size: 16px; margin-left: 60px;'>" + data[3] + "</p></div></div>");
+					$("#commentContainer").append("<div class='panel panel-default' onmouseover='ShowGlyphs(this)' onmouseout='HideGlyphs(this)' id='5'><div class='panel-body'><img style='width: 50px; height: 50px;' src='/UserContent/" + data[1] + "' alt='No avatar'/><span style='font-size: 12px;' id='author'>"+"  "+data[0]+" </span><span style='font-size: 12px;' id='date'>"+data[2]+" </span><div class='glyphicon glyphicon-trash hidden' style='float: right;' id='trash_5' onclick='DeleteElement(this)'></div><div class='glyphicon glyphicon-edit hidden' style='float: right;' id='edit_5' onclick='EditComment(this)'></div><div id='commentEditInput_5' class='editing' style='height: auto; width: 300px; text-align: center;'></div><br/><p style='font-size: 16px;' id='comment_5'>" + data[3] + "</p></div></div>");
                 }
             });
             return false;
@@ -69,9 +69,10 @@
         $(".editing").empty();
         var id = $(element).parent().parent().attr("id");
         var editing = "commentEditInput_" + id;
-        alert(editing);
         var spanEditing = document.getElementById(editing);
         spanEditing.innerHTML = "<input type='text' name='UserComment' id='userComment' required value='' /><div class='glyphicon glyphicon-remove' onclick='CloseEdit(this)'></div><span><input class='btn btn-default' type='submit' id='saveComment' /></span>";
+        var c = $('#comment_5').html();
+        $('#userComment').val(c);
     }
 
 </script>
@@ -84,21 +85,17 @@
                 <span> | Опубликовано @Model.Author</span>
                 <span> | @Model.TimeAdded |</span>
                 <br />
-
                 | <i>
                     Тэги:
-                    <span class="label label-info">#Opolko</span>
-                    <span class="label label-info">#BSUIR</span>
-                    <span class="label label-info">#EPAM</span>
+                @foreach (var tag in Model.Tags)
+                {
+                    <a href="@Url.Action("ByTag","Search", new {tag = tag.TagField})" class="btn btn-primary btn-xs">@tag.TagField</a>
+                }
                 </i>
             </b>
             <br />
-
-
             <img src="/UserContent/@Model.ImagePath" width="33%" height="30%" alt="post img" style="float: left; margin: 7px 7px 7px 7px;">
-
             <span style="word-wrap: break-word">@Model.Content</span>
-
         </div>
     </div>
 

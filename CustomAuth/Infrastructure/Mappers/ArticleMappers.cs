@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using Bll.Interface.Entities;
 using CustomAuth.ViewModels;
+using DalToWeb.Migrations;
+using DalToWeb.ORM;
 
 namespace CustomAuth.Infrastructure.Mappers
 {
@@ -28,7 +30,8 @@ namespace CustomAuth.Infrastructure.Mappers
                 Content = model.Content,
                 BlogId = int.Parse(model.Blog),
                 DateAdded = DateTime.Now,
-                ImagePath = imgPath
+                ImagePath = imgPath,
+                Tags = model.Tags
             };
         }
 
@@ -43,7 +46,7 @@ namespace CustomAuth.Infrastructure.Mappers
 
         public static ArticleViewModel ToMvcViewArticle(this ArticleEntity model)
         {
-            return new ArticleViewModel()
+            var articleViewModel = new ArticleViewModel()
             {
                 Content = model.Content,
                 Id = model.Id,
@@ -51,6 +54,14 @@ namespace CustomAuth.Infrastructure.Mappers
                 TimeAdded = model.DateAdded,
                 Title = model.Name
             };
+            if (!string.IsNullOrEmpty(model.Tags))
+            {
+                articleViewModel.Tags = new List<Tag>();
+                var tags = model.Tags.Split(',');
+                foreach (var tag in tags)
+                    articleViewModel.Tags.Add(new Tag(tag));
+            }
+            return articleViewModel;
         }
     }
 }

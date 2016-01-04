@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CastHelper.cs" />
     <Compile Include="Concrete\ArticleRepository.cs" />
     <Compile Include="DTO\DalArticle.cs" />
     <Compile Include="Interfacies\IArticleRepository.cs" />
@@ -63,6 +64,10 @@
     <Compile Include="Migrations\201512171220401_upt3.cs" />
     <Compile Include="Migrations\201512171220401_upt3.Designer.cs">
       <DependentUpon>201512171220401_upt3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201601041652164_AddTags.cs" />
+    <Compile Include="Migrations\201601041652164_AddTags.Designer.cs">
+      <DependentUpon>201601041652164_AddTags.cs</DependentUpon>
     </Compile>
     <Compile Include="ORM\Article.cs" />
     <Compile Include="ORM\Blog.cs" />
@@ -88,6 +93,7 @@
       <DependentUpon>201512121248150_upt1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="ORM\Tag.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Interfacies\IUnitOfWork.cs" />
     <Compile Include="Concrete\RoleRepository.cs" />
@@ -117,6 +123,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201512171220401_upt3.resx">
       <DependentUpon>201512171220401_upt3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601041652164_AddTags.resx">
+      <DependentUpon>201601041652164_AddTags.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

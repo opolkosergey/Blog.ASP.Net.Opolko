@@ -8,6 +8,7 @@ using DalToWeb.DTO;
 using DalToWeb.Interfacies;
 using DalToWeb.ORM;
 using DalToWeb.Repositories;
+using DalToWeb;
 
 namespace DalToWeb.Concrete
 {
@@ -23,7 +24,8 @@ namespace DalToWeb.Concrete
                Content = art.Content,
                Id = art.Id,
                ImagePath = art.ImagePath,
-               Title = art.Title
+               Title = art.Title,
+               Tags = art.Tags
             });
         }
 
@@ -45,8 +47,11 @@ namespace DalToWeb.Concrete
                 TimeAdded = DateTime.Now,
                 BlogId = e.BlogId,
                 Content = e.Content,
-                ImagePath = e.ImagePath
+                ImagePath = e.ImagePath,
+                Tags = e.Tags
             };
+           
+            
             _context.Set<Article>().Add(art);
             _context.SaveChanges();
         }
