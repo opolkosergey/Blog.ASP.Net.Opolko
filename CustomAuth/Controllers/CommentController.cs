@@ -47,6 +47,7 @@ namespace CustomAuth.Controllers
             return RedirectToAction("Details", "Article", new {id = id});
         }
 
+        [Authorize(Roles = "Moderator,Admin")]
         [HttpGet]
         public ActionResult EditComment(string data)
         {
@@ -54,6 +55,14 @@ namespace CustomAuth.Controllers
             int id = int.Parse(array[0]);
             string text = array[1];
             _commentService.UpdateComment(new CommentEntity {Id = id,CommentText = text});
+            return Content("ok");
+        }
+
+        [Authorize(Roles = "Moderator,Admin")]
+        [HttpGet]
+        public ActionResult DeleteComment(int id)
+        {
+            _commentService.DeleteComment(id);
             return Content("ok");
         }
     }

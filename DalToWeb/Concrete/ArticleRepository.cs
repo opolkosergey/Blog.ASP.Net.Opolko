@@ -41,7 +41,8 @@ namespace DalToWeb.Concrete
                 ImagePath = art.ImagePath,
                 Title = art.Title,
                 Tags = art.Tags,
-                TimeAdded = art.TimeAdded
+                TimeAdded = art.TimeAdded,
+                Comments = art.Comments.Count
             };
         }
 

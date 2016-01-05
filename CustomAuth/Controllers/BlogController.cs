@@ -109,6 +109,9 @@ namespace CustomAuth.Controllers
                     .Take(15)
                     .ToList();
 
+                foreach (var m in models)
+                    m.CountComments = _articleService.GetArticleEntity(m.Id).Comments;
+                
                 var pageInfo = new PageInfo {PageNumber = page, PageSize = 15, TotalItems = articles.Count()};
                 var model = new ArticleViewModelPagination {ArticleViewModels = models, PageInfo = pageInfo};
 

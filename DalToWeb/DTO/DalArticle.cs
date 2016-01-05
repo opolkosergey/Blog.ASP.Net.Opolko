@@ -14,6 +14,7 @@ namespace DalToWeb.DTO
         public string Title { get; set; }
         public DateTime TimeAdded { get; set; }
         public string Content { get; set; }
+        public int Comments { get; set; }
         public  ICollection<Tag> Tags { get; set; }
         public string ImagePath { get; set; }
         public int BlogId { get; set; }

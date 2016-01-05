@@ -47,7 +47,8 @@ namespace Bll.Services
 
         public void DeleteComment(int id)
         {
-            throw new NotImplementedException();
+            repository.Delete(id);
+            uow.Commit();
         }
 
         public void UpdateComment(CommentEntity comment)

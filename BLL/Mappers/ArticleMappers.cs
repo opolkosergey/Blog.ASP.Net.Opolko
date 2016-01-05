@@ -22,7 +22,8 @@ namespace Bll.Mappers
                 BlogId = dalArticle.BlogId,
                 Content = dalArticle.Content,
                 ImagePath = dalArticle.ImagePath,
-                Tags = dalArticle.Tags.ToTagsString()
+                Tags = dalArticle.Tags.ToTagsString(),
+                Comments = dalArticle.Comments
             };
         }
 

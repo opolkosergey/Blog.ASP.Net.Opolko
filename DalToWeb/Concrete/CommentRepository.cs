@@ -61,7 +61,9 @@ namespace DalToWeb.Concrete
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            var comment = _context.Set<Comment>().Find(id);
+            _context.Set<Comment>().Remove(comment);
+            _context.SaveChanges();
         }
 
         public void Update(DalComment entity)

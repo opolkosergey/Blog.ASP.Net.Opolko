@@ -85,10 +85,15 @@
         $('#userComment').val(c);
     }
 
-    function DeleteElement(element) {
+    function DeleteElement(element) {    
         var id = $(element).parent().parent().attr("id");
+        //alert(id);
+        $.get("/Comment/DeleteComment?id=" + id, function (response) {
+            if (response === "ok") {
+                document.getElementById(id).remove();
+            }
+        });
     }
-
 </script>
 
 <div class="col-md-9">
