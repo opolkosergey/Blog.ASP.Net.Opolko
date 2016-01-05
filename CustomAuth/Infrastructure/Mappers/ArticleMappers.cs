@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Text;
 using System.Web;
 using Bll.Interface.Entities;
 using CustomAuth.ViewModels;
@@ -44,6 +46,32 @@ namespace CustomAuth.Infrastructure.Mappers
             };
         }
 
+        public static ArticleEntity ToArticleEntity(this ArticleViewModel model)
+        {
+            var art = new ArticleEntity()
+            {
+                Id = model.Id,
+                BlogId = model.BlogId,
+                Content = model.Content,
+                DateAdded = model.TimeAdded,
+                ImagePath = model.ImagePath,
+                Name = model.Title
+            };
+
+            if (model.Tags.Count != 0)
+            {
+                var sb = new StringBuilder();
+                foreach (var tag in model.Tags)
+                {
+                    sb.Append(tag.TagField);
+                    sb.Append(',');
+                }
+                sb.Remove(sb.Length - 1, 1);
+                art.Tags = sb.ToString();
+            }
+            return art;
+        }
+
         public static ArticleViewModel ToMvcViewArticle(this ArticleEntity model, string authorName)
         {
             var articleViewModel = new ArticleViewModel()
@@ -53,7 +81,8 @@ namespace CustomAuth.Infrastructure.Mappers
                 ImagePath = model.ImagePath,
                 TimeAdded = model.DateAdded,
                 Title = model.Name,
-                Author = authorName
+                Author = authorName,
+                BlogId = model.BlogId
             };
             if (!string.IsNullOrEmpty(model.Tags))
             {

@@ -8,6 +8,7 @@ using Bll.Interface.Services;
 using CustomAuth.Infrastructure.Mappers;
 using CustomAuth.Utils;
 using CustomAuth.ViewModels;
+using DalToWeb.ORM;
 
 namespace CustomAuth.Controllers
 {
@@ -50,17 +51,17 @@ namespace CustomAuth.Controllers
                     str.Append(FileHelper.SaveFileToDisk(img, Server.MapPath("~/")));
 
                 _articleService.CreateArticle(article.ToBllArticle(str.ToString()));
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("MyBlogs", "Blog");
             }
 
             return RedirectToAction("CreateArticle");
         }
 
-        public ActionResult Details(string id)
+        private ArticleViewModel GetArticle(string id)
         {
             int parsedId;
             if (int.TryParse(id, out parsedId) == false)
-                return RedirectToAction("Error", "Home");
+                return null;
 
             var article = _articleService.GetArticleEntity(parsedId);
 
@@ -71,10 +72,36 @@ namespace CustomAuth.Controllers
                     .FirstOrDefault(b => b.Id == article.BlogId);
                 var authorName = _userService.GetUserEntity(blog.UserId).UserName;
                 var model = article.ToMvcViewArticle(authorName);
-
-                return View(model);
+                return model;
             }
-            return RedirectToAction("Error", "Home");
+            return null;
+        }
+
+        public ActionResult Details(string id)
+        {
+            var art = GetArticle(id);
+            if(art == null)
+                return RedirectToAction("Error", "Home");
+
+            return View(art);
+        }
+
+        [HttpGet]
+        public ActionResult Edit(string id)
+        {
+            var art = GetArticle(id);
+            if (art == null)
+                return RedirectToAction("Error", "Home");
+            TempData["Tags"] = art.Tags;
+            return View(art);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(ArticleViewModel model)
+        {
+            model.Tags = (ICollection<Tag>)TempData["Tags"];
+            _articleService.UpdateArticle(model.ToArticleEntity());
+            return RedirectToAction("MyBlogs", "Blog");
         }
     }
 }

@@ -48,5 +48,11 @@ namespace Bll.Services
         {
             //
         }
+
+        public void UpdateArticle(ArticleEntity article)
+        {
+            repository.Update(article.ToDalArticle());
+            uow.Commit();
+        }
     }
 }

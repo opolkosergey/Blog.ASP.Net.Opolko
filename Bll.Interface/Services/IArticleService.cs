@@ -14,5 +14,6 @@ namespace Bll.Interface.Services
         IEnumerable<ArticleEntity> GetAllArticleEntities(int blogId);
         void CreateArticle(ArticleEntity article);
         void DeleteArticle(ArticleEntity article);
+        void UpdateArticle(ArticleEntity article);
     }
 }

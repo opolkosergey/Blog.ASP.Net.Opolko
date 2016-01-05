@@ -9,6 +9,5 @@ namespace DalToWeb.Repositories
     public interface IUnitOfWork : IDisposable
     {
         void Commit();
-        //Rollback
     }
 }

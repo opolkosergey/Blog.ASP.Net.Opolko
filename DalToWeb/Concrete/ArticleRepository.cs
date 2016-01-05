@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -63,7 +64,10 @@ namespace DalToWeb.Concrete
 
         public void Update(DalArticle entity)
         {
-            throw new NotImplementedException();
+            var propertyContent = typeof (Article).GetProperty("Content");
+            var article = _context.Set<Article>().Find(entity.Id);
+            propertyContent.SetValue(article,entity.Content);
+            _context.SaveChanges();
         }
     }
 }

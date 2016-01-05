@@ -229,6 +229,7 @@
     <Content Include="Views\Home\Error.cshtml" />
     <Content Include="Views\Article\Details.cshtml" />
     <Content Include="Views\Search\ByTag.cshtml" />
+    <Content Include="Views\Article\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
