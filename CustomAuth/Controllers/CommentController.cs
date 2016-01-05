@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Bll.Interface.Entities;
 using Bll.Interface.Services;
 using CustomAuth.Infrastructure.Mappers;
 using CustomAuth.Utils;
@@ -44,6 +45,16 @@ namespace CustomAuth.Controllers
                 }
             }
             return RedirectToAction("Details", "Article", new {id = id});
+        }
+
+        [HttpGet]
+        public ActionResult EditComment(string data)
+        {
+            var array = data.Split('~');
+            int id = int.Parse(array[0]);
+            string text = array[1];
+            _commentService.UpdateComment(new CommentEntity {Id = id,CommentText = text});
+            return Content("ok");
         }
     }
 }

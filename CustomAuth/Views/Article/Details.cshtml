@@ -60,14 +60,28 @@
         var editBlockId = $(element).parent().attr("id");
         var editBlock = document.getElementById(editBlockId);
         editBlock.innerHTML = "";
-    }
+    };
 
+    function Edit(element) {
+        var id = $(element).parent().parent().parent().attr("id");
+        var commentText = $('#userComment').val();
+        var data = id + '~' + commentText;
+
+        $.get("/Comment/EditComment?data=" + data, function (response) {
+           if (response === "ok") {
+               $("#comment_" + id).html(commentText);
+               $(".editing").empty();
+           }
+        });
+    }
+    
     function EditComment(element) {
         $(".editing").empty();
         var id = $(element).parent().parent().attr("id");
         var spanEditing = $("#commentEditInput_" + id);
-        spanEditing.innerHTML = "<input type='text' name='UserComment' id='userComment' required value='' /><div class='glyphicon glyphicon-remove' onclick='CloseEdit(this)'></div><span><input class='btn btn-default' type='submit' id='saveComment' /></span>";
+        
         var c = $('#comment_' + id).html();
+        spanEditing.html("<input type='text' name='UserComment' id='userComment' required value='' /><div class='glyphicon glyphicon-remove' onclick='CloseEdit(this)'></div><span class='btn btn-default' id='saveComment' onclick='Edit(this)'>Изменить</span>");
         $('#userComment').val(c);
     }
 

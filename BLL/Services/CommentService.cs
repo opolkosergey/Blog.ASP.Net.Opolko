@@ -52,7 +52,8 @@ namespace Bll.Services
 
         public void UpdateComment(CommentEntity comment)
         {
-            throw new NotImplementedException();
+            repository.Update(comment.ToDalComment());
+            uow.Commit();
         }
     }
 }

@@ -39,7 +39,7 @@ namespace DalToWeb.Concrete
             };
         }
 
-        public int GetLastId() => _context.Comments.Max(c =>c.Id);
+        public int GetLastId() => _context.Comments.Max(c => c.Id);
 
         public DalComment GetByPredicate(Expression<Func<DalComment, bool>> f)
         {
@@ -66,7 +66,10 @@ namespace DalToWeb.Concrete
 
         public void Update(DalComment entity)
         {
-            throw new NotImplementedException();
+            var propertyText = typeof(Comment).GetProperty("TextComment");
+            var comment = _context.Set<Comment>().Find(entity.Id);
+            propertyText.SetValue(comment, entity.TextComment);
+            _context.SaveChanges();
         }
     }
 }

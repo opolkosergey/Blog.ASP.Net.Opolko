@@ -26,6 +26,7 @@ namespace Bll.Mappers
         {
             return new DalComment()
             {
+                Id = comment.Id,
                 ArticleId = comment.ArticleId,
                 TextComment = comment.CommentText,
                 DateAdded = comment.DateAdded,
