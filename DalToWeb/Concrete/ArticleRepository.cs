@@ -59,7 +59,9 @@ namespace DalToWeb.Concrete
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            var article = _context.Set<Article>().Find(id);
+            _context.Set<Article>().Remove(article);
+            _context.SaveChanges();
         }
 
         public void Update(DalArticle entity)

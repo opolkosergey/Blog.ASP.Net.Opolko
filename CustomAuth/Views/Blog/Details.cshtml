@@ -1,6 +1,25 @@
 ﻿@using CustomAuth.Pagination
 @model CustomAuth.ViewModels.ArticleViewModelPagination
 
+
+@Scripts.Render("~/bundles/jquery")
+
+<script>
+    $(document).ready(function() {
+        $(".del").click(function (e) {
+            var id = e.target.id;
+            $.get("/Article/Delete?id=" + id, function (response) {
+                if (response === "ok") {
+                    //alert(response);
+                    var artId = "art_" + id;
+                    document.getElementById(artId).remove();
+                }
+            });
+            return false;
+        });
+    });
+</script>
+
 <div class="col-lg-9">
     <div>
         <div class="panel panel-default">
@@ -28,7 +47,7 @@
 
             @foreach (var item in Model.ArticleViewModels)
             {
-                <tr class="text-primary">
+                <tr class="text-primary" id="art_@item.Id">
                     <td>
                         @Html.DisplayFor(modelItem => item.Id)
                     </td>
@@ -49,7 +68,7 @@
                     @if (ViewBag.IsModerating)
                     {
                         <td>
-                            <a href="#" class="btn-sm btn-danger">Удалить</a>
+                            <a href="@Url.Action("Delete","Article", new {id = item.Id})" class="btn-sm btn-danger del" id="@item.Id">Удалить</a>
                         </td>
                         <td>
                             <a href="@Url.Action("Edit","Article", new {id = item.Id})" class="btn-sm btn-primary">Редактировать</a>

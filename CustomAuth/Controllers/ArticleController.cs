@@ -86,6 +86,7 @@ namespace CustomAuth.Controllers
             return View(art);
         }
 
+        [Authorize(Roles = "Moderator,Admin")]
         [HttpGet]
         public ActionResult Edit(string id)
         {
@@ -102,6 +103,17 @@ namespace CustomAuth.Controllers
             model.Tags = (ICollection<Tag>)TempData["Tags"];
             _articleService.UpdateArticle(model.ToArticleEntity());
             return RedirectToAction("MyBlogs", "Blog");
+        }
+
+        [Authorize(Roles = "Moderator,Admin")]
+        public ActionResult Delete(int id)
+        {
+            _articleService.DeleteArticle(id);
+            if (Request.IsAjaxRequest())
+            {
+                return Content("ok");
+            }
+            return RedirectToAction("Details", "Blog", new {id = TempData["BlogId"].ToString()});
         }
     }
 }

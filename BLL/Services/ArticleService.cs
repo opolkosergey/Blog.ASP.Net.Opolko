@@ -44,9 +44,10 @@ namespace Bll.Services
             uow.Commit();
         }
 
-        public void DeleteArticle(ArticleEntity article)
+        public void DeleteArticle(int id)
         {
-            //
+            repository.Delete(id);
+            uow.Commit();
         }
 
         public void UpdateArticle(ArticleEntity article)

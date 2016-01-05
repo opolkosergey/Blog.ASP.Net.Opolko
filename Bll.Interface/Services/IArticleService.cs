@@ -13,7 +13,7 @@ namespace Bll.Interface.Services
         IEnumerable<ArticleEntity> GetAllArticleEntities();
         IEnumerable<ArticleEntity> GetAllArticleEntities(int blogId);
         void CreateArticle(ArticleEntity article);
-        void DeleteArticle(ArticleEntity article);
+        void DeleteArticle(int id);
         void UpdateArticle(ArticleEntity article);
     }
 }

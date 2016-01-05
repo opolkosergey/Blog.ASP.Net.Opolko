@@ -90,8 +90,10 @@ namespace CustomAuth.Controllers
             var blog = _blogService.GetBlogEntity(parsedId);
             if (blog != null)
             {
+                TempData["BlogId"] = blog.Id;
                 ViewBag.IsModerating =
-                    (blog.UserId == _userService.GetUserEntity(User.Identity.Name).Id);
+                    (blog.UserId == _userService.GetUserEntity(User.Identity.Name).Id) 
+                    || User.IsInRole("Moderator") || User.IsInRole("Admin");
 
                 ViewBag.Id = id;
                 ViewBag.DateCreated = blog.DateAdded;
