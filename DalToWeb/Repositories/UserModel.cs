@@ -19,7 +19,8 @@ namespace DalToWeb.Repositories
         public DbSet<Role> Roles { get; set; }
         public DbSet<Blog> Blogs { get; set; }
         public DbSet<Tag> Tags { get; set; }
-    }
+        public DbSet<Comment> Comments { get; set; }
+    } 
 
     public class User
     {

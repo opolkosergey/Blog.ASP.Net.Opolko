@@ -32,7 +32,8 @@ namespace DalToWeb.Concrete
             return new DalUser()
             {
                 Id = ormuser.Id,
-                Name = ormuser.Email
+                Name = ormuser.Email,
+                PathAvatar = ormuser.Avatar
             };
         }
 

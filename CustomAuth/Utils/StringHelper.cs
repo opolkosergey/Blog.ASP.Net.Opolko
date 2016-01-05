@@ -14,6 +14,8 @@ namespace CustomAuth.Utils
         public static string ParseComment(CommentModel comment)
         {
             var sb = new StringBuilder();
+            sb.Append(comment.Id);
+            sb.Append('~');
             sb.Append(comment.Author);
             sb.Append('~');
             sb.Append(comment.AvatarPath);

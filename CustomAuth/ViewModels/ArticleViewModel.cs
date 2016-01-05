@@ -15,6 +15,6 @@ namespace CustomAuth.ViewModels
         public string Content { get; set; }
         public string ImagePath { get; set; }
         public ICollection<Tag> Tags { get; set; } 
-        //комменты
+        public List<CommentModel> Comments { get; set; } 
     }
 }

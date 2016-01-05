@@ -27,7 +27,14 @@ namespace DalToWeb.Concrete
 
         public DalBlog GetById(int key)
         {
-            throw new NotImplementedException();
+            var blog = _context.Blogs.Find(key);
+            return new DalBlog()
+            {
+                Id = blog.Id,
+                TimeAdded = blog.TimeAdded,
+                Title = blog.Title,
+                UserId = blog.UserId
+            };
         }
 
         public DalBlog GetByPredicate(Expression<Func<DalBlog, bool>> f)

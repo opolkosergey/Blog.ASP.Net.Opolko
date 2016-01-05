@@ -51,9 +51,12 @@
   <ItemGroup>
     <Compile Include="CastHelper.cs" />
     <Compile Include="Concrete\ArticleRepository.cs" />
+    <Compile Include="Concrete\CommentRepository.cs" />
     <Compile Include="Concrete\DbTagRepository.cs" />
     <Compile Include="DTO\DalArticle.cs" />
+    <Compile Include="DTO\DalComment.cs" />
     <Compile Include="Interfacies\IArticleRepository.cs" />
+    <Compile Include="Interfacies\ICommentRepository.cs" />
     <Compile Include="Interfacies\ITagRepository.cs" />
     <Compile Include="Migrations\201512121544519_AddedArticle.cs" />
     <Compile Include="Migrations\201512121544519_AddedArticle.Designer.cs">
@@ -70,6 +73,18 @@
     <Compile Include="Migrations\201601041652164_AddTags.cs" />
     <Compile Include="Migrations\201601041652164_AddTags.Designer.cs">
       <DependentUpon>201601041652164_AddTags.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201601051800060_AddComments.cs" />
+    <Compile Include="Migrations\201601051800060_AddComments.Designer.cs">
+      <DependentUpon>201601051800060_AddComments.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201601051801132_AddCommentsToArticle.cs" />
+    <Compile Include="Migrations\201601051801132_AddCommentsToArticle.Designer.cs">
+      <DependentUpon>201601051801132_AddCommentsToArticle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201601051844528_upt4.cs" />
+    <Compile Include="Migrations\201601051844528_upt4.Designer.cs">
+      <DependentUpon>201601051844528_upt4.cs</DependentUpon>
     </Compile>
     <Compile Include="ORM\Article.cs" />
     <Compile Include="ORM\Blog.cs" />
@@ -95,6 +110,7 @@
       <DependentUpon>201512121248150_upt1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="ORM\Comment.cs" />
     <Compile Include="ORM\Tag.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Interfacies\IUnitOfWork.cs" />
@@ -128,6 +144,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201601041652164_AddTags.resx">
       <DependentUpon>201601041652164_AddTags.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601051800060_AddComments.resx">
+      <DependentUpon>201601051800060_AddComments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601051801132_AddCommentsToArticle.resx">
+      <DependentUpon>201601051801132_AddCommentsToArticle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601051844528_upt4.resx">
+      <DependentUpon>201601051844528_upt4.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

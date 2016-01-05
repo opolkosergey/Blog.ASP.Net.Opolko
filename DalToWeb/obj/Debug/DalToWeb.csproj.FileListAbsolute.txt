@@ -44,3 +44,6 @@ C:\Users\Sergey\Desktop\blog\DalToWeb\obj\Debug\DalToWeb.Migrations.upt2.resourc
 C:\Users\Sergey\Desktop\blog\DalToWeb\obj\Debug\DalToWeb.Migrations.upt3.resources
 C:\Users\Sergey\Desktop\blog\DalToWeb\obj\Debug\DalToWeb.Migrations.AddTags.resources
 C:\Users\Sergey\Desktop\blog\DalToWeb\obj\Debug\DalToWeb.csprojResolveAssemblyReference.cache
+C:\Users\Sergey\Desktop\blog\DalToWeb\obj\Debug\DalToWeb.Migrations.AddComments.resources
+C:\Users\Sergey\Desktop\blog\DalToWeb\obj\Debug\DalToWeb.Migrations.AddCommentsToArticle.resources
+C:\Users\Sergey\Desktop\blog\DalToWeb\obj\Debug\DalToWeb.Migrations.upt4.resources

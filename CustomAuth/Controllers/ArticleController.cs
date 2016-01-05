@@ -17,12 +17,16 @@ namespace CustomAuth.Controllers
         private readonly IUserService _userService;
         private readonly IBlogService _blogService;
         private readonly IArticleService _articleService;
+        private readonly ICommentService _commentService;
+        
 
-        public ArticleController(IUserService service, IBlogService blogService, IArticleService articleService)
+        public ArticleController(IUserService service, IBlogService blogService,
+            IArticleService articleService, ICommentService commentService)
         {
             _userService = service;
             _blogService = blogService;
             _articleService = articleService;
+            _commentService = commentService;
         }
         [HttpGet]
         public ActionResult CreateArticle()
@@ -63,6 +67,8 @@ namespace CustomAuth.Controllers
             if (int.TryParse(id, out parsedId) == false)
                 return null;
 
+            TempData["CurrentArticle"] = parsedId;
+
             var article = _articleService.GetArticleEntity(parsedId);
 
             if (article != null)
@@ -82,6 +88,22 @@ namespace CustomAuth.Controllers
             var art = GetArticle(id);
             if(art == null)
                 return RedirectToAction("Error", "Home");
+            art.Comments = new List<CommentModel>();
+            var comments = _commentService.GetAllCommentEntities(art.Id).ToList();
+            foreach (var comment in comments)
+            {
+                var user = _userService.GetUserEntity(comment.UserId);
+                var c = new CommentModel()
+                {
+                    Id = comment.Id,
+                    ArticleId = comment.ArticleId,
+                    TextComment = comment.CommentText,
+                    Date = comment.DateAdded,
+                    Author = user.UserName,
+                    AvatarPath = user.AvatarPath
+                };
+                art.Comments.Add(c);
+            }
 
             return View(art);
         }

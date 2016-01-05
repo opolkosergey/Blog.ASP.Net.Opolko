@@ -24,7 +24,7 @@ namespace Bll.Services
 
         public ArticleEntity GetArticleEntity(int id)
         {
-            var articleEntity = repository.GetAll().FirstOrDefault(a => a.Id == id);
+            var articleEntity = repository.GetById(id);
             return (articleEntity == null) ? null : articleEntity.ToBllArticle();
         }
 

@@ -32,7 +32,17 @@ namespace DalToWeb.Concrete
 
         public DalArticle GetById(int key)
         {
-            throw new NotImplementedException();
+            var art = _context.Set<Article>().Find(key);
+            return new DalArticle()
+            {
+                Id = art.Id,
+                BlogId = art.BlogId,
+                Content = art.Content,
+                ImagePath = art.ImagePath,
+                Title = art.Title,
+                Tags = art.Tags,
+                TimeAdded = art.TimeAdded
+            };
         }
 
         public DalArticle GetByPredicate(Expression<Func<DalArticle, bool>> f)

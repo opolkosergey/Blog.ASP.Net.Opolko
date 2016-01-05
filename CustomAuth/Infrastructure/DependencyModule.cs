@@ -27,6 +27,9 @@ namespace CustomAuth.Infrastructure
             Bind<IArticleRepository>().To<ArticleRepository>();
 
             Bind<ITagRepository>().To<DbTagRepository>();
+
+            Bind<ICommentRepository>().To<CommentRepository>();
+            Bind<ICommentService>().To<CommentService>();
         }
     }
 }

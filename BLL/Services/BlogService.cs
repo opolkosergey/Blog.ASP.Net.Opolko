@@ -22,10 +22,9 @@ namespace Bll.Services
             this.blogRepository = repository;
         }
 
-
         public BlogEntity GetBlogEntity(int id)
         {
-            var blogEntity = blogRepository.GetAll().FirstOrDefault(b => b.Id == id);
+            var blogEntity = blogRepository.GetById(id);
             return (blogEntity == null) ? null : blogEntity.ToBllBlog();
         }
 

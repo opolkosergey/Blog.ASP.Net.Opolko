@@ -149,6 +149,7 @@
     <Compile Include="Infrastructure\DependencyModule.cs" />
     <Compile Include="Infrastructure\Mappers\ArticleMappers.cs" />
     <Compile Include="Infrastructure\Mappers\BlogMvcMappers.cs" />
+    <Compile Include="Infrastructure\Mappers\CommentMappers.cs" />
     <Compile Include="Infrastructure\Mappers\MvcPLMappers.cs" />
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
     <Compile Include="Pagination\PageInfo.cs" />
