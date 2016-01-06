@@ -90,7 +90,8 @@
         //alert(id);
         $.get("/Comment/DeleteComment?id=" + id, function (response) {
             if (response === "ok") {
-                document.getElementById(id).remove();
+                //document.getElementById(id).remove();
+                $('#' + id).remove();
             }
         });
     }

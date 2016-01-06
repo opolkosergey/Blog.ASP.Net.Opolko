@@ -40,6 +40,7 @@ namespace CustomAuth.Controllers
 
                 if (Request.IsAjaxRequest())
                 {
+                    TempData["CurrentArticle"] = id;
                     comment.Id = _commentService.GetLastId();
                     return Json(StringHelper.ParseComment(comment));
                 }
