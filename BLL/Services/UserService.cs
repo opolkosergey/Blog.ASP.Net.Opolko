@@ -47,5 +47,11 @@ namespace Bll.Services
             //userRepository.Delete(user.ToDalUser());
             uow.Commit();
         }
+
+        public void UpdateRole(int id, int role)
+        {
+            userRepository.UpdateRole(id,role);
+            uow.Commit();
+        }
     }
 }

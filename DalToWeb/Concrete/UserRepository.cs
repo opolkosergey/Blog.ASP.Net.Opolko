@@ -71,6 +71,14 @@ namespace DalToWeb.Concrete
             throw new NotImplementedException();
         }
 
+        public void UpdateRole(int id, int roleId)
+        {
+            var user = _context.Set<User>().Find(id);
+            var role = typeof (User).GetProperty("RoleId");
+            role.SetValue(user, roleId);
+            _context.SaveChanges();
+        }
+
         public DalUser GetUserByName(string name)
         {
             var user = _context.Set<User>().FirstOrDefault(u => u.Email == name);

@@ -2,7 +2,7 @@
 @model CustomAuth.ViewModels.BlogsViewModel
 
 @{
-    ViewBag.Title = "Мои блоги";
+    ViewBag.Title = "Блоги пользователя";
 }
 
 <div class="col-lg-9">
@@ -50,7 +50,7 @@
     @if (Model.PageInfo.TotalPages != 1)
     {
         <div class="btn-group">
-            @Html.PageLinks(Model.PageInfo, x => Url.Action("MyBlogs", new { page = x }))
+            @Html.PageLinks(Model.PageInfo, x => Url.Action("Blogs", new {uId = Model.UserId, page = x }))
         </div>
     }
 </div>

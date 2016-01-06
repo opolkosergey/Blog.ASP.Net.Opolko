@@ -9,6 +9,7 @@ namespace Bll.Interface.Services
         IEnumerable<UserEntity> GetAllUserEntities();
         void CreateUser(UserEntity user);
         void DeleteUser(UserEntity user);
+        void UpdateRole(int id, int role);
         //etc.
     }
 }

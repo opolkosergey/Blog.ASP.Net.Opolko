@@ -4,8 +4,9 @@ using DalToWeb.Repositories;
 
 namespace DalToWeb.Interfacies
 {
-    public interface IUserRepository : IRepository<DalUser>//Add user repository methods!
+    public interface IUserRepository : IRepository<DalUser>
     {
+        void UpdateRole(int id, int roleId);
         DalUser GetUserByName(string name);
     }
 }

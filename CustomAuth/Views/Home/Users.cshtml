@@ -1,0 +1,103 @@
+﻿@using CustomAuth.Pagination
+@using CustomAuth.ViewModels
+@model CustomAuth.ViewModels.BloggersViewModel
+@{
+    ViewBag.Title = "Bloggers";
+}
+
+<div class="col-lg-9">
+    <h2>Блоггеры в системе</h2>
+    <br/>
+    <table class="table table-hover">
+        <tr>
+            <th style="width: 20%">
+                @Html.DisplayName("Имя")
+            </th>
+            <th style="width: 20%">
+                @Html.DisplayName("Дата регистрации")
+            </th>
+
+            <th style="width: 5%">
+                @Html.DisplayName("Блоги")
+            </th>
+
+            <th style="width: 15%">
+
+            </th>
+            @if (User.IsInRole("Admin"))
+            {
+                <th style="width: 40%">
+                </th>
+            }
+        </tr>
+
+        @foreach (var item in Model.UserViewModels)
+        {
+            <tr class="text-primary">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreationDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BlogsCount)
+                </td>
+                <td>
+                    <a href="@Url.Action("Blogs","Blog",new {uId = item.Id})" class="btn btn-sm btn-default">подробнее</a>
+                </td>
+                @if (User.IsInRole("Admin"))
+                {
+                    if (ViewBag.ForEdit)
+                    {
+                        if (item.Role != Role.Administrator)
+                        {
+                            <td>
+                                <form action="/Home/EditRole">
+                                    @Html.Hidden("id", @item.Id)
+                                    <select class="form-control" name="role" style="display: inline; width: 50%">
+                                        @if (item.Role == Role.Guest)
+                                        {
+                                            <option value="2" selected="selected">Guest</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="2">Guest</option>
+                                        }
+                                        @if (item.Role == Role.Moderator)
+                                        {
+                                            <option value="3" selected="selected">Moderator</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="3">Moderator</option>
+                                        }
+                                        @if (item.Role == Role.User)
+                                        {
+                                            <option value="4" selected="selected">User</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="4">User</option>
+                                        }
+                                    </select>
+                                    <input type="submit" class="btn btn-sm btn-default" value="назначить"/>
+                                </form>
+                            </td>
+                        }
+                    }
+                }
+            </tr>
+        }
+
+    </table>
+    @if (Model.PageInfo.TotalPages > 1)
+    {
+        <div class="btn-group">
+            @Html.PageLinks(Model.PageInfo, x => Url.Action("Users", new { page = x }))
+        </div>
+    }
+</div>
+
+
+

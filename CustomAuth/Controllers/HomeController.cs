@@ -28,17 +28,28 @@ namespace CustomAuth.Controllers
 
         public ActionResult Error404() => View();
         public ActionResult Error() => View();
-        
-        public ActionResult Index(int page = 1)
+
+        [Authorize(Roles = "Admin")]
+        public ActionResult EditRole(int id, int role)
         {
+            _service.UpdateRole(id,role);
+            return RedirectToAction("Users", "Home",new {forEdit = true});
+        }
+
+        public ActionResult Index() => View();
+
+        public ActionResult Users(int page = 1, bool forEdit = false)
+        {
+            ViewBag.ForEdit = forEdit;
+
             var users = _service
                 .GetAllUserEntities()
                 .Select(v => v.ToMvcUser())
                 .ToList();  
 
             var models = users
-                .Skip((page - 1) * 1)
-                .Take(1)
+                .Skip((page - 1) * 10)
+                .Take(10)
                 .ToList();
       
             foreach (var m in models)
@@ -47,7 +58,7 @@ namespace CustomAuth.Controllers
                     .GetAllBlogEntities()
                     .Count(b => b.UserId == m.Id);
             }
-            PageInfo pageInfo = new PageInfo { PageNumber = page, PageSize = 1, TotalItems = users.Count() };
+            PageInfo pageInfo = new PageInfo { PageNumber = page, PageSize = 10, TotalItems = users.Count() };
             BloggersViewModel bvm = new BloggersViewModel { PageInfo = pageInfo, UserViewModels = models };
 
             return View(bvm);
@@ -64,24 +75,6 @@ namespace CustomAuth.Controllers
                 "You have administrator rights." : "You do not have administrator rights.";
 
             return View();
-            //HttpContext.Profile["FirstName"] = "Вася";
-            //HttpContext.Profile["LastName"] = "Иванов";
-            //HttpContext.Profile.SetPropertyValue("Age",23);
-            //Response.Write(HttpContext.Profile.GetPropertyValue("FirstName"));
-            //Response.Write(HttpContext.Profile.GetPropertyValue("LastName"));
         }
-
-       // [Authorize(Roles = "Administrator")]
-       // public ActionResult UsersEdit()
-       // {
-            //var model = _repository.GetAllUsers().Select(u => new UserViewModel
-            //{
-            //    Email = u.Email,
-            //    CreationDate = u.CreationDate,
-            //    Role = u.Role.Name
-            //});
-
-          //  return System.Web.UI.WebControls.View(null);
-       // }
     }
 }

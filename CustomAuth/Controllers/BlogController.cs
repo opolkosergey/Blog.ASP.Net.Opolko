@@ -54,10 +54,10 @@ namespace CustomAuth.Controllers
             return View();
         }
 
-        public ActionResult MyBlogs(int page = 1)
+        public ActionResult Blogs(int uId = 0, int page = 1)
         {
             var currentUser = _userService.GetUserEntity(User.Identity.Name);
-            int userId = currentUser.Id;
+            int userId = (uId == 0) ? currentUser.Id : uId;
             var blogs = _blogService
                 .GetAllBlogEntities()
                 .Where(b => b.UserId == userId)
@@ -65,8 +65,8 @@ namespace CustomAuth.Controllers
                 .ToList();
 
             var models = blogs
-                .Skip((page - 1)*5)
-                .Take(5)
+                .Skip((page - 1)*10)
+                .Take(10)
                 .ToList();
 
             foreach (var m in models)
@@ -75,8 +75,9 @@ namespace CustomAuth.Controllers
                     .GetAllArticleEntities(m.Id)
                     .Count();
             }
-            PageInfo pageInfo = new PageInfo {PageNumber = page, PageSize = 5, TotalItems = blogs.Count()};
+            PageInfo pageInfo = new PageInfo {PageNumber = page, PageSize = 10, TotalItems = blogs.Count()};
             var bvm = new BlogsViewModel {PageInfo = pageInfo, BlogViewModels = models};
+            bvm.UserId = userId;
 
             return View(bvm);
         }

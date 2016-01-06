@@ -9,6 +9,7 @@ namespace CustomAuth.ViewModels
 {
     public class BlogsViewModel
     {
+        public int UserId { get; set; }
         public IEnumerable<BlogViewModel> BlogViewModels { get; set; }
         public PageInfo PageInfo { get; set; }
     }
