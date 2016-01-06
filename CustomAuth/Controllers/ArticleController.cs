@@ -28,6 +28,22 @@ namespace CustomAuth.Controllers
             _articleService = articleService;
             _commentService = commentService;
         }
+
+        public ActionResult Index()
+        {
+            var articles = _articleService.GetAllArticleEntities().ToList();
+            articles.Reverse();
+            var arts = articles.Take(10);
+            var model = new List<ArticleViewModelCommon>();
+            foreach (var art in arts)
+            {
+                var userId = _blogService.GetBlogEntity(art.BlogId).UserId;
+                var authorName = _userService.GetUserEntity(userId).UserName;
+                model.Add(art.ToMvcViewArticleCommon(authorName));
+            }
+            return View(model);
+        }
+
         [HttpGet]
         public ActionResult CreateArticle()
         {
@@ -55,7 +71,7 @@ namespace CustomAuth.Controllers
                     str.Append(FileHelper.SaveFileToDisk(img, Server.MapPath("~/")));
 
                 _articleService.CreateArticle(article.ToBllArticle(str.ToString()));
-                return RedirectToAction("MyBlogs", "Blog");
+                return RedirectToAction("Blogs", "Blog");
             }
 
             return RedirectToAction("CreateArticle");

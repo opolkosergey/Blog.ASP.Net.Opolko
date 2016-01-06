@@ -38,9 +38,7 @@ namespace CustomAuth.Controllers
                 foreach (var id in listId)
                     if (art.Id == id)
                     {
-                        var blog = _blogService
-                                    .GetAllBlogEntities()
-                                    .FirstOrDefault(b => b.Id == art.BlogId);
+                        var blog = _blogService.GetBlogEntity(art.BlogId);
                         var authorName = _userService.GetUserEntity(blog.UserId).UserName;
                         model.Add(art.ToMvcViewArticleCommon(authorName));
                     }

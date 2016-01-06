@@ -1,0 +1,25 @@
+﻿@model List<CustomAuth.ViewModels.ArticleViewModelCommon>
+
+@{
+    ViewBag.Title = "Новые статьи";
+}
+
+<div class="col-lg-9">
+    <h2 style="text-align: center">Недавно добавленные статьи</h2>
+    <hr/>
+    @foreach (var article in Model)
+    {
+    <a href="@Url.Action("Details", "Article", new {Id = article.Id})" class="list-group-item">
+        <div class="panel panel-default">
+            <p style="color: blue; text-align: center"><b>Автор: @article.Author опубликовал статью "@article.Title"</b>
+            </p>
+            <hr/>
+            <div class="panel-body">
+                <img src="~/UserContent/@article.ImagePath" alt="Фото отсутствует" style="float: left; margin: 7px 7px 7px 7px; width: 50%; height: 50%"/>
+                <span style="word-wrap: break-word">@article.Content</span>
+            </div>
+        </div>
+    </a>
+    <br/>
+    }
+</div>

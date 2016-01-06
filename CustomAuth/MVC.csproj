@@ -221,7 +221,7 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Article\Index.cshtml" />
     <Content Include="Views\Blog\CreateBlog.cshtml" />
     <Content Include="Views\Blog\Blogs.cshtml" />
     <Content Include="Views\Article\CreateArticle.cshtml" />

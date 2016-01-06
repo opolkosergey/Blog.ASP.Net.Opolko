@@ -36,7 +36,7 @@ namespace CustomAuth.Controllers
             return RedirectToAction("Users", "Home",new {forEdit = true});
         }
 
-        public ActionResult Index() => View();
+        
 
         public ActionResult Users(int page = 1, bool forEdit = false)
         {

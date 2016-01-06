@@ -99,7 +99,7 @@ namespace CustomAuth.Infrastructure.Mappers
             return new ArticleViewModelCommon()
             {
                 Author = authorName,
-                Content = model.Content,
+                Content = (model.Content.Length > 30) ? model.Content.Substring(0,30) : model.Content,
                 ImagePath = model.ImagePath,
                 Id = model.Id,
                 Title = model.Name
