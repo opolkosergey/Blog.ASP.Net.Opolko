@@ -146,7 +146,11 @@ namespace CustomAuth.Controllers
         [Authorize(Roles = "Moderator,Admin")]
         public ActionResult Delete(int id)
         {
+            var filePath = _articleService.GetArticleEntity(id).ImagePath;
             _articleService.DeleteArticle(id);
+            if(filePath != null)
+                FileHelper.RemoveFileFromDisk(Server.MapPath("~/"),filePath);
+
             if (Request.IsAjaxRequest())
             {
                 return Content("ok");

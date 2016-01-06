@@ -20,5 +20,11 @@ namespace CustomAuth.Utils
             img.SaveAs(fName);
             return name;
         }
+
+        public static void RemoveFileFromDisk(string mapPath, string path)
+        {
+            var fullPath = mapPath + "/UserContent/" + path;
+            File.Delete(fullPath);
+        }
     }
 }
