@@ -2,21 +2,7 @@
 
 
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-<script>
-    $(document).ready(function () {
-        var visibleText = $('#inputFileVisibleText');
-        var hidden = $('#inputFileHidden');
-        var visibleBtn = $('#inputFileVisibleBtn');
-        visibleBtn.on('click', function () {
-            hidden.click();
-        })
-        hidden.on('change', function () {
-            var fileName = $(this).val().split('\\');
-            fileName = fileName[fileName.length - 1];
-            visibleText.val(fileName);
-        });
-    });
-</script>
+<script src="~/Scripts/ForWebUI/CreateArticle.js"></script>
 
 <div class="col-lg-6">
     @using (Html.BeginForm("CreateArticle", "Article", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal", role = "form" }))

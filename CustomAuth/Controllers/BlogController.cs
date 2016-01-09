@@ -48,9 +48,8 @@ namespace CustomAuth.Controllers
             if (ModelState.IsValid)
             {
                 _blogService.CreateBlog(blog.ToBllBlog(userId));
-                return RedirectToAction("MyBlogs", "Blog");
+                return RedirectToAction("Blogs", "Blog");
             }
-             
             return View();
         }
 
@@ -86,7 +85,7 @@ namespace CustomAuth.Controllers
         {
             int parsedId;
             if (int.TryParse(id, out parsedId) == false)
-                return RedirectToAction("Error", "Home");
+                return RedirectToAction("Error", "Home", new {error = $"blog with id = {id} not found"});
 
             var blog = _blogService.GetBlogEntity(parsedId);
             if (blog != null)

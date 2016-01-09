@@ -27,16 +27,19 @@ namespace CustomAuth.Controllers
         }
 
         public ActionResult Error404() => View();
-        public ActionResult Error() => View();
 
+        public ActionResult Error(string error)
+        {
+            ViewBag.TextError = error;
+            return View();
+        }
+            
         [Authorize(Roles = "Admin")]
         public ActionResult EditRole(int id, int role)
         {
             _service.UpdateRole(id,role);
             return RedirectToAction("Users", "Home",new {forEdit = true});
         }
-
-        
 
         public ActionResult Users(int page = 1, bool forEdit = false)
         {

@@ -4,21 +4,7 @@
     ViewBag.Title = "Register";
 }
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-<script>
-    $(document).ready(function () {
-        var visibleText = $('#inputFileVisibleText');
-        var hidden = $('#inputFileHidden');
-        var visibleBtn = $('#inputFileVisibleBtn');
-        visibleBtn.on('click', function () {
-            hidden.click();
-        })
-        hidden.on('change', function () {
-            var fileName = $(this).val().split('\\');
-            fileName = fileName[fileName.length - 1];
-            visibleText.val(fileName);
-        });
-    });
-</script>
+<script src="~/Scripts/ForWebUI/RegisterScripts.js"></script>
 
 <div class="col-lg-6">
     <div style="padding-top: 200px;">

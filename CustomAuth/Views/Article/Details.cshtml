@@ -6,13 +6,14 @@
 }
 
 @Scripts.Render("~/bundles/jquery")
+<script src="~/Scripts/ForWebUI/ArticleDetails.js"></script>
 
 <script>
     $(document).ready(function () {
         $("#commentArticle").click(function () {
-                var method = $("form#formComment").attr('method');
-                var action = $("form#formComment").attr('action');
-                var testData = { 'textComment': $("#textComment").val() };
+            var method = $("form#formComment").attr('method');
+            var action = $("form#formComment").attr('action');
+            var testData = { 'textComment': $("#textComment").val() };
 
             $.ajax({
                 type: method,
@@ -21,7 +22,7 @@
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (result) {
-                   // alert(result);
+                    // alert(result);
                     var data = result.split('~');
                     $("#textComment").val('');
                     $("#commentContainer").append("<div class='panel panel-default' onmouseover='ShowGlyphs(this)' onmouseout='HideGlyphs(this)' id=" + data[0] + "><div class='panel-body'><img style='width: 50px; height: 50px;' src='/UserContent/" + data[2] + "' alt='No avatar'/><span style='font-size: 12px;'>" + "  " + data[1] + " </span><span style='font-size: 12px;'>" + data[3] + " </span><div class='glyphicon glyphicon-trash hidden' style='float: right;' id='trash_" + data[0] + "' onclick='DeleteElement(this)'></div><div class='glyphicon glyphicon-edit hidden' style='float: right;' id='edit_" + data[0] + "' onclick='EditComment(this)'></div><div id='commentEditInput_" + data[0] + "' class='editing' style='height: auto; width: 300px; text-align: center;'></div><br/><p style='font-size: 16px;' id='comment_" + data[0] + "'>" + data[4] + "</p></div></div>");
@@ -31,70 +32,6 @@
         }
         );
     });
-</script>
-<script>
-
-    var getTrashGly = function (element) {
-        var id = $(element).attr("id");
-        var butId = "trash_" + id;
-        return document.getElementById(butId);
-    };
-
-    var getEditGly = function (element) {
-        var id = $(element).attr("id");
-        var editId = "edit_" + id;
-        return document.getElementById(editId);
-    };
-
-    function ShowGlyphs(element) {
-        $(getTrashGly(element)).removeClass('hidden');
-        $(getEditGly(element)).removeClass('hidden');
-    };
-
-    function HideGlyphs(element) {
-        $(getTrashGly(element)).addClass('hidden');
-        $(getEditGly(element)).addClass('hidden');
-    };
-
-    function CloseEdit(element) {
-        var editBlockId = $(element).parent().attr("id");
-        var editBlock = document.getElementById(editBlockId);
-        editBlock.innerHTML = "";
-    };
-
-    function Edit(element) {
-        var id = $(element).parent().parent().parent().attr("id");
-        var commentText = $('#userComment').val();
-        var data = id + '~' + commentText;
-
-        $.get("/Comment/EditComment?data=" + data, function (response) {
-           if (response === "ok") {
-               $("#comment_" + id).html(commentText);
-               $(".editing").empty();
-           }
-        });
-    }
-    
-    function EditComment(element) {
-        $(".editing").empty();
-        var id = $(element).parent().parent().attr("id");
-        var spanEditing = $("#commentEditInput_" + id);
-        
-        var c = $('#comment_' + id).html();
-        spanEditing.html("<input type='text' name='UserComment' id='userComment' required value='' /><div class='glyphicon glyphicon-remove' onclick='CloseEdit(this)'></div><span class='btn btn-default' id='saveComment' onclick='Edit(this)'>Изменить</span>");
-        $('#userComment').val(c);
-    }
-
-    function DeleteElement(element) {    
-        var id = $(element).parent().parent().attr("id");
-        //alert(id);
-        $.get("/Comment/DeleteComment?id=" + id, function (response) {
-            if (response === "ok") {
-                //document.getElementById(id).remove();
-                $('#' + id).remove();
-            }
-        });
-    }
 </script>
 
 <div class="col-md-9">

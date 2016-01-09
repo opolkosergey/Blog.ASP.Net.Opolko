@@ -28,7 +28,8 @@ namespace CustomAuth.Controllers
             _articleService = articleService;
             _commentService = commentService;
         }
-
+        
+        [Authorize]
         public ActionResult Index()
         {
             var articles = _articleService.GetAllArticleEntities().ToList();
@@ -73,7 +74,6 @@ namespace CustomAuth.Controllers
                 _articleService.CreateArticle(article.ToBllArticle(str.ToString()));
                 return RedirectToAction("Blogs", "Blog");
             }
-
             return RedirectToAction("CreateArticle");
         }
 
@@ -103,7 +103,7 @@ namespace CustomAuth.Controllers
         {
             var art = GetArticle(id);
             if(art == null)
-                return RedirectToAction("Error", "Home");
+                return RedirectToAction("Error", "Home", new { error = $"article with id = {id} not found" });
             art.Comments = new List<CommentModel>();
             var comments = _commentService.GetAllCommentEntities(art.Id).ToList();
             foreach (var comment in comments)
@@ -120,7 +120,6 @@ namespace CustomAuth.Controllers
                 };
                 art.Comments.Add(c);
             }
-
             return View(art);
         }
 
@@ -130,7 +129,7 @@ namespace CustomAuth.Controllers
         {
             var art = GetArticle(id);
             if (art == null)
-                return RedirectToAction("Error", "Home");
+                return RedirectToAction("Error", "Home",new { error = $"article with id = {id} not found" });
             TempData["Tags"] = art.Tags;
             return View(art);
         }
@@ -140,7 +139,7 @@ namespace CustomAuth.Controllers
         {
             model.Tags = (ICollection<Tag>)TempData["Tags"];
             _articleService.UpdateArticle(model.ToArticleEntity());
-            return RedirectToAction("MyBlogs", "Blog");
+            return RedirectToAction("Blogs", "Blog");
         }
 
         [Authorize(Roles = "Moderator,Admin")]
@@ -152,9 +151,8 @@ namespace CustomAuth.Controllers
                 FileHelper.RemoveFileFromDisk(Server.MapPath("~/"),filePath);
 
             if (Request.IsAjaxRequest())
-            {
                 return Content("ok");
-            }
+
             return RedirectToAction("Details", "Blog", new {id = TempData["BlogId"].ToString()});
         }
     }
