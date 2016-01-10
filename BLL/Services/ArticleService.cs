@@ -22,6 +22,11 @@ namespace Bll.Services
             this.repository = repository;
         }
 
+        public IEnumerable<ArticleEntity> FindArticlesBySubstring(string s)
+        {
+            return repository.SearchBySubstring(s).Select(art => art.ToBllArticle());
+        }
+
         public void IncrementViews(int id)
         {
             repository.IncViews(id);

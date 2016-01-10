@@ -10,5 +10,6 @@ namespace DalToWeb.Interfacies
     public interface IArticleRepository : IRepository<DalArticle>
     {
         void IncViews(int id);
+        IEnumerable<DalArticle> SearchBySubstring(string subsrting);
     }
 }

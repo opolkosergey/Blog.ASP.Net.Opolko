@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using Bll.Interface.Entities;
 using Bll.Interface.Services;
 using CustomAuth.Infrastructure.Mappers;
 using CustomAuth.Utils;
@@ -38,33 +39,21 @@ namespace CustomAuth.Controllers
             
             if (page == 1)
             {
-                var arts = articles.Take(10);
-                var model = new List<ArticleViewModelCommon>();
-                foreach (var art in arts)
-                {
-                    var userId = _blogService.GetBlogEntity(art.BlogId).UserId;
-                    var authorName = _userService.GetUserEntity(userId).UserName;
-                    model.Add(art.ToMvcViewArticleCommon(authorName));
-                }
+                var arts = articles.Take(10).ToList();
+                var model = AddAuthors(arts);
                 return View(model);
             }
+
             var nextArts = articles.Skip((page - 1) * 10).Take(10).ToList();
             var itsAll = (nextArts.Count == 10) ? "no+" : "yes+";
             var sb  = new StringBuilder();
             sb.Append(itsAll);
-
-            var newArtsList = new List<ArticleViewModelCommon>();
-            foreach (var art in nextArts)
-            {
-                var userId = _blogService.GetBlogEntity(art.BlogId).UserId;
-                var authorName = _userService.GetUserEntity(userId).UserName;
-                newArtsList.Add(art.ToMvcViewArticleCommon(authorName));
-            }
+            var newArtsList = AddAuthors(nextArts);
             sb.Append(newArtsList.ParseArticle());
-            var s = sb.ToString();
+
             return Content(sb.ToString());
         }
-
+            
         [HttpGet]
         public ActionResult CreateArticle()
         {
@@ -95,28 +84,6 @@ namespace CustomAuth.Controllers
                 return RedirectToAction("Blogs", "Blog");
             }
             return RedirectToAction("CreateArticle");
-        }
-
-        private ArticleViewModel GetArticle(string id)
-        {
-            int parsedId;
-            if (int.TryParse(id, out parsedId) == false)
-                return null;
-
-            TempData["CurrentArticle"] = parsedId;
-
-            var article = _articleService.GetArticleEntity(parsedId);
-
-            if (article != null)
-            {
-                var blog = _blogService
-                    .GetAllBlogEntities()
-                    .FirstOrDefault(b => b.Id == article.BlogId);
-                var authorName = _userService.GetUserEntity(blog.UserId).UserName;
-                var model = article.ToMvcViewArticle(authorName);
-                return model;
-            }
-            return null;
         }
 
         public ActionResult Details(string id)
@@ -177,5 +144,40 @@ namespace CustomAuth.Controllers
 
             return RedirectToAction("Details", "Blog", new {id = TempData["BlogId"].ToString()});
         }
+        #region Private methods
+        private List<ArticleViewModelCommon> AddAuthors(List<ArticleEntity> list)
+        {
+            var arts = new List<ArticleViewModelCommon>();
+            foreach (var art in list)
+            {
+                var userId = _blogService.GetBlogEntity(art.BlogId).UserId;
+                var authorName = _userService.GetUserEntity(userId).UserName;
+                arts.Add(art.ToMvcViewArticleCommon(authorName));
+            }
+            return arts;
+        }
+
+        private ArticleViewModel GetArticle(string id)
+        {
+            int parsedId;
+            if (int.TryParse(id, out parsedId) == false)
+                return null;
+
+            TempData["CurrentArticle"] = parsedId;
+
+            var article = _articleService.GetArticleEntity(parsedId);
+
+            if (article != null)
+            {
+                var blog = _blogService
+                    .GetAllBlogEntities()
+                    .FirstOrDefault(b => b.Id == article.BlogId);
+                var authorName = _userService.GetUserEntity(blog.UserId).UserName;
+                var model = article.ToMvcViewArticle(authorName);
+                return model;
+            }
+            return null;
+        }
+        #endregion
     }
 }

@@ -44,5 +44,18 @@ namespace CustomAuth.Controllers
                     }
             return View(model);
         }
+
+        public ActionResult ByText(string substring)
+        {
+            var arts = _articleService.FindArticlesBySubstring(substring).ToList();
+            var model = new List<ArticleViewModelCommon>();
+            foreach (var art in arts)
+            {
+                var blog = _blogService.GetBlogEntity(art.BlogId);
+                var authorName = _userService.GetUserEntity(blog.UserId).UserName;
+                model.Add(art.ToMvcViewArticleCommon(authorName));
+            }
+            return View(model);
+        }
     }
 }

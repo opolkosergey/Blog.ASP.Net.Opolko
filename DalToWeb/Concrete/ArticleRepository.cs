@@ -39,6 +39,25 @@ namespace DalToWeb.Concrete
             propertyViewed.SetValue(article, ++article.Viewed);
             _context.SaveChanges();
         }
+
+        public IEnumerable<DalArticle> SearchBySubstring(string subsrting)
+        {
+            return _context.Set<Article>()
+                .Where(a => a.Content.Contains(subsrting))
+                .Select(art => new DalArticle()
+            {
+                TimeAdded = art.TimeAdded,
+                BlogId = art.BlogId,
+                Content = art.Content,
+                Id = art.Id,
+                ImagePath = art.ImagePath,
+                Title = art.Title,
+                Tags = art.Tags,
+                Comments = art.Comments.Count,
+                Viewed = art.Viewed
+            });
+        }
+
         public DalArticle GetById(int key)
         {
             var art = _context.Set<Article>().Find(key);
