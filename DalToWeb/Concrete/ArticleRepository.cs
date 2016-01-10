@@ -26,10 +26,19 @@ namespace DalToWeb.Concrete
                Id = art.Id,
                ImagePath = art.ImagePath,
                Title = art.Title,
-               Tags = art.Tags
+               Tags = art.Tags,
+               Comments = art.Comments.Count,
+               Viewed = art.Viewed
             });
         }
 
+        public void IncViews(int id)
+        {
+            var propertyViewed = typeof(Article).GetProperty("Viewed");
+            var article = _context.Set<Article>().Find(id);
+            propertyViewed.SetValue(article, ++article.Viewed);
+            _context.SaveChanges();
+        }
         public DalArticle GetById(int key)
         {
             var art = _context.Set<Article>().Find(key);
@@ -42,7 +51,8 @@ namespace DalToWeb.Concrete
                 Title = art.Title,
                 Tags = art.Tags,
                 TimeAdded = art.TimeAdded,
-                Comments = art.Comments.Count
+                Comments = art.Comments.Count,
+                Viewed = art.Viewed
             };
         }
 
@@ -62,8 +72,6 @@ namespace DalToWeb.Concrete
                 ImagePath = e.ImagePath,
                 Tags = e.Tags
             };
-           
-            
             _context.Set<Article>().Add(art);
             _context.SaveChanges();
         }

@@ -27,6 +27,7 @@ namespace CustomAuth.Controllers
         }
 
         public ActionResult Error404() => View();
+        public ActionResult Test() => View();
 
         public ActionResult Error(string error)
         {

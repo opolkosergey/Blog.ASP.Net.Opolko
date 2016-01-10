@@ -86,6 +86,10 @@
     <Compile Include="Migrations\201601051844528_upt4.Designer.cs">
       <DependentUpon>201601051844528_upt4.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201601092056582_AddViewed.cs" />
+    <Compile Include="Migrations\201601092056582_AddViewed.Designer.cs">
+      <DependentUpon>201601092056582_AddViewed.cs</DependentUpon>
+    </Compile>
     <Compile Include="ORM\Article.cs" />
     <Compile Include="ORM\Blog.cs" />
     <Compile Include="Concrete\BlogRepository.cs" />
@@ -153,6 +157,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201601051844528_upt4.resx">
       <DependentUpon>201601051844528_upt4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601092056582_AddViewed.resx">
+      <DependentUpon>201601092056582_AddViewed.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

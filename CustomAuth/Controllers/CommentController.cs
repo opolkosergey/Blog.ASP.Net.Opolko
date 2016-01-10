@@ -42,7 +42,7 @@ namespace CustomAuth.Controllers
                 {
                     TempData["CurrentArticle"] = id;
                     comment.Id = _commentService.GetLastId();
-                    return Json(StringHelper.ParseComment(comment));
+                    return Json(ParseHelper.ParseComment(comment));
                 }
             }
             return RedirectToAction("Details", "Article", new {id = id});

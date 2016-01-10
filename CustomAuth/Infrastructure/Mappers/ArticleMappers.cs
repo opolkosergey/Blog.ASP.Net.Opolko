@@ -13,16 +13,6 @@ namespace CustomAuth.Infrastructure.Mappers
 {
     public static class ArticleMappers
     {
-        //public static BlogViewModel ToMvcBlog(this A blogEntity)
-        //{
-        //    return new BlogViewModel()
-        //    {
-        //        Id = blogEntity.Id,
-        //        Title = blogEntity.Name,
-        //        CreationDate = blogEntity.DateAdded
-        //    };
-        //}
-
         public static ArticleEntity ToBllArticle(this ArticleViewModelCreate model, string imgPath)
         {
             return new ArticleEntity()
@@ -42,7 +32,9 @@ namespace CustomAuth.Infrastructure.Mappers
             return new ArticleViewModelDetails()
             {
                 Id = model.Id,
-                Title = model.Name
+                Title = model.Name,
+                CountComments = model.Comments,
+                CountViews = model.Viewed
             };
         }
 
@@ -82,7 +74,8 @@ namespace CustomAuth.Infrastructure.Mappers
                 TimeAdded = model.DateAdded,
                 Title = model.Name,
                 Author = authorName,
-                BlogId = model.BlogId
+                BlogId = model.BlogId,
+                Views = model.Viewed
             };
             if (!string.IsNullOrEmpty(model.Tags))
             {
@@ -99,10 +92,13 @@ namespace CustomAuth.Infrastructure.Mappers
             return new ArticleViewModelCommon()
             {
                 Author = authorName,
-                Content = (model.Content.Length > 30) ? model.Content.Substring(0,30) : model.Content,
+                Content = (model.Content.Length > 50) ? model.Content.Substring(0,50) + "..." : model.Content,
                 ImagePath = model.ImagePath,
                 Id = model.Id,
-                Title = model.Name
+                Title = model.Name,
+                CommentCount = model.Comments,
+                Viewed = model.Viewed,
+                Date = model.DateAdded
             };
         }
     }

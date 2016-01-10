@@ -12,6 +12,7 @@ using DalToWeb.ORM;
 
 namespace CustomAuth.Controllers
 {
+    [Authorize]
     public class ArticleController : Controller
     {
         private readonly IUserService _userService;
@@ -30,19 +31,38 @@ namespace CustomAuth.Controllers
         }
         
         [Authorize]
-        public ActionResult Index()
+        public ActionResult Index(int page = 1)
         {
             var articles = _articleService.GetAllArticleEntities().ToList();
             articles.Reverse();
-            var arts = articles.Take(10);
-            var model = new List<ArticleViewModelCommon>();
-            foreach (var art in arts)
+            
+            if (page == 1)
+            {
+                var arts = articles.Take(10);
+                var model = new List<ArticleViewModelCommon>();
+                foreach (var art in arts)
+                {
+                    var userId = _blogService.GetBlogEntity(art.BlogId).UserId;
+                    var authorName = _userService.GetUserEntity(userId).UserName;
+                    model.Add(art.ToMvcViewArticleCommon(authorName));
+                }
+                return View(model);
+            }
+            var nextArts = articles.Skip((page - 1) * 10).Take(10).ToList();
+            var itsAll = (nextArts.Count == 10) ? "no+" : "yes+";
+            var sb  = new StringBuilder();
+            sb.Append(itsAll);
+
+            var newArtsList = new List<ArticleViewModelCommon>();
+            foreach (var art in nextArts)
             {
                 var userId = _blogService.GetBlogEntity(art.BlogId).UserId;
                 var authorName = _userService.GetUserEntity(userId).UserName;
-                model.Add(art.ToMvcViewArticleCommon(authorName));
+                newArtsList.Add(art.ToMvcViewArticleCommon(authorName));
             }
-            return View(model);
+            sb.Append(newArtsList.ParseArticle());
+            var s = sb.ToString();
+            return Content(sb.ToString());
         }
 
         [HttpGet]
@@ -104,7 +124,9 @@ namespace CustomAuth.Controllers
             var art = GetArticle(id);
             if(art == null)
                 return RedirectToAction("Error", "Home", new { error = $"article with id = {id} not found" });
+            _articleService.IncrementViews(art.Id);
             art.Comments = new List<CommentModel>();
+            art.Views++;
             var comments = _commentService.GetAllCommentEntities(art.Id).ToList();
             foreach (var comment in comments)
             {

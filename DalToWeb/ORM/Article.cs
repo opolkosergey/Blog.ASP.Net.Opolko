@@ -9,6 +9,7 @@ namespace DalToWeb.ORM
     public class Article
     {
         public int Id { get; set; }
+        public int Viewed { get; set; }
         public string Title { get; set; }
         public DateTime TimeAdded { get; set; }
         public string Content { get; set; }

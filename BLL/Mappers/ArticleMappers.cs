@@ -23,7 +23,8 @@ namespace Bll.Mappers
                 Content = dalArticle.Content,
                 ImagePath = dalArticle.ImagePath,
                 Tags = dalArticle.Tags.ToTagsString(),
-                Comments = dalArticle.Comments
+                Comments = dalArticle.Comments,
+                Viewed = dalArticle.Viewed
             };
         }
 

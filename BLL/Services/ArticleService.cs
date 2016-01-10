@@ -22,6 +22,12 @@ namespace Bll.Services
             this.repository = repository;
         }
 
+        public void IncrementViews(int id)
+        {
+            repository.IncViews(id);
+            uow.Commit();
+        }
+
         public ArticleEntity GetArticleEntity(int id)
         {
             var articleEntity = repository.GetById(id);

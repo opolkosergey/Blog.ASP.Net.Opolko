@@ -3,23 +3,68 @@
 @{
     ViewBag.Title = "Новые статьи";
 }
+@Scripts.Render("~/bundles/jquery")
 
-<div class="col-lg-9">
+<script>
+    $(document).ready(function () {
+        $("#getMorePanel").hover(function () { $(this).css("background", "gainsboro"); }, function () { $(this).css("background", "white") });
+    });
+</script>
+
+<script>
+    var p = 1;
+    function getMore() {
+        p = p + 1;
+        $.get("/Article/Index?page=" + p, function (data) {
+            var response = data.split('+');
+            if (response[0] === "yes") {
+                $("#getMorePanel").remove();
+            }
+            for (var i = 1; i < response.length; i++) {
+                var d = response[i];
+                var artData = d.split('~');
+                $("#ArtContainer").append("<div class='well'><div class='media'><a class='pull-left' href='#'><img class='media-object' src='~/UserContent/" + artData[3] +"' width='150px' height='150px'></a><div class='media-body'><h4 class='media-heading'>"+ artData[1]+"</h4><p>"+artData[2]+"</p><p>"+artData[6]+"</p><ul class='list-inline list-unstyled'><li><span><i class='glyphicon glyphicon-calendar'></i>  " +artData[4]+ " </span></li><li>|</li><span><i class='glyphicon glyphicon-eye-open'></i> "+artData[5]+" </span><li>|</li><span><i class='glyphicon glyphicon-comment'></i> "+artData[7]+" </span><li>|</li></ul><div><a href='/Article/Details/"+artData[0]+"' class='btn btn-primary btn-xs'>Подробнее</a></div></div></div></div>");
+            }
+        });
+    }
+</script>
+
+<div class="col-lg-9" >
     <h2 style="text-align: center">Недавно добавленные статьи</h2>
     <hr/>
-    @foreach (var article in Model)
-    {
-    <a href="@Url.Action("Details", "Article", new {Id = article.Id})" class="list-group-item">
-        <div class="panel panel-default">
-            <p style="color: blue; text-align: center"><b>Автор: @article.Author опубликовал статью "@article.Title"</b>
-            </p>
-            <hr/>
-            <div class="panel-body">
-                <img src="~/UserContent/@article.ImagePath" alt="Фото отсутствует" style="float: left; margin: 7px 7px 7px 7px; width: 50%; height: 50%"/>
-                <span style="word-wrap: break-word">@article.Content</span>
+    <div id="ArtContainer">
+        @foreach (var article in Model)
+        {
+            <div class="well">
+                <div class="media">
+                    <a class="pull-left" href="#">
+                        <img class="media-object" src="~/UserContent/@article.ImagePath" width="150px" height="150px">
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading">@article.Title</h4>
+                        <p>@article.Author</p>
+                        <p>
+                            @article.Content
+                        </p>
+                        <ul class="list-inline list-unstyled">
+                            <li><span><i class="glyphicon glyphicon-calendar"></i> @article.Date </span></li>
+                            <li>|</li>
+                            <span><i class="glyphicon glyphicon-eye-open"></i> @article.Viewed </span>
+                            <li>|</li>
+                            <span><i class="glyphicon glyphicon-comment"></i> @article.CommentCount </span>
+                            <li>|</li>
+                        </ul>
+                        <div>
+                            <a href="@Url.Action("Details", "Article", new {Id = article.Id})" class="btn btn-primary btn-xs">Подробнее</a>
+                        </div>
+                    </div>
+                </div>
             </div>
+        }
+    </div>
+    <div class="panel panel-default" id="getMorePanel">
+        <div href="" class="panel-body" id="getMoreArts" onclick="getMore()">
+            <p style="text-align: center">Показать еще</p>
         </div>
-    </a>
-    <br/>
-    }
+    </div>
 </div>

@@ -13,6 +13,7 @@ using WebGrease.Css.Extensions;
 
 namespace CustomAuth.Controllers
 {
+    [Authorize]
     public class BlogController : Controller
     {
         private readonly IBlogService _blogService;
@@ -60,12 +61,12 @@ namespace CustomAuth.Controllers
             var blogs = _blogService
                 .GetAllBlogEntities()
                 .Where(b => b.UserId == userId)
-                .Select(bl => bl.ToMvcBlog())
                 .ToList();
 
             var models = blogs
-                .Skip((page - 1)*10)
+                .Skip((page - 1) * 10)
                 .Take(10)
+                .Select(bl => bl.ToMvcBlog())
                 .ToList();
 
             foreach (var m in models)
@@ -101,17 +102,14 @@ namespace CustomAuth.Controllers
 
                 var articles = _articleService
                     .GetAllArticleEntities(parsedId)
-                    .Select(a => a.ToMvcArticle())
                     .ToList();
 
                 var models = articles
                     .Skip((page - 1)*15)
                     .Take(15)
+                    .Select(a => a.ToMvcArticle())
                     .ToList();
 
-                foreach (var m in models)
-                    m.CountComments = _articleService.GetArticleEntity(m.Id).Comments;
-                
                 var pageInfo = new PageInfo {PageNumber = page, PageSize = 15, TotalItems = articles.Count()};
                 var model = new ArticleViewModelPagination {ArticleViewModels = models, PageInfo = pageInfo};
 

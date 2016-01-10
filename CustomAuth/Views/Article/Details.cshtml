@@ -48,7 +48,7 @@
                     {
                         foreach (var tag in Model.Tags)
                         {
-                            <a href="@Url.Action("ByTag","Search", new {tag = tag.TagField})" class="btn btn-primary btn-xs">@tag.TagField</a>
+                            <a href="@Url.Action("ByTag", "Search", new {tag = tag.TagField})" class="btn btn-primary btn-xs">@tag.TagField</a>
                         }
                     }
                     else
@@ -56,6 +56,8 @@
                         <span>Отсутствуют</span>
                     }
                 </i>
+                <br/>
+                <span> | Просмотрено: @Model.Views раз |</span>
             </b>
             <br />
             <img src="/UserContent/@Model.ImagePath" width="33%" height="30%" alt="post img" style="float: left; margin: 7px 7px 7px 7px;">

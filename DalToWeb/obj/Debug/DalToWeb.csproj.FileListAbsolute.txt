@@ -47,3 +47,4 @@ C:\Users\Sergey\Desktop\blog\DalToWeb\obj\Debug\DalToWeb.csprojResolveAssemblyRe
 C:\Users\Sergey\Desktop\blog\DalToWeb\obj\Debug\DalToWeb.Migrations.AddComments.resources
 C:\Users\Sergey\Desktop\blog\DalToWeb\obj\Debug\DalToWeb.Migrations.AddCommentsToArticle.resources
 C:\Users\Sergey\Desktop\blog\DalToWeb\obj\Debug\DalToWeb.Migrations.upt4.resources
+C:\Users\Sergey\Desktop\blog\DalToWeb\obj\Debug\DalToWeb.Migrations.AddViewed.resources
