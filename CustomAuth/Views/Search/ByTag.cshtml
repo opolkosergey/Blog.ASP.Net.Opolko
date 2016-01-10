@@ -7,20 +7,24 @@
 <div class="col-lg-9">
     @if (Model.Count != 0)
     {
-        <h4>Результаты поиска</h4>
+        <h4 style="text-align: center">Результаты поиска</h4>
         <hr/>
         foreach (var article in Model)
         {
-            <a href="@Url.Action("Details", "Article", new {Id = article.Id})" class="list-group-item">
-                <div class="panel panel-default">
-                    <div class="panel-default"><b>Автор: @article.Author опубликовал статью "@article.Title"</b></div>
-                    <hr/>
-                    <div class="panel-body">
-                        <img src="~/UserContent/@article.ImagePath" alt="Фото отсутствует" style="float: left; margin: 7px 7px 7px 7px; width: 50%; height: 50%"/>
-                        <span style="word-wrap: break-word">@article.Content</span>
-                    </div>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h2>@article.Title</h2>
+                    <img src="~/UserContent/@article.ImagePath" width="150px" height="150px" alt="post img" class="pull-left img-responsive thumb margin10 img-thumbnail">
+
+                    <em>@article.Author</em>
+                    <article>
+                        <p>
+                            @article.Content
+                        </p>
+                    </article>
+                    <a class="btn btn-primary pull-right marginBottom10" href="@Url.Action("Details", "Article", new {Id = article.Id})">подробнее</a>
                 </div>
-            </a>
+            </div>
             <br/>
         }
     }

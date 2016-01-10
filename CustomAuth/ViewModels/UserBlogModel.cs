@@ -12,7 +12,7 @@ namespace CustomAuth.ViewModels
        
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "Это поле ")]
+        [Required(ErrorMessage = "Это поле необходимо заполнить")]
         [Display(Name = "Введите назавние нового блога")]
         public string Title { get; set; }
     }

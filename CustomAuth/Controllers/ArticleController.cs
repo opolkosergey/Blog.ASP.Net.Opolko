@@ -83,9 +83,9 @@ namespace CustomAuth.Controllers
                     str.Append(FileHelper.SaveFileToDisk(img, Server.MapPath("~/")));
 
                 _articleService.CreateArticle(article.ToBllArticle(str.ToString()));
-                return RedirectToAction("Blogs", "Blog");
+                return RedirectToAction("Index");
             }
-            return RedirectToAction("CreateArticle");
+            return View();
         }
 
         public ActionResult Details(string id)

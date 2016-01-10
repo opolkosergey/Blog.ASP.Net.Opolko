@@ -23,7 +23,7 @@
             for (var i = 1; i < response.length; i++) {
                 var d = response[i];
                 var artData = d.split('~');
-                $("#ArtContainer").append("<div class='well'><div class='media'><a class='pull-left' href='#'><img class='media-object' src='~/UserContent/" + artData[3] +"' width='150px' height='150px'></a><div class='media-body'><h4 class='media-heading'>"+ artData[1]+"</h4><p>"+artData[2]+"</p><p>"+artData[6]+"</p><ul class='list-inline list-unstyled'><li><span><i class='glyphicon glyphicon-calendar'></i>  " +artData[4]+ " </span></li><li>|</li><span><i class='glyphicon glyphicon-eye-open'></i> "+artData[5]+" </span><li>|</li><span><i class='glyphicon glyphicon-comment'></i> "+artData[7]+" </span><li>|</li></ul><div><a href='/Article/Details/"+artData[0]+"' class='btn btn-primary btn-xs'>Подробнее</a></div></div></div></div>");
+                $("#ArtContainer").append("<div class='well'><div class='media'><a class='pull-left' href='#'><img class='media-object' src='/UserContent/" + artData[3] +"' width='150px' height='150px'></a><div class='media-body'><h4 class='media-heading'>"+ artData[1]+"</h4><p>"+artData[2]+"</p><p>"+artData[6]+"</p><ul class='list-inline list-unstyled'><li><span><i class='glyphicon glyphicon-calendar'></i>  " +artData[4]+ " </span></li><li>|</li><span><i class='glyphicon glyphicon-eye-open'></i> "+artData[5]+" </span><li>|</li><span><i class='glyphicon glyphicon-comment'></i> "+artData[7]+" </span><li>|</li></ul><div><a href='/Article/Details/"+artData[0]+"' class='btn btn-primary btn-xs'>Подробнее</a></div></div></div></div>");
             }
         });
     }
