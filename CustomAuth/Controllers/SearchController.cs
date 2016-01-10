@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Bll.Interface.Services;
 using CustomAuth.Infrastructure.Mappers;
+using CustomAuth.Pagination;
 using CustomAuth.ViewModels;
 using DalToWeb.Interfacies;
 using WebGrease.Css.Extensions;
@@ -56,6 +57,32 @@ namespace CustomAuth.Controllers
                 model.Add(art.ToMvcViewArticleCommon(authorName));
             }
             return View(model);
+        }
+
+        public ActionResult Blogs(string blogTitle,int page = 1)
+        {
+            var blogs = _blogService
+                .GetAllBlogEntities()
+                .Where(b => b.Name == blogTitle)
+                .ToList();
+
+            var models = blogs
+                .Skip((page - 1) * 10)
+                .Take(10)
+                .Select(bl => bl.ToMvcBlog())
+                .ToList();
+
+            foreach (var m in models)
+            {
+                var uId = _blogService.GetBlogEntity(m.Id).UserId;
+                m.ArticleCount = _articleService.GetAllArticleEntities(m.Id).Count();
+                m.UserName = _userService.GetUserEntity(uId).UserName;
+            }
+            PageInfo pageInfo = new PageInfo { PageNumber = page, PageSize = 10, TotalItems = blogs.Count() };
+            var bvm = new BlogsViewModel { PageInfo = pageInfo, BlogViewModels = models };
+            ViewBag.Title = blogTitle;
+
+            return View(bvm);
         }
     }
 }

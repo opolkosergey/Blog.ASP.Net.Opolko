@@ -45,9 +45,11 @@ namespace CustomAuth.Controllers
             }
 
             var nextArts = articles.Skip((page - 1) * 10).Take(10).ToList();
-            var itsAll = (nextArts.Count == 10) ? "no+" : "yes+";
+            var itsAll = (nextArts.Count == 10) ? "no" : "yes";
             var sb  = new StringBuilder();
             sb.Append(itsAll);
+            if (nextArts.Count != 0)
+                sb.Append('+');
             var newArtsList = AddAuthors(nextArts);
             sb.Append(newArtsList.ParseArticle());
 

@@ -12,3 +12,8 @@ C:\Users\Sergey\Desktop\blog\Bll.Interface\bin\Debug\Bll.Interface.pdb
 C:\Users\Sergey\Desktop\blog\Bll.Interface\obj\Debug\Bll.Interface.dll
 C:\Users\Sergey\Desktop\blog\Bll.Interface\obj\Debug\Bll.Interface.pdb
 C:\Users\Sergey\Desktop\blog\Bll.Interface\obj\Debug\Bll.Interface.csprojResolveAssemblyReference.cache
+C:\Users\Sergey\Documents\blog\Bll.Interface\bin\Debug\Bll.Interface.dll
+C:\Users\Sergey\Documents\blog\Bll.Interface\bin\Debug\Bll.Interface.pdb
+C:\Users\Sergey\Documents\blog\Bll.Interface\obj\Debug\Bll.Interface.csprojResolveAssemblyReference.cache
+C:\Users\Sergey\Documents\blog\Bll.Interface\obj\Debug\Bll.Interface.dll
+C:\Users\Sergey\Documents\blog\Bll.Interface\obj\Debug\Bll.Interface.pdb

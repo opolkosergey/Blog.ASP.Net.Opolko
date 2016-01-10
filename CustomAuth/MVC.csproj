@@ -236,6 +236,7 @@
     <Content Include="Views\Home\Users.cshtml" />
     <Content Include="Views\Home\Test.cshtml" />
     <Content Include="Views\Search\ByText.cshtml" />
+    <Content Include="Views\Search\Blogs.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

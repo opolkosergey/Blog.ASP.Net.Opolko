@@ -25,5 +25,6 @@ namespace CustomAuth.ViewModels
         public DateTime CreationDate { get; set; }
 
         public int ArticleCount { get; set; }
+        public string UserName { get; set; }
     }
 }

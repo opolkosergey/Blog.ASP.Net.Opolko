@@ -1,0 +1,68 @@
+﻿@using CustomAuth.Pagination
+@model CustomAuth.ViewModels.BlogsViewModel
+
+@{
+    ViewBag.Title = "Поиск блогов";
+}
+
+<div class="col-lg-9">
+    @if (Model.BlogViewModels.Count() != 0)
+    {
+        <h2>Результаты поиска</h2>
+        <table class="table table-hover">
+            <tr>
+                @*<th>
+                    @Html.DisplayName("Id")
+                </th>*@
+                <th>
+                    @*@Html.DisplayName("Заголовок")*@
+                </th>
+                <th>
+                    @*@Html.DisplayName("Дата создания")*@
+                </th>
+                <th>
+                    @*@Html.DisplayName("Количество статей")*@
+                </th>
+                <th>
+                </th>
+                <th>
+                </th>
+            </tr>
+
+            @foreach (var item in Model.BlogViewModels)
+            {
+                <tr class="text-primary">
+                    @*<td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        <span><i class="glyphicon glyphicon-user"></i> @Html.DisplayFor(modelItem => item.UserName) </span>
+                    </td>
+                    <td>
+                        <span><i class="glyphicon glyphicon-calendar"></i> @Html.DisplayFor(modelItem => item.CreationDate) </span>
+                    </td>
+                    <td>
+                        <span><i class="glyphicon glyphicon-pencil"></i> @Html.DisplayFor(modelItem => item.ArticleCount) </span>
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Details","Blog", new {id = item.Id})" class="btn btn-default">Подробнее</a>
+                    </td>
+                </tr>
+            }
+
+        </table>
+        if (Model.PageInfo.TotalPages != 1)
+        {
+            <div class="btn-group">
+                @Html.PageLinks(Model.PageInfo, x => Url.Action("Blogs", new { blogTitle = ViewBag.Title, page = x }))
+            </div>
+        }
+    }
+    else
+    {
+        <h2 style="text-align: center">Ничего не найдено</h2>
+    }
+</div>

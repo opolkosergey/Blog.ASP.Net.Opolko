@@ -23,6 +23,8 @@ namespace CustomAuth.Utils
 
         public static void RemoveFileFromDisk(string mapPath, string path)
         {
+            if(string.IsNullOrEmpty(path))
+                return;
             var fullPath = mapPath + "/UserContent/" + path;
             File.Delete(fullPath);
         }

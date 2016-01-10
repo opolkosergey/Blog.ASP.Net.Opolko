@@ -20,3 +20,14 @@ C:\Users\Sergey\Desktop\blog\Bll\bin\Debug\EntityFramework.xml
 C:\Users\Sergey\Desktop\blog\Bll\obj\Debug\Bll.csprojResolveAssemblyReference.cache
 C:\Users\Sergey\Desktop\blog\Bll\obj\Debug\Bll.dll
 C:\Users\Sergey\Desktop\blog\Bll\obj\Debug\Bll.pdb
+C:\Users\Sergey\Documents\blog\Bll\bin\Debug\Bll.dll
+C:\Users\Sergey\Documents\blog\Bll\bin\Debug\Bll.pdb
+C:\Users\Sergey\Documents\blog\Bll\bin\Debug\Bll.Interface.dll
+C:\Users\Sergey\Documents\blog\Bll\bin\Debug\DalToWeb.dll
+C:\Users\Sergey\Documents\blog\Bll\bin\Debug\EntityFramework.dll
+C:\Users\Sergey\Documents\blog\Bll\bin\Debug\Bll.Interface.pdb
+C:\Users\Sergey\Documents\blog\Bll\bin\Debug\DalToWeb.pdb
+C:\Users\Sergey\Documents\blog\Bll\bin\Debug\EntityFramework.xml
+C:\Users\Sergey\Documents\blog\Bll\obj\Debug\Bll.csprojResolveAssemblyReference.cache
+C:\Users\Sergey\Documents\blog\Bll\obj\Debug\Bll.dll
+C:\Users\Sergey\Documents\blog\Bll\obj\Debug\Bll.pdb
