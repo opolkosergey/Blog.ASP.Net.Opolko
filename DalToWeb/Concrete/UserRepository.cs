@@ -4,13 +4,14 @@ using System.Linq;
 using System.Linq.Expressions;
 using BLL;
 using DalToWeb.Interfacies;
+using DalToWeb.ORM;
 using DalToWeb.Repositories;
 
 namespace DalToWeb.Concrete
 {
     public class UserRepository : IUserRepository
     {
-        private readonly UserContext _context = new UserContext();
+        private readonly DatabaseContext _context = new DatabaseContext();
 
         public IEnumerable<DalUser> GetAll()
         {

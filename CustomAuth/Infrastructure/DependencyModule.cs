@@ -18,7 +18,7 @@ namespace CustomAuth.Infrastructure
             Bind<IRoleRepository>().To<RoleRepository>();
             Bind<IUnitOfWork>().To<UnitOfWork>();
             Bind<IUserService>().To<UserService>();
-            Bind<DbContext>().To<UserContext>();
+            Bind<DbContext>().To<DatabaseContext>();
 
             Bind<IBlogService>().To<BlogService>();
             Bind<IBlogRepository>().To<BlogRepository>();

@@ -13,7 +13,7 @@ namespace DalToWeb.Concrete
 {
     public class BlogRepository : IBlogRepository
     {
-        private readonly UserContext _context = new UserContext();
+        private readonly DatabaseContext _context = new DatabaseContext();
         public IEnumerable<DalBlog> GetAll()
         {
             return _context.Set<Blog>().Select(blog => new DalBlog()

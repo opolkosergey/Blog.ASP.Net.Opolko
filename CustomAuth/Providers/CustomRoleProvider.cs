@@ -4,6 +4,7 @@ using System.Web.Mvc;
 using System.Web.Security;
 using DalToWeb;
 using DalToWeb.Interfacies;
+using DalToWeb.ORM;
 using DalToWeb.Repositories;
 
 namespace CustomAuth.Providers
@@ -37,7 +38,7 @@ namespace CustomAuth.Providers
 
         public override string[] GetRolesForUser(string email)
         {
-            using (var context = new UserContext())
+            using (var context = new DatabaseContext())
             {
                 var roles = new string[] {};
                 var user = context.Users.FirstOrDefault(u => u.Email == email);
@@ -57,7 +58,7 @@ namespace CustomAuth.Providers
         public override void CreateRole(string roleName)
         {
             var newRole = new Role() {Name = roleName};
-            using (var context = new UserContext())
+            using (var context = new DatabaseContext())
             {
                 context.Roles.Add(newRole);
                 context.SaveChanges();

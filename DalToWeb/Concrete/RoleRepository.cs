@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using DalToWeb.Interfacies;
+using DalToWeb.ORM;
 
 namespace DalToWeb.Repositories
 {
     public class RoleRepository : IRoleRepository
     {
-        private readonly UserContext _context = new UserContext();
+        private readonly DatabaseContext _context = new DatabaseContext();
 
         public bool CreateNewRole(Role role)
         {

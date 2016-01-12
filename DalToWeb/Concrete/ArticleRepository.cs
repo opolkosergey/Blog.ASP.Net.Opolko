@@ -15,7 +15,7 @@ namespace DalToWeb.Concrete
 {
     public class ArticleRepository : IArticleRepository
     {
-        private readonly UserContext _context = new UserContext();
+        private readonly DatabaseContext _context = new DatabaseContext();
         public IEnumerable<DalArticle> GetAll()
         {
             return _context.Set<Article>().Select(art => new DalArticle()

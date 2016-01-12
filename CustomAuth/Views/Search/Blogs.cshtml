@@ -1,4 +1,5 @@
 ﻿@using CustomAuth.Pagination
+@using CustomAuth.Utils
 @model CustomAuth.ViewModels.BlogsViewModel
 
 @{
@@ -9,32 +10,31 @@
     @if (Model.BlogViewModels.Count() != 0)
     {
         <h2>Результаты поиска</h2>
-        <table class="table table-hover">
+        <br />
+        <table class="table table-hover" style="color: blue">
             <tr>
-                @*<th>
-                    @Html.DisplayName("Id")
-                </th>*@
-                <th>
-                    @*@Html.DisplayName("Заголовок")*@
-                </th>
-                <th>
-                    @*@Html.DisplayName("Дата создания")*@
-                </th>
-                <th>
-                    @*@Html.DisplayName("Количество статей")*@
-                </th>
-                <th>
-                </th>
-                <th>
-                </th>
+                @for (int i = 0; i < 5; i++)
+                {
+                    <th class="hidden"></th>
+                }
             </tr>
-
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                @if (ViewBag.Direction == "postsDown")
+                {
+                    <td><a href="@Url.Action("Blogs", new { blogTitle = ViewBag.blogTitle, codeSort = 1})" class="btn btn-primary btn-xs">статьи<span><i class="glyphicon glyphicon-arrow-down"></i></span></a></td>
+                }
+                else
+                {
+                    <td><a href="@Url.Action("Blogs", new { blogTitle = ViewBag.blogTitle, codeSort = 0})" class="btn btn-primary btn-xs">статьи<span><i class="glyphicon glyphicon-arrow-up"></i></span></a></td>
+                }
+                <td></td>
+            </tr>
             @foreach (var item in Model.BlogViewModels)
-            {
-                <tr class="text-primary">
-                    @*<td>
-                        @Html.DisplayFor(modelItem => item.Id)
-                    </td>*@
+                {
+                <tr>
                     <td>
                         @Html.DisplayFor(modelItem => item.Title)
                     </td>
@@ -52,12 +52,11 @@
                     </td>
                 </tr>
             }
-
         </table>
         if (Model.PageInfo.TotalPages != 1)
         {
             <div class="btn-group">
-                @Html.PageLinks(Model.PageInfo, x => Url.Action("Blogs", new { blogTitle = ViewBag.Title, page = x }))
+                @Html.PageLinks(Model.PageInfo, x => Url.Action("Blogs", new { blogTitle = ViewBag.blogTitle, page = x }))
             </div>
         }
     }

@@ -11,7 +11,7 @@ namespace DalToWeb.Concrete
 {
     public class DbTagRepository : ITagRepository
     {
-        private readonly UserContext _context = new UserContext();
+        private readonly DatabaseContext _context = new DatabaseContext();
         public ICollection<Tag> GetAll()
         {
             return _context.Tags.ToList();

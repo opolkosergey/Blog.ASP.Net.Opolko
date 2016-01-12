@@ -24,7 +24,7 @@ namespace CustomAuth.Providers
             var username = (string)context["UserName"];
             if (String.IsNullOrEmpty(username)) return result;
 
-            var db = new UserContext();
+            var db = new DatabaseContext();
             // получаем id пользователя из таблицы Users по логину
             var firstOrDefault = db.Users.FirstOrDefault(u => u.Email.Equals(username));
             if (firstOrDefault != null)
@@ -63,7 +63,7 @@ namespace CustomAuth.Providers
             if (string.IsNullOrEmpty(username) || collection.Count < 1)
                 return;
 
-            var db = new UserContext();
+            var db = new DatabaseContext();
             // получаем id пользователя из таблицы Users по логину
             var firstOrDefault = db.Users.FirstOrDefault(u => u.Email.Equals(username));
             if (firstOrDefault != null)

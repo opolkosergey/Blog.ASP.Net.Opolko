@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using DalToWeb.ORM;
 using DalToWeb.Repositories;
 
 namespace DalToWeb.Interfacies

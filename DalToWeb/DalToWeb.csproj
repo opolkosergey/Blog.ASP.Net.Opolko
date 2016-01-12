@@ -115,13 +115,15 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ORM\Comment.cs" />
+    <Compile Include="ORM\Role.cs" />
     <Compile Include="ORM\Tag.cs" />
+    <Compile Include="ORM\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Interfacies\IUnitOfWork.cs" />
     <Compile Include="Concrete\RoleRepository.cs" />
     <Compile Include="Concrete\UnitOfWork.cs" />
     <Compile Include="Concrete\UserRepository.cs" />
-    <Compile Include="Repositories\UserModel.cs" />
+    <Compile Include="Repositories\DatabaseContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

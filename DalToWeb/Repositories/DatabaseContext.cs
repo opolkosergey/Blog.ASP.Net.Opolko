@@ -6,9 +6,9 @@ using DalToWeb.ORM;
 
 namespace DalToWeb.Repositories
 {
-    public class UserContext : DbContext
+    public class DatabaseContext : DbContext
     {
-        public UserContext()
+        public DatabaseContext()
             : base("DefaultConnection")
         {
             
@@ -21,29 +21,6 @@ namespace DalToWeb.Repositories
         public DbSet<Tag> Tags { get; set; }
         public DbSet<Comment> Comments { get; set; }
     } 
-
-    public class User
-    {
-        public int Id { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
-        public string Avatar { get; set; }
-        public DateTime CreationDate { get; set; }
-
-        public int? RoleId { get; set; }
-        public virtual Role Role { get; set; }
-
-        public virtual ICollection<Blog> Blogs { get; set; } 
-    }
-
-    public class Role
-    {
-        public int Id { get; set; }
-
-        public string Name { get; set; }
-
-        public virtual ICollection<User> Users { get; set; }
-    }
 
     public class Profile
     {

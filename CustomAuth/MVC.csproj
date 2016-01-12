@@ -158,6 +158,7 @@
     <Compile Include="Providers\CustomMembershipProvider.cs" />
     <Compile Include="Providers\CustomProfileProvider.cs" />
     <Compile Include="Providers\CustomRoleProvider.cs" />
+    <Compile Include="Utils\BlogSorts.cs" />
     <Compile Include="Utils\FileHelper.cs" />
     <Compile Include="Utils\StringHelper.cs" />
     <Compile Include="ViewModels\ArticleViewModel.cs" />

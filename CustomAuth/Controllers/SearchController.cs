@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Bll.Interface.Services;
 using CustomAuth.Infrastructure.Mappers;
 using CustomAuth.Pagination;
+using CustomAuth.Utils;
 using CustomAuth.ViewModels;
 using DalToWeb.Interfacies;
 using WebGrease.Css.Extensions;
@@ -59,7 +60,7 @@ namespace CustomAuth.Controllers
             return View(model);
         }
 
-        public ActionResult Blogs(string blogTitle,int page = 1)
+        public ActionResult Blogs(string blogTitle,int page = 1, int codeSort = 0)
         {
             var blogs = _blogService
                 .GetAllBlogEntities()
@@ -71,17 +72,26 @@ namespace CustomAuth.Controllers
                 .Take(10)
                 .Select(bl => bl.ToMvcBlog())
                 .ToList();
-
+            #region заполнить имена авторов
             foreach (var m in models)
             {
                 var uId = _blogService.GetBlogEntity(m.Id).UserId;
                 m.ArticleCount = _articleService.GetAllArticleEntities(m.Id).Count();
                 m.UserName = _userService.GetUserEntity(uId).UserName;
             }
+            #endregion
+
+            string infoForGlyphicons;
+            var comparer = BlogSorts.GetMethod(codeSort, out infoForGlyphicons);
+            if (comparer != null)
+                models.Sort(comparer);
+
+            ViewBag.Direction = infoForGlyphicons;
+
             PageInfo pageInfo = new PageInfo { PageNumber = page, PageSize = 10, TotalItems = blogs.Count() };
             var bvm = new BlogsViewModel { PageInfo = pageInfo, BlogViewModels = models };
-            ViewBag.Title = blogTitle;
-
+            ViewBag.blogTitle = blogTitle;
+            
             return View(bvm);
         }
     }

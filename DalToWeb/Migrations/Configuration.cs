@@ -5,14 +5,14 @@ namespace DalToWeb.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<DalToWeb.Repositories.UserContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<DalToWeb.Repositories.DatabaseContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(DalToWeb.Repositories.UserContext context)
+        protected override void Seed(DalToWeb.Repositories.DatabaseContext context)
         {
             //  This method will be called after migrating to the latest version.
 

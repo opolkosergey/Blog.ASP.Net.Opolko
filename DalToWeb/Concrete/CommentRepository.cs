@@ -13,7 +13,7 @@ namespace DalToWeb.Concrete
 {
     public class CommentRepository : ICommentRepository
     {
-        private readonly UserContext _context = new UserContext();
+        private readonly DatabaseContext _context = new DatabaseContext();
         public IEnumerable<DalComment> GetAll()
         {
             return _context.Set<Comment>().Select(c => new DalComment()
