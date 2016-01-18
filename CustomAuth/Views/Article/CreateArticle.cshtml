@@ -10,11 +10,11 @@
         @Html.AntiForgeryToken()
 
         <div class="form-horizontal">
-            <h4 style="text-align: center">Создайте новую статью</h4>
+            <h4 style="text-align: center">Create new article</h4>
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-group">
-                <label class="control-label col-md-2">Заголовок</label>
+                <label class="control-label col-md-2">Title</label>
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
@@ -22,10 +22,10 @@
             </div>
 
             <div class="form-group ">
-                <label class="control-label col-md-2" for="Blog">Блог</label>
+                <label class="control-label col-md-2" for="Blog">Blog</label>
                 <div class="col-md-10">
                     <select class="form-control" name="Blog">
-                        <option value="" selected="selected" content="empty" class="text-muted">Выберите блог</option>
+                        <option value="" selected="selected" content="empty" class="text-muted">Select blog</option>
                         @foreach (var c in ViewBag.list)
                         {
                             <option value="@c.Value">@c.Text</option>
@@ -35,43 +35,39 @@
                 <span class="field-validation-error text-danger" data-valmsg-for="Blog" data-valmsg-replace="true"></span>
             </div>
             <br />
-
             <div class="form-group">
-                <label class="control-label col-md-2" for="Content">Содержимое</label>
+                <label class="control-label col-md-2" for="Content">Content</label>
                 <div class="col-lg-10">
                     <textarea class="form-control" rows="3" name="Content" id="Content"></textarea>
                     <span class="field-validation-error text-danger" data-valmsg-for="Content" data-valmsg-replace="true"></span>
                 </div>
             </div>
-
             <div class="form-group">
-                <label for="tags" class="col-lg-2 control-label">Тэги</label>
+                <label for="tags" class="col-lg-2 control-label">Tags</label>
                 <div class="col-lg-10">
-                    <input type="text" class="form-control" id="tags" name="tags" placeholder="тэг1,тэг2,..">
+                    <input type="text" class="form-control" id="tags" name="tags" placeholder="tag1,tag2,..">
                 </div>
             </div>
-            <br/>
-
+            <br />
             <div class="form-group">
                 <div class="input-group">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-picture"></i></span>
-                    <input type="text" class="form-control" placeholder="Прикрепить изображение" id="inputFileVisibleText">
+                    <input type="text" class="form-control" placeholder="Attach image" id="inputFileVisibleText">
                     <input type="file" style="display: none" name="img" id="inputFileHidden" />
                     <span class="input-group-btn" style="float: left">
-                        <button class="btn btn-default" type="button" id="inputFileVisibleBtn">Обзор</button>
+                        <button class="btn btn-default" type="button" id="inputFileVisibleBtn">Browse</button>
                     </span>
                 </div>
             </div>
             <br />
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Создать" class="btn btn-default" />
+                    <input type="submit" value="Create" class="btn btn-default" />
                 </div>
             </div>
         </div>
     }
-
     <div>
-        @Html.ActionLink("На главную", "Index", "Home")
+        @Html.ActionLink("Home", "Index", "Article")
     </div>
 </div>

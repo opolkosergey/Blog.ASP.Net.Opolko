@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Bll.Interface.Entities;
 using Bll.Interface.Services;
 using BLL;
 using CustomAuth.Infrastructure.Mappers;
@@ -75,8 +76,8 @@ namespace CustomAuth.Controllers
                     .GetAllArticleEntities(m.Id)
                     .Count();
             }
-            PageInfo pageInfo = new PageInfo {PageNumber = page, PageSize = 10, TotalItems = blogs.Count()};
-            var bvm = new BlogsViewModel {PageInfo = pageInfo, BlogViewModels = models};
+            PageInfo pageInfo = new PageInfo { PageNumber = page, PageSize = 10, TotalItems = blogs.Count() };
+            var bvm = new BlogsViewModel { PageInfo = pageInfo, BlogViewModels = models };
             bvm.UserId = userId;
 
             return View(bvm);
@@ -84,16 +85,12 @@ namespace CustomAuth.Controllers
 
         public ActionResult Details(string id, int page = 1)
         {
-            int parsedId;
-            if (int.TryParse(id, out parsedId) == false)
-                return RedirectToAction("Error", "Home", new {error = $"blog with id = {id} not found"});
-
-            var blog = _blogService.GetBlogEntity(parsedId);
-            if (blog != null)
+            try
             {
+                var blog = GetBlog(id);
                 TempData["BlogId"] = blog.Id;
                 ViewBag.IsModerating =
-                    (blog.UserId == _userService.GetUserEntity(User.Identity.Name).Id) 
+                    (blog.UserId == _userService.GetUserEntity(User.Identity.Name).Id)
                     || User.IsInRole("Moderator") || User.IsInRole("Admin");
 
                 ViewBag.Id = id;
@@ -101,21 +98,40 @@ namespace CustomAuth.Controllers
                 ViewBag.BlogName = blog.Name;
 
                 var articles = _articleService
-                    .GetAllArticleEntities(parsedId)
+                    .GetAllArticleEntities(blog.Id)
                     .ToList();
 
                 var models = articles
-                    .Skip((page - 1)*15)
+                    .Skip((page - 1) * 15)
                     .Take(15)
                     .Select(a => a.ToMvcArticle())
                     .ToList();
 
-                var pageInfo = new PageInfo {PageNumber = page, PageSize = 15, TotalItems = articles.Count()};
-                var model = new ArticleViewModelPagination {ArticleViewModels = models, PageInfo = pageInfo};
+                var pageInfo = new PageInfo { PageNumber = page, PageSize = 15, TotalItems = articles.Count() };
+                var model = new ArticleViewModelPagination { ArticleViewModels = models, PageInfo = pageInfo };
 
                 return View(model);
             }
-            return RedirectToAction("Error", "Home");
+            catch (NullReferenceException)
+            {
+                return RedirectToAction("Error", "Home");
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                return RedirectToAction("Error", "Home");
+            }       
+        }
+
+        private BlogEntity GetBlog(string id)
+        {
+            int parsedId;
+            if (int.TryParse(id, out parsedId) == false)
+                throw new NullReferenceException();
+
+            if (parsedId < 0)
+                throw new ArgumentOutOfRangeException();
+
+            return _blogService.GetBlogEntity(parsedId);
         }
     }
 }

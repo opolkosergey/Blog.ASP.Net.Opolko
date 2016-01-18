@@ -11,5 +11,6 @@ namespace DalToWeb.Interfacies
     {
         void IncViews(int id);
         IEnumerable<DalArticle> SearchBySubstring(string subsrting);
+        IEnumerable<DalArticle> GetLastArticles(int page, int count);
     }
 }

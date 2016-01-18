@@ -160,7 +160,6 @@
     <Compile Include="Providers\CustomRoleProvider.cs" />
     <Compile Include="Utils\BlogSorts.cs" />
     <Compile Include="Utils\FileHelper.cs" />
-    <Compile Include="Utils\StringHelper.cs" />
     <Compile Include="ViewModels\ArticleViewModel.cs" />
     <Compile Include="ViewModels\ArticleViewModelCommon.cs" />
     <Compile Include="ViewModels\ArticleViewModelDetails.cs" />
@@ -280,7 +279,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>16289</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:16289/</IISUrl>
+          <IISUrl>http://localhost:5646/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

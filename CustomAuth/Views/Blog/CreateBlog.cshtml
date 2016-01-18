@@ -4,9 +4,8 @@
     @using (Html.BeginForm("CreateBlog", "Blog", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal", role = "form" }))
     {
         @Html.AntiForgeryToken()
-
         <div class="form-horizontal">
-            <h4>Создайте новый блог</h4>
+            <h4>Create new blog</h4>
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-group">
@@ -16,7 +15,6 @@
                     @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
                 </div>
             </div>
-
             <div class="form-group">
                 <div class="col-md-offset-4 col-md-10">
                     <input type="submit" value="Create" class="btn btn-default" />
@@ -24,8 +22,7 @@
             </div>
         </div>
     }
-
     <div>
-        @Html.ActionLink("На главную", "Index", "Article")
+        @Html.ActionLink("Home", "Index", "Article")
     </div>
 </div>

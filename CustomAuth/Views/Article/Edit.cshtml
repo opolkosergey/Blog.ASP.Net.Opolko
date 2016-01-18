@@ -1,9 +1,8 @@
 ﻿@model CustomAuth.ViewModels.ArticleViewModel
 
 @{
-    ViewBag.Title = "Изменение поста";
+    ViewBag.Title = "Change article";
 }
-
 
 <div class="col-lg-6">
     @using (Html.BeginForm("Edit", "Article", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal", role = "form" }))
@@ -15,23 +14,21 @@
         @Html.Hidden("Author", Model.Author)
         @Html.Hidden("ImagePath", Model.ImagePath)
         @Html.Hidden("TimeAdded", Model.TimeAdded)
-        
         <div class="form-horizontal">
-            <h4 style="text-align: center">Измените статью @Model.Title</h4>
+            <h4 style="text-align: center">Change this article @Model.Title</h4>
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-group">
-                <label class="control-label col-lg-2" for="Content">Содержимое</label>
+                <label class="control-label col-lg-2" for="Content">Content</label>
                 <div class="col-lg-10">
                     <textarea class="form-control" rows="9" name="Content" id="Content">@Model.Content</textarea>
                     <span class="field-validation-error text-danger" data-valmsg-for="Content" data-valmsg-replace="true"></span>
                 </div>
             </div>
         </div>
-
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Изменить" class="btn btn-primary" />
+                <input type="submit" value="Edit" class="btn btn-primary" />
             </div>
         </div>
     }

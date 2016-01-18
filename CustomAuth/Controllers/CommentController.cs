@@ -11,6 +11,7 @@ using CustomAuth.ViewModels;
 
 namespace CustomAuth.Controllers
 {
+    [Authorize]
     public class CommentController : Controller
     {
         private readonly IUserService _userService;
@@ -30,19 +31,20 @@ namespace CustomAuth.Controllers
                 var user = _userService.GetUserEntity(User.Identity.Name);
                 var comment = new CommentModel
                 {
+                    Id = _commentService.GetLastId(),
                     Author = User.Identity.Name,
-                    Date = DateTime.Now,
+                    Date = DateTime.Now.ToString(),
                     TextComment = textComment,
                     ArticleId = id,
                     AvatarPath = user.AvatarPath
                 };
+
                 _commentService.CreateComment(comment.ToCommentEntity(user.Id));
 
                 if (Request.IsAjaxRequest())
                 {
                     TempData["CurrentArticle"] = id;
-                    comment.Id = _commentService.GetLastId();
-                    return Json(ParseHelper.ParseComment(comment));
+                    return Json(comment);
                 }
             }
             return RedirectToAction("Details", "Article", new {id = id});

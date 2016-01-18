@@ -18,10 +18,10 @@ namespace CustomAuth.ViewModels
     {
         public int Id { get; set; }
 
-        [Display(Name = "Имя блога")]
+        [Display(Name = "Blog title")]
         public string Title { get; set; }
 
-        [Display(Name = "Время создания")]
+        [Display(Name = "Date created")]
         public DateTime CreationDate { get; set; }
 
         public int ArticleCount { get; set; }

@@ -3,13 +3,13 @@
 @model CustomAuth.ViewModels.BlogsViewModel
 
 @{
-    ViewBag.Title = "Поиск блогов";
+    ViewBag.Title = "Search blogs";
 }
 
 <div class="col-lg-9">
     @if (Model.BlogViewModels.Count() != 0)
     {
-        <h2>Результаты поиска</h2>
+        <h2>Search results</h2>
         <br />
         <table class="table table-hover" style="color: blue">
             <tr>
@@ -24,11 +24,11 @@
                 <td></td>
                 @if (ViewBag.Direction == "postsDown")
                 {
-                    <td><a href="@Url.Action("Blogs", new { blogTitle = ViewBag.blogTitle, codeSort = 1})" class="btn btn-primary btn-xs">статьи<span><i class="glyphicon glyphicon-arrow-down"></i></span></a></td>
+                    <td><a href="@Url.Action("Blogs", new { blogTitle = ViewBag.blogTitle, codeSort = 1})" class="btn btn-primary btn-xs">articles<span><i class="glyphicon glyphicon-arrow-down"></i></span></a></td>
                 }
                 else
                 {
-                    <td><a href="@Url.Action("Blogs", new { blogTitle = ViewBag.blogTitle, codeSort = 0})" class="btn btn-primary btn-xs">статьи<span><i class="glyphicon glyphicon-arrow-up"></i></span></a></td>
+                    <td><a href="@Url.Action("Blogs", new { blogTitle = ViewBag.blogTitle, codeSort = 0})" class="btn btn-primary btn-xs">articles<span><i class="glyphicon glyphicon-arrow-up"></i></span></a></td>
                 }
                 <td></td>
             </tr>
@@ -48,7 +48,7 @@
                         <span><i class="glyphicon glyphicon-pencil"></i> @Html.DisplayFor(modelItem => item.ArticleCount) </span>
                     </td>
                     <td>
-                        <a href="@Url.Action("Details","Blog", new {id = item.Id})" class="btn btn-default">Подробнее</a>
+                        <a href="@Url.Action("Details","Blog", new {id = item.Id})" class="btn btn-xs btn-default">read more</a>
                     </td>
                 </tr>
             }

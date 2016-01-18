@@ -15,6 +15,7 @@ namespace DalToWeb.ORM
         public string Content { get; set; }
         public string ImagePath { get; set; }
         public virtual int BlogId { get; set; }
+        public virtual Blog Blog { get; set; }
         public virtual ICollection<Tag> Tags { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
     }

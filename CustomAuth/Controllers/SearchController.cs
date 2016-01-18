@@ -14,6 +14,7 @@ using ListExtensions = WebGrease.Css.Extensions.ListExtensions;
 
 namespace CustomAuth.Controllers
 {
+    [Authorize]
     public class SearchController : Controller
     {
         private readonly IUserService _userService;
@@ -42,7 +43,7 @@ namespace CustomAuth.Controllers
                     {
                         var blog = _blogService.GetBlogEntity(art.BlogId);
                         var authorName = _userService.GetUserEntity(blog.UserId).UserName;
-                        model.Add(art.ToMvcViewArticleCommon(authorName));
+                        model.Add(art.ToMvcViewArticleCommon());
                     }
             return View(model);
         }
@@ -55,7 +56,7 @@ namespace CustomAuth.Controllers
             {
                 var blog = _blogService.GetBlogEntity(art.BlogId);
                 var authorName = _userService.GetUserEntity(blog.UserId).UserName;
-                model.Add(art.ToMvcViewArticleCommon(authorName));
+                model.Add(art.ToMvcViewArticleCommon());
             }
             return View(model);
         }

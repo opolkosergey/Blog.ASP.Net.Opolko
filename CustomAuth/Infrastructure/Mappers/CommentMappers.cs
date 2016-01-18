@@ -16,7 +16,7 @@ namespace CustomAuth.Infrastructure.Mappers
             {
                 ArticleId = comment.ArticleId,
                 CommentText = comment.TextComment,
-                DateAdded = comment.Date,
+                DateAdded =  DateTime.Parse(comment.Date),
                 UserId = id
             };
         }

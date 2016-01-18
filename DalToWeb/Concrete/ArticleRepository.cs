@@ -20,15 +20,16 @@ namespace DalToWeb.Concrete
         {
             return _context.Set<Article>().Select(art => new DalArticle()
             {
-               TimeAdded = art.TimeAdded,
-               BlogId = art.BlogId,
-               Content = art.Content,
-               Id = art.Id,
-               ImagePath = art.ImagePath,
-               Title = art.Title,
-               Tags = art.Tags,
-               Comments = art.Comments.Count,
-               Viewed = art.Viewed
+                TimeAdded = art.TimeAdded,
+                BlogId = art.BlogId,
+                Content = art.Content,
+                Id = art.Id,
+                ImagePath = art.ImagePath,
+                Title = art.Title,
+                Tags = art.Tags,
+                Comments = art.Comments.Count,
+                Viewed = art.Viewed,
+                Author = art.Blog.User.Email
             });
         }
 
@@ -45,6 +46,24 @@ namespace DalToWeb.Concrete
             return _context.Set<Article>()
                 .Where(a => a.Content.Contains(subsrting))
                 .Select(art => new DalArticle()
+                {
+                    TimeAdded = art.TimeAdded,
+                    BlogId = art.BlogId,
+                    Content = art.Content,
+                    Id = art.Id,
+                    ImagePath = art.ImagePath,
+                    Title = art.Title,
+                    Tags = art.Tags,
+                    Comments = art.Comments.Count,
+                    Viewed = art.Viewed,
+                    Author = art.Blog.User.Email
+                });
+        }
+
+        public IEnumerable<DalArticle> GetLastArticles(int page, int count)
+        {
+            var arts = _context.Set<Article>().OrderByDescending(a => a.TimeAdded).Skip((page - 1) * count).Take(count);
+            return arts.Select(art => new DalArticle()
             {
                 TimeAdded = art.TimeAdded,
                 BlogId = art.BlogId,
@@ -54,7 +73,8 @@ namespace DalToWeb.Concrete
                 Title = art.Title,
                 Tags = art.Tags,
                 Comments = art.Comments.Count,
-                Viewed = art.Viewed
+                Viewed = art.Viewed,
+                Author = art.Blog.User.Email
             });
         }
 
@@ -71,7 +91,8 @@ namespace DalToWeb.Concrete
                 Tags = art.Tags,
                 TimeAdded = art.TimeAdded,
                 Comments = art.Comments.Count,
-                Viewed = art.Viewed
+                Viewed = art.Viewed,
+                Author = art.Blog.User.Email
             };
         }
 
@@ -104,9 +125,9 @@ namespace DalToWeb.Concrete
 
         public void Update(DalArticle entity)
         {
-            var propertyContent = typeof (Article).GetProperty("Content");
+            var propertyContent = typeof(Article).GetProperty("Content");
             var article = _context.Set<Article>().Find(entity.Id);
-            propertyContent.SetValue(article,entity.Content);
+            propertyContent.SetValue(article, entity.Content);
             _context.SaveChanges();
         }
     }

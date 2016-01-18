@@ -12,8 +12,8 @@ namespace CustomAuth.ViewModels
        
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "Это поле необходимо заполнить")]
-        [Display(Name = "Введите назавние нового блога")]
+        [Required(ErrorMessage = "This field is required")]
+        [Display(Name = "Enter title of new blog")]
         public string Title { get; set; }
     }
 }

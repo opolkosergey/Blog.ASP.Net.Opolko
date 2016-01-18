@@ -13,5 +13,6 @@ namespace DalToWeb.ORM
         public int ArticleId { get; set; }
         public DateTime Date { get; set; }
         public string TextComment { get; set; }
+        public virtual Article Article { get; set; }
     }
 }

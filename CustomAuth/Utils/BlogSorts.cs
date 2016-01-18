@@ -10,6 +10,14 @@ namespace CustomAuth.Utils
 {
     public static class BlogSorts
     {
+        public static int Comparer(BlogViewModel x, BlogViewModel y)
+        {
+            if (x.ArticleCount > y.ArticleCount)
+                return -1;
+            else if (x.ArticleCount < y.ArticleCount)
+                return 1;
+            return 0;
+        }
         public static IComparer<BlogViewModel> GetMethod(int code, out string infoGlyphicon)
         {
             switch (code)

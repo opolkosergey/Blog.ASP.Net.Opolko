@@ -13,19 +13,27 @@
         $("#commentArticle").click(function () {
             var method = $("form#formComment").attr('method');
             var action = $("form#formComment").attr('action');
-            var testData = { 'textComment': $("#textComment").val() };
+            var data = { 'textComment': $("#textComment").val() };
 
             $.ajax({
                 type: method,
                 url: action,
-                data: JSON.stringify(testData),
+                data: JSON.stringify(data),
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
-                success: function (result) {
-                    // alert(result);
-                    var data = result.split('~');
+                success: function (comment) {
                     $("#textComment").val('');
-                    $("#commentContainer").append("<div class='panel panel-default' onmouseover='ShowGlyphs(this)' onmouseout='HideGlyphs(this)' id=" + data[0] + "><div class='panel-body'><img style='width: 50px; height: 50px;' src='/UserContent/" + data[2] + "' alt='No avatar'/><span style='font-size: 12px;'>" + "  " + data[1] + " </span><span style='font-size: 12px;'>" + data[3] + " </span><div class='glyphicon glyphicon-trash hidden' style='float: right;' id='trash_" + data[0] + "' onclick='DeleteElement(this)'></div><div class='glyphicon glyphicon-edit hidden' style='float: right;' id='edit_" + data[0] + "' onclick='EditComment(this)'></div><div id='commentEditInput_" + data[0] + "' class='editing' style='height: auto; width: 300px; text-align: center;'></div><br/><p style='font-size: 16px;' id='comment_" + data[0] + "'>" + data[4] + "</p></div></div>");
+                    $("#commentContainer").append("<div class='panel panel-default' onmouseover='ShowGlyphs(this)' onmouseout='HideGlyphs(this)' id=" + comment.Id + ">" +
+                                                        "<div class='panel-body'>" +
+                                                            "<img style='width: 50px; height: 50px;' src='/UserContent/" + comment.AvatarPath + "' alt='No avatar'/>" +
+                                                            "<span style='font-size: 12px;'>" + "  " + comment.Author + " </span><span style='font-size: 12px;'>" + comment.Date + " </span>" +
+                                                                "<div class='glyphicon glyphicon-trash hidden' style='float: right;' id='trash_" + comment.Id + "' onclick='DeleteElement(this)'></div>" +
+                                                                "<div class='glyphicon glyphicon-edit hidden' style='float: right;' id='edit_" + comment.Id + "' onclick='EditComment(this)'></div>" +
+                                                                "<div id='commentEditInput_" + comment.Id + "' class='editing' style='height: auto; width: 300px; text-align: center;'></div>" +
+                                                                "<br/>" +
+                                                                "<p style='font-size: 16px;' id='comment_" + comment.Id + "'>" + comment.TextComment + "</p>" +
+                                                        "</div>" +
+                                                    "</div>");
                 }
             });
             return false;
@@ -39,11 +47,11 @@
         <div class="panel-body">
             <h2>@Model.Title</h2>
             <b>
-                <span> | Опубликовано @Model.Author</span>
+                <span> | Published by @Model.Author</span>
                 <span> | @Model.TimeAdded |</span>
                 <br />
                 | <i>
-                    Тэги:
+                    Tags:
                     @if (Model.Tags != null)
                     {
                         foreach (var tag in Model.Tags)
@@ -53,23 +61,22 @@
                     }
                     else
                     {
-                        <span>Отсутствуют</span>
+                        <span>none</span>
                     }
                 </i>
                 <br/>
-                <span> | Просмотрено: @Model.Views раз |</span>
+                <span> | Viewed: @Model.Views |</span>
             </b>
             <br />
             <img src="/UserContent/@Model.ImagePath" width="33%" height="30%" alt="post img" style="float: left; margin: 7px 7px 7px 7px;">
             <span style="word-wrap: break-word">@Model.Content</span>
         </div>
     </div>
-
     <div class="row">
         <div class="col-md-6" id="commentContainer">
             @if (Model.Comments != null)
             {
-                <h4>Комментарии к статье:</h4>
+                <h4>Comments:</h4>
                 foreach (var comment in Model.Comments)
                 {
                     <div class="panel panel-default" onmouseover="ShowGlyphs(this)" onmouseout="HideGlyphs(this)" id="@comment.Id">
@@ -85,22 +92,19 @@
                         </div>
                     </div>
                 }
-            }
-            
+            }  
         </div>
     </div>
     <br/>
     <hr/>
-
     @using (Html.BeginForm("NewComment", "Comment", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal", @id = "formComment", @style = "margin-left: 15px;" }))
     {
         @Html.ValidationSummary(true)
         @Html.AntiForgeryToken()
-
         <div class="form-group">
-            <label class="control-label">Оставить комметарий</label>
+            <label class="control-label">Leave a comment</label>
             <input type="text" class="form-control" name="textComment" id="textComment">
         </div>
-        <input type="submit" class="btn btn-default" id="commentArticle" value="Комментировать" />
+        <input type="submit" class="btn btn-default" id="commentArticle" value="Comment" />
     }
 </div>

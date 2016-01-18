@@ -10,6 +10,7 @@ namespace Bll.Interface.Entities
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public string Author { get; set; }
         public string Content { get; set; }
         public string ImagePath { get; set; }
         public int Comments { get; set; }

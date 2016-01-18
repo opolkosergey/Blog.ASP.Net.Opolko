@@ -6,19 +6,19 @@
 }
 
 <div class="col-lg-9">
-    <h2>Блоггеры в системе</h2>
+    <h2>Registered users</h2>
     <br/>
     <table class="table table-hover">
         <tr>
             <th style="width: 20%">
-                @Html.DisplayName("Имя")
+                @Html.DisplayName("Name")
             </th>
             <th style="width: 20%">
-                @Html.DisplayName("Дата регистрации")
+                @Html.DisplayName("Date")
             </th>
 
             <th style="width: 5%">
-                @Html.DisplayName("Блоги")
+                @Html.DisplayName("Blogs")
             </th>
 
             <th style="width: 15%">
@@ -44,7 +44,7 @@
                     @Html.DisplayFor(modelItem => item.BlogsCount)
                 </td>
                 <td>
-                    <a href="@Url.Action("Blogs","Blog",new {uId = item.Id})" class="btn btn-sm btn-default">подробнее</a>
+                    <a href="@Url.Action("Blogs","Blog",new {uId = item.Id})" class="btn btn-sm btn-default">read more</a>
                 </td>
                 @if (User.IsInRole("Admin"))
                 {
@@ -81,7 +81,7 @@
                                             <option value="4">User</option>
                                         }
                                     </select>
-                                    <input type="submit" class="btn btn-sm btn-default" value="назначить"/>
+                                    <input type="submit" class="btn btn-sm btn-default" value="appoint"/>
                                 </form>
                             </td>
                         }
@@ -89,7 +89,6 @@
                 }
             </tr>
         }
-
     </table>
     @if (Model.PageInfo.TotalPages > 1)
     {

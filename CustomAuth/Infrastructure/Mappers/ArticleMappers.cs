@@ -47,7 +47,8 @@ namespace CustomAuth.Infrastructure.Mappers
                 Content = model.Content,
                 DateAdded = model.TimeAdded,
                 ImagePath = model.ImagePath,
-                Name = model.Title
+                Name = model.Title,
+                Author = model.Author
             };
 
             if (model.Tags.Count != 0)
@@ -64,7 +65,7 @@ namespace CustomAuth.Infrastructure.Mappers
             return art;
         }
 
-        public static ArticleViewModel ToMvcViewArticle(this ArticleEntity model, string authorName)
+        public static ArticleViewModel ToMvcViewArticle(this ArticleEntity model)
         {
             var articleViewModel = new ArticleViewModel()
             {
@@ -73,7 +74,7 @@ namespace CustomAuth.Infrastructure.Mappers
                 ImagePath = model.ImagePath,
                 TimeAdded = model.DateAdded,
                 Title = model.Name,
-                Author = authorName,
+                Author = model.Author,
                 BlogId = model.BlogId,
                 Views = model.Viewed
             };
@@ -87,18 +88,18 @@ namespace CustomAuth.Infrastructure.Mappers
             return articleViewModel;
         }
 
-        public static ArticleViewModelCommon ToMvcViewArticleCommon(this ArticleEntity model, string authorName)
+        public static ArticleViewModelCommon ToMvcViewArticleCommon(this ArticleEntity model)
         {
             return new ArticleViewModelCommon()
             {
-                Author = authorName,
+                Author = model.Author,
                 Content = (model.Content.Length > 50) ? model.Content.Substring(0,50) + "..." : model.Content,
                 ImagePath = model.ImagePath,
                 Id = model.Id,
                 Title = model.Name,
                 CommentCount = model.Comments,
                 Viewed = model.Viewed,
-                Date = model.DateAdded
+                Date = model.DateAdded.ToString()
             };
         }
     }

@@ -9,11 +9,11 @@ namespace CustomAuth.ViewModels
     public class ArticleViewModelCreate
     {
         public int Id { get; set; }
-        [Required(ErrorMessage = "Укажите заголовок статьи")]
+        [Required(ErrorMessage = "Fill title")]
         public string Title { get; set; }
-        [Required(ErrorMessage = "Заполните содержимое")]
+        [Required(ErrorMessage = "Fill content")]
         public string Content { get; set; }
-        [Required(ErrorMessage = "Укажите блог")]
+        [Required(ErrorMessage = "Select blog")]
         public string Blog { get; set; }
         public string Tags { get; set; }
     }

@@ -13,6 +13,7 @@ namespace Bll.Interface.Services
         IEnumerable<ArticleEntity> GetAllArticleEntities();
         IEnumerable<ArticleEntity> GetAllArticleEntities(int blogId);
         IEnumerable<ArticleEntity> FindArticlesBySubstring(string s);
+        IEnumerable<ArticleEntity> TakeLastArticleEntities(int page, int count);
         void IncrementViews(int id);
         void CreateArticle(ArticleEntity article);
         void DeleteArticle(int id);

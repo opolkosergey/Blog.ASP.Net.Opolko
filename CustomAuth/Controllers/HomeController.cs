@@ -70,12 +70,8 @@ namespace CustomAuth.Controllers
 
         public ActionResult About()
         {
-            if (this.User.Identity.IsAuthenticated)
-            {
-                ViewBag.AuthType = User.Identity.AuthenticationType;
-            }
             ViewBag.Login = User.Identity.Name;
-            ViewBag.IsAdminInRole = User.IsInRole("Administrator") ?
+            ViewBag.IsAdminInRole = User.IsInRole("Admin") ?
                 "You have administrator rights." : "You do not have administrator rights.";
 
             return View();

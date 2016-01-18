@@ -11,7 +11,7 @@ namespace CustomAuth.ViewModels
         public int ArticleId { get; set; }
         public string AvatarPath { get; set; }
         public string Author { get; set; }
-        public DateTime Date { get; set; }
+        public string Date { get; set; }
         public string TextComment { get; set; }
         public CommentModel() { }
     }

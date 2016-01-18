@@ -1,13 +1,13 @@
 ﻿@model List<CustomAuth.ViewModels.ArticleViewModelCommon>
 
 @{
-    ViewBag.Title = "Результаты поиска";
+    ViewBag.Title = "Search results";
 }
 
 <div class="col-lg-9">
     @if (Model.Count != 0)
     {
-        <h4 style="text-align: center">Результаты поиска</h4>
+        <h4 style="text-align: center">Search results</h4>
         <hr />
         foreach (var article in Model)
         {
@@ -22,7 +22,7 @@
                             @article.Content
                         </p>
                     </article>
-                    <a class="btn btn-primary pull-right marginBottom10" href="@Url.Action("Details", "Article", new {Id = article.Id})">подробнее</a>
+                    <a class="btn btn-xs btn-primary pull-right marginBottom10" href="@Url.Action("Details", "Article", new {Id = article.Id})">read more</a>
                 </div>
             </div>
             <br />
@@ -30,6 +30,6 @@
     }
     else
     {
-        <h2 style="text-align: center">Ничего не найдено</h2>
+        <h2 style="text-align: center">Nothing found</h2>
     }
 </div>

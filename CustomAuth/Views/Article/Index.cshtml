@@ -1,7 +1,7 @@
 ﻿@model List<CustomAuth.ViewModels.ArticleViewModelCommon>
 
 @{
-    ViewBag.Title = "Новые статьи";
+    ViewBag.Title = "Home page";
 }
 @Scripts.Render("~/bundles/jquery")
 
@@ -16,55 +16,102 @@
     function getMore() {
         p = p + 1;
         $.get("/Article/Index?page=" + p, function (data) {
-            var response = data.split('+');
-            if (response[0] === "yes") {
+            alert(data);
+            if (data[0] === "yes") {
                 $("#getMorePanel").remove();
             }
-            for (var i = 1; i < response.length; i++) {
-                var d = response[i];
-                var artData = d.split('~');
-                $("#ArtContainer").append("<div class='well'><div class='media'><a class='pull-left' href='#'><img class='media-object' src='/UserContent/" + artData[3] +"' width='150px' height='150px'></a><div class='media-body'><h4 class='media-heading'>"+ artData[1]+"</h4><p>"+artData[2]+"</p><p>"+artData[6]+"</p><ul class='list-inline list-unstyled'><li><span><i class='glyphicon glyphicon-calendar'></i>  " +artData[4]+ " </span></li><li>|</li><span><i class='glyphicon glyphicon-eye-open'></i> "+artData[5]+" </span><li>|</li><span><i class='glyphicon glyphicon-comment'></i> "+artData[7]+" </span><li>|</li></ul><div><a href='/Article/Details/"+artData[0]+"' class='btn btn-primary btn-xs'>Подробнее</a></div></div></div></div>");
+            var newAtrs = '';
+            for (var i = 1; i < data.length; i++) {
+                var art = data[i];
+                newAtrs += "<div class='well'>" +
+                                "<div class='media'>" +
+                                    "<a class='pull-left' href='#'>" +
+                                        "<img class='media-object' src='/UserContent/" + art.ImagePath + "' width='150px' height='150px'>" +
+                                    "</a>" +
+                                    "<div class='media-body'>" +
+                                        "<h4 class='media-heading'>"+ art.Title+"</h4>" +
+                                        "<p>" + art.Author + "</p>" +
+                                        "<p>" + art.Content + "</p>" +
+                                        "<ul class='list-inline list-unstyled'>" +
+                                            "<li><span><i class='glyphicon glyphicon-calendar'></i>  " +art.Date+ " </span></li>" +
+                                            "<li>|</li><span><i class='glyphicon glyphicon-eye-open'></i> " + art.Viewed + " </span>" +
+                                            "<li>|</li><span><i class='glyphicon glyphicon-comment'></i> "+art.CommentCount+" </span>" +
+                                            "<li>|</li></ul>" +
+                                            "<div><a href='/Article/Details/"+art.Id+"' class='btn btn-primary btn-xs'>Read more</a></div>" +
+                                    "</div>" +
+                                "</div>" +
+                            "</div>";
             }
+            $("#ArtContainer").append(newAtrs);
         });
     }
 </script>
 
-<div class="col-lg-9" >
-    <h2 style="text-align: center">Недавно добавленные статьи</h2>
-    <hr/>
-    <div id="ArtContainer">
-        @foreach (var article in Model)
-        {
-            <div class="well">
-                <div class="media">
-                    <a class="pull-left" href="#">
-                        <img class="media-object" src="~/UserContent/@article.ImagePath" width="150px" height="150px">
-                    </a>
-                    <div class="media-body">
-                        <h4 class="media-heading">@article.Title</h4>
-                        <p>@article.Author</p>
-                        <p>
-                            @article.Content
-                        </p>
-                        <ul class="list-inline list-unstyled">
-                            <li><span><i class="glyphicon glyphicon-calendar"></i> @article.Date </span></li>
-                            <li>|</li>
-                            <span><i class="glyphicon glyphicon-eye-open"></i> @article.Viewed </span>
-                            <li>|</li>
-                            <span><i class="glyphicon glyphicon-comment"></i> @article.CommentCount </span>
-                            <li>|</li>
-                        </ul>
-                        <div>
-                            <a href="@Url.Action("Details", "Article", new {Id = article.Id})" class="btn btn-primary btn-xs">Подробнее</a>
+<div class="col-lg-9">
+    @if (User.Identity.IsAuthenticated)
+    {
+        <h2 style="text-align: center">Recently added articles</h2>
+        <hr/>
+        <div id="ArtContainer">
+            @foreach (var article in Model)
+            {
+                <div class="well">
+                    <div class="media">
+                        <a class="pull-left" href="#">
+                            <img class="media-object" src="~/UserContent/@article.ImagePath" width="150px" height="150px">
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading">@article.Title</h4>
+                            <p>@article.Author</p>
+                            <p>
+                                @article.Content
+                            </p>
+                            <ul class="list-inline list-unstyled">
+                                <li><span><i class="glyphicon glyphicon-calendar"></i> @article.Date </span></li>
+                                <li>|</li>
+                                <span><i class="glyphicon glyphicon-eye-open"></i> @article.Viewed </span>
+                                <li>|</li>
+                                <span><i class="glyphicon glyphicon-comment"></i> @article.CommentCount </span>
+                                <li>|</li>
+                            </ul>
+                            <div>
+                                <a href="@Url.Action("Details", "Article", new {Id = article.Id})" class="btn btn-primary btn-xs">Read more</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        }
-    </div>
-    <div class="panel panel-default" id="getMorePanel">
-        <div href="" class="panel-body" id="getMoreArts" onclick="getMore()">
-            <p style="text-align: center">Показать еще</p>
+            }
         </div>
-    </div>
+        <div class="panel panel-default" id="getMorePanel">
+            <div href="" class="panel-body" id="getMoreArts" onclick="getMore()">
+                <p style="text-align: center">See more</p>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="jumbotron">
+            <h1>Welcome</h1>
+            <p class="lead">Share news and learn about new events in the world</p>
+            <p><a class="btn btn-lg btn-default" href="@Url.Action("Register","Account")" role="button">Sign up today</a>
+            </p>
+        </div>
+        <div class="row marketing">
+            <div class="col-lg-6">
+                <h4>Articles</h4>
+                <p>Place your articles for certain categories</p>
+
+                <h4>Photos</h4>
+                <p>Attach photo to articles</p>
+            </div>
+
+            <div class="col-lg-6">
+                <h4>Comment</h4>
+                <p>Discuss your articles and articles of other users</p>
+
+                <h4>Search</h4>
+                <p>Look for interesting article</p>
+            </div>
+        </div>
+    }
 </div>

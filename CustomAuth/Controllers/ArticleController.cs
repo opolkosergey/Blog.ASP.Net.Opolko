@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,7 +21,6 @@ namespace CustomAuth.Controllers
         private readonly IBlogService _blogService;
         private readonly IArticleService _articleService;
         private readonly ICommentService _commentService;
-        
 
         public ArticleController(IUserService service, IBlogService blogService,
             IArticleService articleService, ICommentService commentService)
@@ -30,32 +30,25 @@ namespace CustomAuth.Controllers
             _articleService = articleService;
             _commentService = commentService;
         }
-        
-        [Authorize]
+
+        [AllowAnonymous]
         public ActionResult Index(int page = 1)
         {
-            var articles = _articleService.GetAllArticleEntities().ToList();
-            articles.Reverse();
-            
+            var articles = _articleService
+                .TakeLastArticleEntities(page, 10)
+                .Select(a => a.ToMvcViewArticleCommon())
+                .ToList(); ;
+
             if (page == 1)
-            {
-                var arts = articles.Take(10).ToList();
-                var model = AddAuthors(arts);
-                return View(model);
-            }
-
-            var nextArts = articles.Skip((page - 1) * 10).Take(10).ToList();
-            var itsAll = (nextArts.Count == 10) ? "no" : "yes";
-            var sb  = new StringBuilder();
-            sb.Append(itsAll);
-            if (nextArts.Count != 0)
-                sb.Append('+');
-            var newArtsList = AddAuthors(nextArts);
-            sb.Append(newArtsList.ParseArticle());
-
-            return Content(sb.ToString());
-        }
+                return View(articles);
             
+            var itsAll = (articles.Count == 10) ? "no" : "yes";
+            
+            var dataForJson = new ArrayList {itsAll};
+            dataForJson.AddRange(articles);
+            return Json(dataForJson, JsonRequestBehavior.AllowGet);
+        }
+
         [HttpGet]
         public ActionResult CreateArticle()
         {
@@ -90,41 +83,60 @@ namespace CustomAuth.Controllers
 
         public ActionResult Details(string id)
         {
-            var art = GetArticle(id);
-            if(art == null)
-                return RedirectToAction("Error", "Home", new { error = $"article with id = {id} not found" });
-            _articleService.IncrementViews(art.Id);
-            art.Comments = new List<CommentModel>();
-            art.Views++;
-            var comments = _commentService.GetAllCommentEntities(art.Id).ToList();
-            foreach (var comment in comments)
+            try
             {
-                var user = _userService.GetUserEntity(comment.UserId);
-                var c = new CommentModel()
+                var art = GetArticle(id);
+                _articleService.IncrementViews(art.Id);
+                art.Comments = new List<CommentModel>();
+                art.Views++;
+                var comments = _commentService.GetAllCommentEntities(art.Id).ToList();
+                foreach (var comment in comments)
                 {
-                    Id = comment.Id,
-                    ArticleId = comment.ArticleId,
-                    TextComment = comment.CommentText,
-                    Date = comment.DateAdded,
-                    Author = user.UserName,
-                    AvatarPath = user.AvatarPath
-                };
-                art.Comments.Add(c);
+                    var user = _userService.GetUserEntity(comment.UserId);
+                    var c = new CommentModel()
+                    {
+                        Id = comment.Id,
+                        ArticleId = comment.ArticleId,
+                        TextComment = comment.CommentText,
+                        Date = comment.DateAdded.ToString(),
+                        Author = user.UserName,
+                        AvatarPath = user.AvatarPath
+                    };
+                    art.Comments.Add(c);
+                }
+                return View(art);
             }
-            return View(art);
+            catch (ArgumentOutOfRangeException)
+            {
+                return RedirectToAction("Error", "Home");
+            }
+            catch (NullReferenceException)
+            {
+                return RedirectToAction("Error", "Home");
+            }
         }
 
         [Authorize(Roles = "Moderator,Admin")]
         [HttpGet]
         public ActionResult Edit(string id)
         {
-            var art = GetArticle(id);
-            if (art == null)
-                return RedirectToAction("Error", "Home",new { error = $"article with id = {id} not found" });
-            TempData["Tags"] = art.Tags;
-            return View(art);
+            try
+            {
+                var art = GetArticle(id);
+                TempData["Tags"] = art.Tags;
+                return View(art);
+            }
+            catch (NullReferenceException)
+            {
+                return RedirectToAction("Error", "Home");
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                return RedirectToAction("Error", "Home");
+            }
         }
 
+        [Authorize(Roles = "Moderator,Admin")]
         [HttpPost]
         public ActionResult Edit(ArticleViewModel model)
         {
@@ -138,47 +150,26 @@ namespace CustomAuth.Controllers
         {
             var filePath = _articleService.GetArticleEntity(id).ImagePath;
             _articleService.DeleteArticle(id);
-            if(filePath != null)
-                FileHelper.RemoveFileFromDisk(Server.MapPath("~/"),filePath);
+            if (filePath != null)
+                FileHelper.RemoveFileFromDisk(Server.MapPath("~/"), filePath);
 
             if (Request.IsAjaxRequest())
                 return Content("ok");
 
-            return RedirectToAction("Details", "Blog", new {id = TempData["BlogId"].ToString()});
+            return RedirectToAction("Details", "Blog", new { id = TempData["BlogId"].ToString() });
         }
         #region Private methods
-        private List<ArticleViewModelCommon> AddAuthors(List<ArticleEntity> list)
-        {
-            var arts = new List<ArticleViewModelCommon>();
-            foreach (var art in list)
-            {
-                var userId = _blogService.GetBlogEntity(art.BlogId).UserId;
-                var authorName = _userService.GetUserEntity(userId).UserName;
-                arts.Add(art.ToMvcViewArticleCommon(authorName));
-            }
-            return arts;
-        }
-
         private ArticleViewModel GetArticle(string id)
         {
             int parsedId;
             if (int.TryParse(id, out parsedId) == false)
-                return null;
+                throw new NullReferenceException();
+
+            if (parsedId < 0)
+                throw new ArgumentOutOfRangeException();
 
             TempData["CurrentArticle"] = parsedId;
-
-            var article = _articleService.GetArticleEntity(parsedId);
-
-            if (article != null)
-            {
-                var blog = _blogService
-                    .GetAllBlogEntities()
-                    .FirstOrDefault(b => b.Id == article.BlogId);
-                var authorName = _userService.GetUserEntity(blog.UserId).UserName;
-                var model = article.ToMvcViewArticle(authorName);
-                return model;
-            }
-            return null;
+            return _articleService.GetArticleEntity(parsedId).ToMvcViewArticle();  
         }
         #endregion
     }

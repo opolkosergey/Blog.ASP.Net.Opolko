@@ -27,6 +27,10 @@ namespace Bll.Services
             return repository.SearchBySubstring(s).Select(art => art.ToBllArticle());
         }
 
+        public IEnumerable<ArticleEntity> TakeLastArticleEntities(int page, int count)
+        {
+            return repository.GetLastArticles(page, count).Select(art => art.ToBllArticle());
+        }
         public void IncrementViews(int id)
         {
             repository.IncViews(id);
